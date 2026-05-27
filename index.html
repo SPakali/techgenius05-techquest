@@ -1,0 +1,2297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IT Academy – Std XII</title>
+<style>
+:root{
+  --bg:#0a0e1a;--bg2:#111827;--card:#1a2235;--card2:#1e2a40;
+  --accent:#6c63ff;--accent2:#00d4ff;--accent3:#ff6b9d;--accent4:#ffd166;
+  --green:#06d6a0;--text:#e8eaf6;--muted:#8892b0;--border:#2a3550;
+  --radius:14px;--font:'Segoe UI',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-brand span{font-size:1.4rem}
+.nav-stats{display:flex;gap:10px;align-items:center}
+.stat-pill{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:.78rem;display:flex;align-items:center;gap:5px}
+.stat-pill .val{color:var(--accent4);font-weight:700}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.sidebar{position:fixed;top:60px;left:0;bottom:0;width:245px;background:var(--bg2);border-right:1px solid var(--border);overflow-y:auto;z-index:90;transition:transform .3s}
+.sidebar-inner{padding:16px 0 40px}
+.sidebar-section{padding:8px 16px;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:8px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;transition:.2s;border-left:3px solid transparent;font-size:.88rem}
+.nav-item:hover{background:var(--card);color:var(--accent2)}
+.nav-item.active{background:var(--card);border-left-color:var(--accent);color:var(--accent)}
+.nav-item .ni{font-size:1rem;width:20px;text-align:center}
+main{margin-left:245px;margin-top:60px;padding:24px;min-height:calc(100vh - 60px)}
+.page{display:none}.page.active{display:block}
+.hero{background:linear-gradient(135deg,#1a1040 0%,#0d1b2a 50%,#0a1628 100%);border:1px solid var(--border);border-radius:var(--radius);padding:36px;margin-bottom:24px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(108,99,255,.3),transparent 70%);border-radius:50%}
+.hero h1{font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:8px;background:linear-gradient(135deg,#fff,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:.95rem;margin-bottom:20px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{padding:10px 22px;border-radius:30px;border:none;cursor:pointer;font-size:.88rem;font-weight:600;transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(108,99,255,.4)}
+.btn-outline{background:transparent;border:1.5px solid var(--accent);color:var(--accent)}
+.btn-outline:hover{background:var(--accent);color:#fff}
+.btn-green{background:linear-gradient(135deg,var(--green),#00b894);color:#fff}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(6,214,160,.4)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:.25s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.card-icon{font-size:2rem;margin-bottom:10px}
+.card h3{font-size:1rem;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.83rem;line-height:1.5}
+.prog-wrap{background:var(--bg);border-radius:10px;height:8px;overflow:hidden;margin-top:8px}
+.prog-fill{height:100%;border-radius:10px;transition:width .6s ease;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-align:center}
+.stat-card .big{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-card .lbl{color:var(--muted);font-size:.78rem;margin-top:4px}
+.mod-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:.25s;overflow:hidden}
+.mod-card:hover{border-color:var(--accent2);box-shadow:0 6px 20px rgba(0,212,255,.15)}
+.mod-header{padding:16px 18px 12px;display:flex;align-items:flex-start;gap:12px}
+.mod-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.mod-title{font-size:.95rem;font-weight:700;margin-bottom:3px}
+.mod-sub{color:var(--muted);font-size:.78rem}
+.mod-footer{padding:10px 18px 14px;display:flex;align-items:center;justify-content:space-between}
+.mod-prog-wrap{flex:1;background:var(--bg);border-radius:6px;height:5px;margin-right:10px;overflow:hidden}
+.mod-prog{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.mod-pct{font-size:.75rem;color:var(--muted)}
+.content-header{margin-bottom:24px}
+.content-header h2{font-size:1.5rem;font-weight:700}
+.content-header p{color:var(--muted);margin-top:4px}
+.breadcrumb{font-size:.8rem;color:var(--muted);margin-bottom:10px}
+.breadcrumb span{color:var(--accent)}
+.lesson-content{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.lesson-content h2{font-size:1.3rem;margin-bottom:16px;color:var(--accent2)}
+.lesson-content h3{font-size:1rem;margin:20px 0 8px;color:var(--accent4);border-left:3px solid var(--accent4);padding-left:10px}
+.lesson-content p{color:#c5cae9;font-size:.9rem;line-height:1.7;margin-bottom:10px}
+.lesson-content ul,.lesson-content ol{padding-left:22px;margin-bottom:10px}
+.lesson-content li{color:#c5cae9;font-size:.88rem;line-height:1.7;margin-bottom:5px}
+.lesson-content strong{color:var(--accent2)}
+.code-block{background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:16px;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.6;color:#e6edf3;overflow-x:auto;margin:12px 0;position:relative;white-space:pre}
+.copy-btn{position:absolute;top:8px;right:10px;background:var(--card);border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:2px 10px;font-size:.72rem;cursor:pointer}
+.info-box{background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.3);border-radius:10px;padding:14px;margin:12px 0;font-size:.85rem;color:#b3e5fc}
+.warn-box{background:rgba(255,107,157,.08);border:1px solid rgba(255,107,157,.3);border-radius:10px;padding:14px;margin:12px 0;font-size:.85rem;color:#f8bbd0}
+.success-box{background:rgba(6,214,160,.08);border:1px solid rgba(6,214,160,.3);border-radius:10px;padding:14px;margin:12px 0;font-size:.85rem;color:#b2dfdb}
+.table-wrap{overflow-x:auto;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:var(--bg);padding:10px 12px;text-align:left;color:var(--accent2);border-bottom:1px solid var(--border)}
+td{padding:8px 12px;border-bottom:1px solid var(--border);color:#c5cae9}
+tr:hover td{background:rgba(255,255,255,.03)}
+.quiz-wrap{max-width:680px;margin:0 auto}
+.quiz-header{text-align:center;margin-bottom:28px}
+.quiz-header h2{font-size:1.4rem;margin-bottom:6px}
+.quiz-meta{display:flex;justify-content:center;gap:20px;font-size:.82rem;color:var(--muted);margin-top:8px}
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px}
+.q-num{font-size:.75rem;color:var(--muted);margin-bottom:8px}
+.q-text{font-size:.98rem;font-weight:600;line-height:1.5;margin-bottom:18px}
+.q-opts{display:flex;flex-direction:column;gap:10px}
+.q-opt{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:11px 16px;cursor:pointer;transition:.2s;font-size:.88rem;display:flex;align-items:center;gap:10px}
+.q-opt:hover{border-color:var(--accent)}
+.q-opt.correct{border-color:var(--green);background:rgba(6,214,160,.1);color:var(--green)}
+.q-opt.wrong{border-color:var(--accent3);background:rgba(255,107,157,.1);color:var(--accent3)}
+.q-opt .opt-letter{width:24px;height:24px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+.explain-box{background:rgba(6,214,160,.08);border:1px solid rgba(6,214,160,.3);border-radius:8px;padding:12px;margin-top:12px;font-size:.82rem;color:#b2dfdb;display:none}
+.timer-bar{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin-bottom:16px}
+.timer-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--accent4));border-radius:2px;transition:width .1s linear}
+.result-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;text-align:center;max-width:500px;margin:20px auto}
+.result-score{font-size:4rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.result-badge{font-size:3.5rem;margin:16px 0}
+.result-title{font-size:1.2rem;font-weight:700;margin-bottom:6px}
+.result-sub{color:var(--muted);font-size:.88rem;margin-bottom:20px}
+.flashcard-wrap{perspective:1000px;max-width:480px;margin:0 auto 20px}
+.flashcard{position:relative;height:220px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s}
+.flashcard.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font-size:.95rem;line-height:1.6}
+.fc-front{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--border)}
+.fc-back{background:linear-gradient(135deg,#1a1040,#0d1b2a);border:1px solid var(--accent);transform:rotateY(180deg);color:var(--accent2)}
+.fc-hint{color:var(--muted);font-size:.75rem;margin-top:10px;text-align:center}
+.playground{display:grid;grid-template-columns:1fr 1fr;gap:16px;height:calc(100vh - 200px);min-height:500px}
+.editor-panel{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.editor-tabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border)}
+.ed-tab{padding:8px 16px;cursor:pointer;font-size:.8rem;transition:.2s;border-bottom:2px solid transparent}
+.ed-tab.active{border-bottom-color:var(--accent);color:var(--accent)}
+.ed-tab:hover{background:var(--card)}
+.editor-area{flex:1;position:relative;overflow:hidden}
+textarea.code-editor{width:100%;height:100%;background:#0d1117;color:#e6edf3;border:none;outline:none;padding:16px;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.6;resize:none}
+.preview-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.preview-header{padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;font-size:.82rem}
+.preview-dot{width:10px;height:10px;border-radius:50%}
+iframe.preview{flex:1;border:none;background:#fff}
+.editor-controls{padding:10px 16px;background:var(--bg);border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap}
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:16px}
+.badge-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;transition:.25s}
+.badge-card:hover{transform:translateY(-3px)}
+.badge-card.earned{border-color:var(--accent4);box-shadow:0 0 16px rgba(255,209,102,.2)}
+.badge-card.locked-b{filter:grayscale(1);opacity:.5}
+.badge-icon{font-size:2.5rem;margin-bottom:8px}
+.badge-name{font-size:.78rem;font-weight:600}
+.badge-desc{font-size:.7rem;color:var(--muted);margin-top:3px}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card2);border:1px solid var(--accent);color:var(--text);padding:12px 20px;border-radius:12px;font-size:.88rem;z-index:999;transform:translateY(100px);opacity:0;transition:.3s;max-width:300px}
+.toast.show{transform:translateY(0);opacity:1}
+.xp-popup{position:fixed;top:80px;right:24px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:10px 20px;border-radius:30px;font-size:.9rem;font-weight:700;z-index:999;transform:translateY(-20px);opacity:0;transition:.3s}
+.xp-popup.show{transform:translateY(0);opacity:1}
+.section-title{font-size:1.1rem;font-weight:700;margin:24px 0 14px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.topic-tag{display:inline-flex;align-items:center;gap:5px;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:.82rem;cursor:pointer;transition:.2s;margin:4px}
+.topic-tag:hover{border-color:var(--accent);color:var(--accent)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.match-col{display:flex;flex-direction:column;gap:8px}
+.match-item{background:var(--card2);border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;cursor:pointer;transition:.2s;font-size:.82rem;text-align:center;min-height:48px;display:flex;align-items:center;justify-content:center}
+.match-item:hover{border-color:var(--accent2)}
+.match-item.selected{border-color:var(--accent);background:rgba(108,99,255,.15)}
+.match-item.matched{border-color:var(--green);background:rgba(6,214,160,.1);pointer-events:none}
+.match-item.wrong-sel{border-color:var(--accent3);animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.level-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#ffd166,#ff6b9d);color:#1a0a00;border-radius:20px;padding:4px 14px;font-size:.78rem;font-weight:700}
+.fill-input{background:var(--bg);border:1.5px solid var(--accent);border-radius:8px;padding:6px 12px;color:var(--text);font-size:.88rem;outline:none;width:140px;text-align:center}
+.fill-input:focus{border-color:var(--accent2)}
+.fill-q{font-size:.93rem;line-height:2.2;color:#c5cae9}
+/* Notes page */
+.notes-area{width:100%;min-height:300px;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:16px;color:var(--text);font-family:var(--font);font-size:.9rem;line-height:1.7;resize:vertical;outline:none}
+.notes-area:focus{border-color:var(--accent)}
+/* Search */
+.search-box{width:100%;background:var(--card);border:1.5px solid var(--border);color:var(--text);border-radius:10px;padding:10px 16px;font-size:.9rem;outline:none;margin-bottom:20px}
+.search-box:focus{border-color:var(--accent)}
+.search-result{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;cursor:pointer;transition:.2s}
+.search-result:hover{border-color:var(--accent);background:var(--card2)}
+.search-result h4{color:var(--accent2);margin-bottom:4px}
+.search-result p{color:var(--muted);font-size:.82rem}
+.highlight{background:rgba(255,209,102,.3);color:var(--accent4);border-radius:3px;padding:0 3px}
+/* PDF hidden content */
+@media print{
+  nav,aside,.hero-btns,#lesson-actions,.copy-btn{display:none!important}
+  body{background:#fff;color:#000}
+  .lesson-content{border:none;padding:0}
+  .code-block{background:#f5f5f5;color:#000;border:1px solid #ccc}
+  .info-box,.warn-box,.success-box{border:1px solid #ccc;background:#f9f9f9;color:#333}
+  table{border:1px solid #ccc}th,td{border:1px solid #ccc}
+}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  main{margin-left:0}
+  .hamburger{display:flex}
+  .playground{grid-template-columns:1fr;height:auto}
+  .match-grid{grid-template-columns:1fr}
+  .hero h1{font-size:1.4rem}
+  .nav-stats .stat-pill:nth-child(n+3){display:none}
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn .4s ease forwards}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-brand"><span>🎓</span> IT Academy XII</div>
+  <div class="nav-stats">
+    <div class="stat-pill">⚡ <span class="val" id="xp-display">0</span> XP</div>
+    <div class="stat-pill">🏆 <span class="val" id="badges-display">0</span></div>
+    <div class="stat-pill">🔥 <span class="val" id="streak-display">1</span>d</div>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-inner">
+    <div class="sidebar-section">Main</div>
+    <div class="nav-item active" onclick="showPage('home')"><span class="ni">🏠</span> Dashboard</div>
+    <div class="nav-item" onclick="showPage('modules')"><span class="ni">📚</span> Modules</div>
+    <div class="nav-item" onclick="showPage('quiz')"><span class="ni">🧠</span> Quiz Arena</div>
+    <div class="nav-item" onclick="showPage('flashcards')"><span class="ni">🃏</span> Flash Cards</div>
+    <div class="nav-item" onclick="showPage('playground')"><span class="ni">💻</span> Code Lab</div>
+    <div class="nav-item" onclick="showPage('matchgame')"><span class="ni">🎮</span> Match Game</div>
+    <div class="nav-item" onclick="showPage('fillblank')"><span class="ni">✏️</span> Fill Blanks</div>
+    <div class="nav-item" onclick="showPage('search')"><span class="ni">🔎</span> Search Topics</div>
+    <div class="nav-item" onclick="showPage('notes')"><span class="ni">📝</span> My Notes</div>
+    <div class="sidebar-section">Progress</div>
+    <div class="nav-item" onclick="showPage('badges')"><span class="ni">🎖️</span> Badges</div>
+    <div class="nav-item" onclick="showPage('certificate')"><span class="ni">📜</span> Certificate</div>
+    <div class="sidebar-section">Chapters</div>
+    <div class="nav-item" onclick="showLesson(0)"><span class="ni">🌐</span> Web Designing</div>
+    <div class="nav-item" onclick="showLesson(1)"><span class="ni">🔍</span> SEO</div>
+    <div class="nav-item" onclick="showLesson(2)"><span class="ni">⚡</span> JavaScript</div>
+    <div class="nav-item" onclick="showLesson(3)"><span class="ni">🚀</span> Emerging Tech</div>
+    <div class="nav-item" onclick="showLesson(4)"><span class="ni">🐘</span> PHP</div>
+    <div class="nav-item" onclick="showLesson(5)"><span class="ni">🛒</span> E-Commerce</div>
+    <div class="nav-item" onclick="showLesson(6)"><span class="ni">🏛️</span> E-Governance</div>
+  </div>
+</aside>
+<main id="main">
+
+<!-- HOME -->
+<div class="page active fade-in" id="page-home">
+  <div class="hero">
+    <div style="margin-bottom:10px"><span class="level-badge" id="level-badge">🌱 Beginner Explorer</span></div>
+    <h1>Information Technology<br>Standard XII Academy</h1>
+    <p>Maharashtra State Board · Science Stream · Complete Syllabus Coverage</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="showPage('modules')">🚀 Start Learning</button>
+      <button class="btn btn-outline" onclick="showPage('quiz')">🧠 Quiz Arena</button>
+      <button class="btn btn-outline" onclick="showPage('playground')">💻 Code Lab</button>
+      <button class="btn btn-green" onclick="downloadPDF()">📥 Download PDF Notes</button>
+    </div>
+  </div>
+  <div class="grid g4" style="margin-bottom:24px">
+    <div class="stat-card"><div class="big" id="stat-xp">0</div><div class="lbl">⚡ XP Earned</div></div>
+    <div class="stat-card"><div class="big" id="stat-comp">0%</div><div class="lbl">📊 Completed</div></div>
+    <div class="stat-card"><div class="big" id="stat-quiz">0</div><div class="lbl">🧠 Quizzes Done</div></div>
+    <div class="stat-card"><div class="big" id="stat-bdg">0</div><div class="lbl">🏆 Badges</div></div>
+  </div>
+  <div class="section-title">📚 Learning Modules</div>
+  <div class="grid g3" id="home-modules"></div>
+  <div class="section-title" style="margin-top:28px">🎯 Quick Activities</div>
+  <div class="grid g3">
+    <div class="card" style="cursor:pointer" onclick="showPage('flashcards')"><div class="card-icon">🃏</div><h3>Flash Cards</h3><p>Quick concept revision with interactive flip cards — 40+ cards</p></div>
+    <div class="card" style="cursor:pointer" onclick="showPage('matchgame')"><div class="card-icon">🎮</div><h3>Match Game</h3><p>Match terms with definitions in a fun challenge</p></div>
+    <div class="card" style="cursor:pointer" onclick="showPage('fillblank')"><div class="card-icon">✏️</div><h3>Fill in Blanks</h3><p>Test your recall by completing the sentences</p></div>
+    <div class="card" style="cursor:pointer" onclick="showPage('search')"><div class="card-icon">🔎</div><h3>Search Topics</h3><p>Find any topic instantly across all chapters</p></div>
+    <div class="card" style="cursor:pointer" onclick="showPage('notes')"><div class="card-icon">📝</div><h3>My Notes</h3><p>Write and save your personal study notes</p></div>
+    <div class="card" style="cursor:pointer" onclick="downloadPDF()"><div class="card-icon">📥</div><h3>Download PDF</h3><p>Get complete textbook notes as a printable PDF</p></div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<div class="page fade-in" id="page-modules">
+  <div class="content-header"><h2>📚 All Learning Modules</h2><p>Complete all 7 modules · Full Maharashtra State Board Syllabus</p></div>
+  <div class="grid g3" id="all-modules"></div>
+</div>
+
+<!-- LESSON -->
+<div class="page fade-in" id="page-lesson">
+  <div class="breadcrumb">🏠 Home › <span id="lesson-breadcrumb">Module</span></div>
+  <div id="lesson-body"></div>
+  <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap" id="lesson-actions"></div>
+</div>
+
+<!-- QUIZ -->
+<div class="page fade-in" id="page-quiz">
+  <div class="quiz-wrap">
+    <div id="quiz-select">
+      <div class="content-header" style="text-align:center"><h2>🧠 Quiz Arena</h2><p>Test your knowledge · Earn XP · Track your best scores</p></div>
+      <div class="grid g3" id="quiz-topics"></div>
+    </div>
+    <div id="quiz-engine" style="display:none"></div>
+    <div id="quiz-result" style="display:none"></div>
+  </div>
+</div>
+
+<!-- FLASH CARDS -->
+<div class="page fade-in" id="page-flashcards">
+  <div class="content-header"><h2>🃏 Flash Cards</h2><p>Click card to flip · Navigate with buttons · Earn XP per review</p></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px" id="fc-topic-btns"></div>
+  <div id="fc-container"></div>
+  <div style="display:flex;justify-content:center;gap:12px;margin-top:16px;align-items:center">
+    <button class="btn btn-outline" id="fc-prev">← Prev</button>
+    <span id="fc-counter" style="color:var(--muted);font-size:.88rem"></span>
+    <button class="btn btn-primary" id="fc-next">Next →</button>
+  </div>
+</div>
+
+<!-- PLAYGROUND -->
+<div class="page fade-in" id="page-playground">
+  <div class="content-header"><h2>💻 Code Lab</h2><p>Write HTML, CSS & JS — see live output instantly</p></div>
+  <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap" id="playground-samples"></div>
+  <div class="playground">
+    <div class="editor-panel">
+      <div class="editor-tabs">
+        <div class="ed-tab active" onclick="switchTab('html')">HTML</div>
+        <div class="ed-tab" onclick="switchTab('css')">CSS</div>
+        <div class="ed-tab" onclick="switchTab('js')">JS</div>
+      </div>
+      <div class="editor-area">
+        <textarea class="code-editor" id="html-editor" placeholder="<!-- HTML code here -->"></textarea>
+        <textarea class="code-editor" id="css-editor" style="display:none" placeholder="/* CSS here */"></textarea>
+        <textarea class="code-editor" id="js-editor" style="display:none" placeholder="// JS here"></textarea>
+      </div>
+      <div class="editor-controls">
+        <button class="btn btn-primary" onclick="runCode()">▶ Run</button>
+        <button class="btn btn-outline" onclick="resetCode()">↺ Reset</button>
+      </div>
+    </div>
+    <div class="preview-panel">
+      <div class="preview-header">
+        <div class="preview-dot" style="background:#ff5f57"></div>
+        <div class="preview-dot" style="background:#ffbd2e"></div>
+        <div class="preview-dot" style="background:#28ca41"></div>
+        <span style="margin-left:6px;color:var(--muted)">Live Preview</span>
+      </div>
+      <iframe class="preview" id="preview-frame"></iframe>
+    </div>
+  </div>
+</div>
+
+<!-- MATCH GAME -->
+<div class="page fade-in" id="page-matchgame">
+  <div class="content-header"><h2>🎮 Match Game</h2><p>Match each term with its correct definition</p></div>
+  <div id="match-topic-btns" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px"></div>
+  <div id="match-board"></div>
+  <div id="match-score" style="text-align:center;margin-top:16px;font-size:.9rem;color:var(--muted)"></div>
+</div>
+
+<!-- FILL BLANKS -->
+<div class="page fade-in" id="page-fillblank">
+  <div class="content-header"><h2>✏️ Fill in the Blanks</h2><p>Complete the sentences to test your knowledge</p></div>
+  <div id="fillblank-board"></div>
+</div>
+
+<!-- SEARCH -->
+<div class="page fade-in" id="page-search">
+  <div class="content-header"><h2>🔎 Search Topics</h2><p>Find any concept instantly across all chapters</p></div>
+  <input type="text" class="search-box" id="search-input" placeholder="Search for HTML, PHP, SEO, IoT, encryption..." oninput="doSearch(this.value)">
+  <div id="search-results"></div>
+</div>
+
+<!-- NOTES -->
+<div class="page fade-in" id="page-notes">
+  <div class="content-header"><h2>📝 My Notes</h2><p>Write your personal study notes — auto-saved to your browser</p></div>
+  <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap">
+    <button class="btn btn-primary" onclick="saveNotes()">💾 Save Notes</button>
+    <button class="btn btn-outline" onclick="clearNotes()">🗑️ Clear</button>
+    <button class="btn btn-green" onclick="downloadNotesPDF()">📥 Download Notes as PDF</button>
+  </div>
+  <textarea class="notes-area" id="notes-area" placeholder="Start typing your notes here...&#10;&#10;Tip: Use this to summarize key points from each chapter!"></textarea>
+  <div id="notes-saved" style="color:var(--green);font-size:.82rem;margin-top:8px"></div>
+</div>
+
+<!-- BADGES -->
+<div class="page fade-in" id="page-badges">
+  <div class="content-header"><h2>🎖️ Achievement Badges</h2><p>Complete challenges to unlock all badges</p></div>
+  <div class="badges-grid" id="badges-grid"></div>
+</div>
+
+<!-- CERTIFICATE -->
+<div class="page fade-in" id="page-certificate">
+  <div class="content-header"><h2>📜 Completion Certificate</h2><p>Generate and download your certificate</p></div>
+  <div class="card" style="max-width:640px;margin:0 auto;text-align:center;padding:36px">
+    <input id="cert-name" type="text" placeholder="Enter your full name" style="width:100%;background:var(--bg);border:1.5px solid var(--border);color:var(--text);border-radius:10px;padding:10px 14px;font-size:.9rem;outline:none;margin-bottom:16px">
+    <div id="cert-preview" style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:16px 0">
+      <div style="border:3px solid var(--accent4);border-radius:12px;padding:28px">
+        <div style="color:var(--accent4);font-size:.8rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px">Certificate of Completion</div>
+        <div style="font-size:2.5rem;margin:8px 0">🎓</div>
+        <div style="font-size:.85rem;color:var(--muted)">This is to certify that</div>
+        <div id="cert-name-display" style="font-size:1.6rem;font-weight:700;color:var(--accent2);margin:10px 0">Your Name</div>
+        <div style="font-size:.85rem;color:var(--muted)">has successfully completed</div>
+        <div style="font-size:1.1rem;font-weight:600;color:var(--accent4);margin:8px 0">Information Technology – Standard XII</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:16px">Maharashtra State Board · Science Stream</div>
+        <div style="display:flex;justify-content:space-around;font-size:.78rem;color:var(--muted);border-top:1px solid var(--border);padding-top:16px">
+          <div>Quiz Avg: <span id="cert-score" style="color:var(--green);font-weight:700">–</span></div>
+          <div>XP: <span id="cert-xp-display" style="color:var(--accent4);font-weight:700">0</span></div>
+          <div>Modules: <span id="cert-mods" style="color:var(--accent2);font-weight:700">0/7</span></div>
+          <div>Date: <span id="cert-date" style="color:var(--text)"></span></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+      <button class="btn btn-primary" onclick="generateCert()">📜 Generate</button>
+      <button class="btn btn-green" onclick="downloadCertPDF()">📥 Download PDF</button>
+    </div>
+  </div>
+</div>
+
+</main>
+<div class="toast" id="toast"></div>
+<div class="xp-popup" id="xp-popup"></div>
+
+<script>
+// ===== COMPLETE LESSON DATA =====
+const LESSONS=[
+{id:0,title:"Advanced Web Designing",icon:"🌐",sections:[
+{h:"1.1 HTML5 Advanced Input Types",body:`<p>HTML5 introduced many new <strong>input type values</strong> for the <code>&lt;input&gt;</code> tag to collect various types of data with built-in validation.</p>
+<div class="table-wrap"><table><tr><th>Input Type</th><th>Description</th></tr>
+<tr><td>color</td><td>Defines a color picker</td></tr>
+<tr><td>number</td><td>Defines a field for entering a number</td></tr>
+<tr><td>url</td><td>Defines a field for entering a URL</td></tr>
+<tr><td>image</td><td>Defines an image as a submit button</td></tr>
+<tr><td>date</td><td>Defines a date picker (year, month, day)</td></tr>
+<tr><td>email</td><td>Defines a field for an e-mail address</td></tr>
+<tr><td>month</td><td>Defines a month and year control (YYYY-MM)</td></tr>
+<tr><td>range</td><td>Defines a range control. Default range is 0 to 100</td></tr>
+<tr><td>datetime-local</td><td>Date picker including year, month, day and time</td></tr>
+<tr><td>time</td><td>Defines a control for entering a time</td></tr>
+<tr><td>week</td><td>Defines a week and year control</td></tr>
+<tr><td>search</td><td>Defines a text field for entering a search string</td></tr>
+<tr><td>file</td><td>Defines a file-select field with a Browse button</td></tr>
+<tr><td>tel</td><td>Used to define input fields for a telephone number</td></tr>
+</table></div>
+<h3>Input Restrictions / Attributes</h3>
+<div class="table-wrap"><table><tr><th>Attribute</th><th>Description</th></tr>
+<tr><td>disabled</td><td>Specifies that an input field should be disabled</td></tr>
+<tr><td>max</td><td>Specifies the maximum value for an input field</td></tr>
+<tr><td>min</td><td>Specifies the minimum value for an input field</td></tr>
+<tr><td>pattern</td><td>Specifies a regular expression to check input values</td></tr>
+<tr><td>readonly</td><td>Specifies that an input field is read only</td></tr>
+<tr><td>placeholder</td><td>Acts as a temporary label showing the purpose of a field</td></tr>
+<tr><td>required</td><td>Specifies that an input field must be filled out</td></tr>
+<tr><td>autocomplete</td><td>Specifies whether autocomplete is On or Off</td></tr>
+<tr><td>autofocus</td><td>Specifies that the input field should get focus when page loads</td></tr>
+<tr><td>multiple</td><td>Allows more than one value (works with email and file)</td></tr>
+</table></div>
+<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;form&gt;
+  Name: &lt;input type="text" autocomplete&gt;
+  Email: &lt;input type="email" name="email"&gt;
+  Date: &lt;input type="date" name="bday"&gt;
+  Phone: &lt;input type="tel" pattern="[0-9]{2}-[0-9]{10}" required&gt;
+  Age (1-100): &lt;input type="number" min="1" max="100"&gt;
+  Color: &lt;input type="color"&gt;
+  Range: &lt;input type="range" min="0" max="100"&gt;
+&lt;/form&gt;</div>`},
+
+{h:"1.2 Meta Tags",body:`<p>The <strong>&lt;meta&gt;</strong> tag describes some aspects of a webpage's contents. It is used by search engines to search information provided with the webpage. It is a <strong>singular/empty tag</strong> placed between <code>&lt;head&gt;</code> and <code>&lt;/head&gt;</code> tags. Metadata is not displayed on the webpage.</p>
+<div class="table-wrap"><table><tr><th>Attribute</th><th>Values</th><th>Description</th></tr>
+<tr><td>name</td><td>author, description, keywords, copyright</td><td>Specifies the name of the metadata</td></tr>
+<tr><td>content</td><td>Any textual matter</td><td>Specifies the value related to the name attribute</td></tr>
+<tr><td>charset</td><td>UTF-8, Big5</td><td>Specifies character encoding (UTF-8 for Indian characters)</td></tr>
+<tr><td>http-equiv</td><td>refresh, set-cookie, content-type, expires</td><td>Used for HTTP response message headers</td></tr>
+</table></div>
+<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;meta name="author" content="Balbharati"&gt;
+&lt;meta name="description" content="Advance web designing"&gt;
+&lt;meta name="keywords" content="html5, learn html5, css"&gt;
+&lt;meta name="copyright" content="Balbharati All Rights Reserved"&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta http-equiv="refresh" content="5"&gt;</div>
+<div class="warn-box">⚠️ Meta tags are crucial for SEO! Always include description and keywords.</div>`},
+
+{h:"1.3 CSS – Types, Properties & Selectors",body:`<p><strong>CSS (Cascading Style Sheets)</strong> describes how HTML elements are displayed on screen. CSS saves a lot of work — it can control multiple web pages at once.</p>
+<p><strong>CSS Syntax:</strong> <code>Selector { Property: value; Property2: value2 }</code></p>
+<h3>3 Types of CSS</h3>
+<ul><li><strong>Inline CSS</strong> – Uses style attribute in HTML start tag. Applied on a single element.</li>
+<li><strong>Internal/Embedded CSS</strong> – Written inside &lt;style&gt; tag within &lt;head&gt;. Affects the whole page.</li>
+<li><strong>External CSS</strong> – Separate .css file linked with &lt;link&gt; tag. Best for multiple pages.</li></ul>
+<h3>CSS Selectors</h3>
+<div class="code-block">/* Element Selector */
+p { color: blue; }
+
+/* Class Selector (.classname) */
+.intro { text-align: center; color: blue; }
+
+/* ID Selector (#id) */
+#para1 { text-align: center; color: blue; }
+
+/* Universal Selector (*) */
+* { color: green; font-size: 20px; }
+
+/* Group Selector */
+h1, h2, p { text-align: center; color: blue; }</div>
+<h3>Important CSS Properties</h3>
+<div class="table-wrap"><table><tr><th>Property</th><th>Use</th><th>Example</th></tr>
+<tr><td>color</td><td>Text color</td><td>h1{color:maroon}</td></tr>
+<tr><td>background-color</td><td>Background color</td><td>body{background-color:yellow}</td></tr>
+<tr><td>font-weight</td><td>Bold text</td><td>p{font-weight:bold}</td></tr>
+<tr><td>font-style</td><td>Italic text</td><td>p{font-style:italic}</td></tr>
+<tr><td>font-size</td><td>Font size</td><td>p{font-size:14px}</td></tr>
+<tr><td>font-family</td><td>Font type</td><td>p{font-family:Arial}</td></tr>
+<tr><td>text-align</td><td>Horizontal alignment</td><td>h1{text-align:center}</td></tr>
+<tr><td>text-decoration</td><td>Underline, line-through</td><td>p{text-decoration:underline}</td></tr>
+<tr><td>letter-spacing</td><td>Space between characters</td><td>h1{letter-spacing:5pt}</td></tr>
+<tr><td>padding</td><td>Space inside element</td><td>h1{padding:30px}</td></tr>
+<tr><td>border</td><td>Border around element</td><td>h1{border:solid}</td></tr>
+<tr><td>margin-left</td><td>Left margin</td><td>h1{margin-left:10px}</td></tr>
+<tr><td>background-image</td><td>Background image</td><td>body{background-image:url('bg.jpg')}</td></tr>
+</table></div>`},
+
+{h:"1.4 CSS Positioning",body:`<p>The <strong>position</strong> property is used to set position for an element. Values are positioned using top, bottom, left, right properties.</p>
+<ul>
+<li><strong>Static</strong> – Default position. NOT affected by top/bottom/left/right properties.</li>
+<li><strong>Fixed</strong> – Element stays fixed relative to browser window even when page is scrolled.</li>
+<li><strong>Relative</strong> – Set the element relative to its normal position.</li>
+<li><strong>Absolute</strong> – Positioned at specific coordinates relative to its nearest positioned ancestor (not affected by page flow).</li>
+</ul>
+<div class="code-block">/* Fixed positioning */
+p.fixed { position: fixed; top: 50px; right: 5px; color: blue; }
+
+/* Absolute positioning */
+h2 { position: absolute; left: 100px; top: 150px; }
+
+/* Relative positioning */
+.first { position: relative; top: -10px; right: -10px; }</div>`},
+
+{h:"1.5 Float and Display Properties",body:`<p>The <strong>float</strong> property defines the flow of content around elements.</p>
+<ul>
+<li><strong>float: left</strong> – Keeps element floating on left side of container</li>
+<li><strong>float: right</strong> – Keeps element floating on right side of container</li>
+<li><strong>float: none</strong> – Default. Shows element as it is</li>
+</ul>
+<div class="code-block">.float-left  { float: left;  font-size: 20px; background-color: gold; }
+.float-right { float: right; font-size: 20px; background-color: gold; }</div>
+<h3>Display Property</h3>
+<p>The <strong>display</strong> property defines how components are placed on the web page.</p>
+<ul>
+<li><strong>inline</strong> – Displays element as an inline element (no new line)</li>
+<li><strong>block</strong> – Displays element as a block element (starts on new line, full width)</li>
+<li><strong>inline-block</strong> – Like inline but you can set width and height</li>
+<li><strong>none</strong> – The element is completely removed</li>
+</ul>
+<div class="code-block">p { display: inline; }
+a { display: block; background-color: orange; }</div>`},
+
+{h:"1.6 HTML Lists",body:`<h3>Ordered List &lt;ol&gt;</h3>
+<p>Defines an ordered (numbered or alphabetical) list.</p>
+<div class="table-wrap"><table><tr><th>Attribute</th><th>Values</th><th>Description</th></tr>
+<tr><td>type</td><td>"1","a","A","i","I"</td><td>Specifies numbering type (default is "1")</td></tr>
+<tr><td>reversed</td><td>reversed</td><td>Items in reverse order</td></tr>
+<tr><td>start</td><td>number</td><td>Starting number of first item</td></tr>
+</table></div>
+<div class="code-block">&lt;ol type="1" start="1"&gt;
+  &lt;li&gt;HTML5&lt;/li&gt;
+  &lt;li&gt;CSS3&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol reversed&gt;
+  &lt;li&gt;Third&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
+  &lt;li&gt;First&lt;/li&gt;
+&lt;/ol&gt;</div>
+<h3>Unordered List &lt;ul&gt;</h3>
+<p>Creates a bulleted list. In HTML5, use CSS style attribute instead of type attribute.</p>
+<div class="code-block">&lt;ul style="list-style-type:disc"&gt;   &lt;!-- bullet --&gt;
+&lt;ul style="list-style-type:circle"&gt; &lt;!-- circle --&gt;
+&lt;ul style="list-style-type:square"&gt; &lt;!-- square --&gt;
+&lt;ul style="list-style-type:none"&gt;   &lt;!-- no marker --&gt;</div>
+<h3>Definition List &lt;dl&gt;</h3>
+<p>Used to define terms and their definitions.</p>
+<div class="code-block">&lt;dl&gt;
+  &lt;dt&gt;&lt;b&gt;HTML&lt;/b&gt;&lt;/dt&gt;
+  &lt;dd&gt;A markup language for creating web pages&lt;/dd&gt;
+  &lt;dt&gt;&lt;b&gt;CSS&lt;/b&gt;&lt;/dt&gt;
+  &lt;dd&gt;A technology to make HTML look better&lt;/dd&gt;
+&lt;/dl&gt;</div>
+<h3>Nested Lists</h3>
+<p>A list within another list is called a nested list.</p>
+<div class="code-block">&lt;ol&gt;
+  &lt;li&gt;Introduction to IT&lt;/li&gt;
+  &lt;li&gt;Introduction to DBMS&lt;/li&gt;
+  &lt;ul style="list-style-type:circle"&gt;
+    &lt;li&gt;Definition of DBMS&lt;/li&gt;
+    &lt;li&gt;Applications of DBMS&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;li&gt;PostgreSQL&lt;/li&gt;
+&lt;/ol&gt;</div>`},
+
+{h:"1.7 Audio & Video in HTML5",body:`<p>HTML5 features <strong>native audio and video support</strong> without the need for Flash.</p>
+<h3>&lt;audio&gt; Tag</h3>
+<p>Common Audio Formats: <strong>mp3</strong> (MPEG), <strong>aac</strong> (standard for iPhone/YouTube), <strong>ogg</strong> (open format)</p>
+<div class="table-wrap"><table><tr><th>Attribute</th><th>Description</th></tr>
+<tr><td>autoplay</td><td>Audio starts playing as soon as it is ready</td></tr>
+<tr><td>controls</td><td>Displays audio controls (play/pause/volume)</td></tr>
+<tr><td>loop</td><td>Audio starts over again every time it finishes</td></tr>
+<tr><td>muted</td><td>Audio output should be muted</td></tr>
+<tr><td>src</td><td>Specifies the URL of the audio file</td></tr>
+</table></div>
+<div class="code-block">&lt;audio controls autoplay loop&gt;
+  &lt;source src="test.mp3" type="audio/mp3"&gt;
+  &lt;source src="test.ogg" type="audio/ogg"&gt;
+&lt;/audio&gt;</div>
+<h3>&lt;video&gt; Tag</h3>
+<p>Supported video formats: <strong>mp4</strong>, <strong>ogg</strong>, <strong>webm</strong></p>
+<div class="table-wrap"><table><tr><th>Attribute</th><th>Description</th></tr>
+<tr><td>src</td><td>Defines link to video file</td></tr>
+<tr><td>autoplay</td><td>Video starts playing as soon as it is ready</td></tr>
+<tr><td>controls</td><td>Displays video controls (play/pause)</td></tr>
+<tr><td>height/width</td><td>Sets the height/width of video player in pixels</td></tr>
+<tr><td>loop</td><td>Video starts over again every time it finishes</td></tr>
+<tr><td>muted</td><td>Audio output of the video should be muted</td></tr>
+<tr><td>poster</td><td>Image shown while video is downloading</td></tr>
+<tr><td>preload</td><td>auto/metadata/none – how video should be loaded</td></tr>
+</table></div>
+<div class="code-block">&lt;video width="320" height="240" controls poster="thumbnail.jpg"&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  &lt;source src="movie.ogg" type="video/ogg"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;</div>`},
+
+{h:"1.8 Image Maps",body:`<p>An <strong>image map</strong> is an image with multiple clickable regions called <strong>hotspots</strong>. Image maps are of two types: <strong>Client Side</strong> and <strong>Server Side</strong> (we use Client Side).</p>
+<p>Tags used: <strong>&lt;img usemap&gt;</strong>, <strong>&lt;map&gt;</strong> (paired), <strong>&lt;area&gt;</strong> (singular)</p>
+<div class="table-wrap"><table><tr><th>Attribute of &lt;area&gt;</th><th>Description</th></tr>
+<tr><td>href</td><td>URL to which the clickable region navigates</td></tr>
+<tr><td>shape</td><td>rect, circle, poly, default</td></tr>
+<tr><td>coords</td><td>rect: 4 coords; circle: x,y,radius (3 coords); poly: multiple pairs; default: whole image</td></tr>
+<tr><td>alt</td><td>Alternative text for the clickable area</td></tr>
+</table></div>
+<div class="code-block">&lt;img src="Tulips.jpg" usemap="#imagemap" alt="Tulip Image"&gt;
+&lt;map name="imagemap"&gt;
+  &lt;area href="http://google.com" shape="rect" coords="0,0,93,65" alt="Google"/&gt;
+  &lt;area href="page.html" shape="circle" coords="118,140,40" alt="Circle Area"/&gt;
+  &lt;area href="site.com" shape="poly" coords="145,187,198,215,245,280" alt="Poly"/&gt;
+&lt;/map&gt;</div>`},
+
+{h:"1.9 iFrames & Web Hosting",body:`<p>The <strong>&lt;iframe&gt;</strong> element creates an inline frame — it embeds another HTML document inside the current page. Often used in online advertising.</p>
+<div class="table-wrap"><table><tr><th>Attribute</th><th>Description</th></tr>
+<tr><td>src</td><td>Specifies the URL of the document to embed</td></tr>
+<tr><td>height</td><td>Height of the iframe in pixels</td></tr>
+<tr><td>width</td><td>Width of the iframe in pixels</td></tr>
+<tr><td>name</td><td>Name of the iframe</td></tr>
+<tr><td>srcdoc</td><td>HTML content of the page to show in the iframe</td></tr>
+</table></div>
+<div class="code-block">&lt;iframe src="abc.html" height="200" width="300" name="myframe"&gt;&lt;/iframe&gt;</div>
+<h3>Web Hosting</h3>
+<p><strong>Web hosting</strong> is the service of providing storage space on internet-connected web servers to make websites available online. Companies providing this service are called <strong>web hosts</strong>.</p>
+<h3>Types of Web Hosting</h3>
+<ul>
+<li><strong>Shared Hosting</strong> – Cost-effective. Shares server with other websites. Gives domain name.</li>
+<li><strong>Free Hosting</strong> – Free for a limited period. Example: 000webhost.com</li>
+<li><strong>Dedicated Hosting</strong> – Paid servers for large websites. Most expensive but gives full control.</li>
+</ul>
+<div class="info-box">💡 Free hosting steps: Sign up at 000webhost.com → Upload files → Get free domain from freenom.com → Park domain → Configure nameservers (ns01.000webhost.com)</div>`}
+]},
+
+{id:1,title:"SEO",icon:"🔍",sections:[
+{h:"2.1 Introduction to SEO",body:`<p><strong>SEO (Search Engine Optimization)</strong> is a technique used for designing and developing a website to rank high in search engine results. It is a subset of search engine marketing. SEO is useful in increasing the number of visitors to a website.</p>
+<div class="info-box">💡 Examples of Search Engines: <strong>Google, Yahoo, Bing</strong></div>
+<h3>Types of SEO</h3>
+<ul>
+<li><strong>On-Page SEO</strong> – Concerned with information displayed to the end user: good content, keyword selection, placing keywords in correct places, appropriate title for every page, meta descriptions, heading tags, image alt attributes.</li>
+<li><strong>Off-Page SEO</strong> – Concerned with website-website relationships: link building, increasing link popularity by submitting open directories, search engines, link exchange, social media links, backlinks.</li>
+</ul>`},
+
+{h:"2.2 SEO Techniques – White Hat vs Black Hat",body:`<h3>✅ White Hat SEO (Recommended by Search Engines)</h3>
+<ul>
+<li>Relevant and original content</li>
+<li>Well-labeled images with alt attributes</li>
+<li>Relevant links and references</li>
+<li>Complete sentences with good spelling and grammar</li>
+<li>Standard-compliant HTML</li>
+<li>Unique and relevant page titles</li>
+</ul>
+<h3>❌ Black Hat SEO (Not Approved by Search Engines)</h3>
+<ul>
+<li>Duplicate content</li>
+<li>Invisible text and keyword stuffing</li>
+<li>Cloaking or redirecting the user to another site</li>
+<li>Links from sites with non-relevant content</li>
+</ul>
+<div class="warn-box">⚠️ Black Hat SEO may get your site penalized or removed from search results!</div>`},
+
+{h:"2.3 Page Structure & Content Optimization",body:`<p>To optimize a webpage for SEO:</p>
+<ul>
+<li>HTML programs should start with <code>&lt;!doctype html&gt;</code></li>
+<li>Singular tags like &lt;img&gt; should be self-enclosed: <code>&lt;img /&gt;</code></li>
+<li>Order of tags should be proper — recently opened tag closed first</li>
+<li><strong>&lt;TITLE&gt;</strong> – First thing users notice in search results. Should be up to <strong>60 characters</strong> (spaces included)</li>
+<li><strong>Meta description</strong> – Should be between <strong>70 and 160 characters</strong> (spaces included)</li>
+<li><strong>Heading Tags</strong> – Proper heading tags &lt;h1&gt; to &lt;h6&gt; wherever required</li>
+<li><strong>Image alt attribute</strong> – Gives information about image even if it doesn't download</li>
+</ul>
+<div class="code-block">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Page Title – Max 60 Characters&lt;/title&gt;
+  &lt;meta name="description" content="Description up to 160 chars"&gt;
+  &lt;meta name="keywords" content="html5, css, web design"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Main Heading&lt;/h1&gt;
+  &lt;img src="photo.jpg" alt="Descriptive alt text here" /&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>`},
+
+{h:"2.4 Keywords, Backlinks, SMO & Robots.txt",body:`<h3>SEO Keywords</h3>
+<p>SEO keywords are important words and phrases related to the website content. Use <strong>Google AdWords Keyword Planner</strong> to research and shortlist keywords.</p>
+<h3>Social Bookmarking</h3>
+<p>A powerful tool for <strong>Off-Page SEO</strong>. Allows saving, organizing and sharing bookmarks with other users. Creates high-quality backlinks quickly.</p>
+<h3>SMO – Social Media Optimization</h3>
+<p>Enhances website ranking using interactive communities like <strong>Facebook, Twitter, blogs, forums</strong>. When these communities have links to your website, it builds familiarity and trust.</p>
+<h3>Backlinks</h3>
+<p>Links on one website that take users to another site. They represent a <strong>"vote of confidence"</strong> — they contribute to the overall strength and SEO value of your website.</p>
+<h3>Other SEO Factors</h3>
+<ul>
+<li><strong>Website Speed</strong> – Faster sites rank better</li>
+<li><strong>Mobile-Friendliness</strong> – A Google ranking factor since mobile is dominant</li>
+<li><strong>robots.txt</strong> – Tells search engines which pages to exclude from indexing</li>
+</ul>`},
+
+{h:"2.5 SEO Audit Tools",body:`<p>An <strong>SEO Audit</strong> helps find what could be done to improve ranking on search engines. It analyses the website's health.</p>
+<h3>Free SEO Audit Tools</h3>
+<ul>
+<li><strong>SEOptimer</strong> – seoptimer.com – Provides detailed SEO analysis and actionable recommendations</li>
+<li><strong>SEOmator</strong> – seomator.com – Free SEO analysis tool</li>
+</ul>
+<h3>SEO Audit Results Include:</h3>
+<ul>
+<li>Overall site ranking</li>
+<li>Search engine optimization score</li>
+<li>Usability and performance of website</li>
+<li>Social links and connected social accounts</li>
+<li>Security: SSL enabled, HTTPS redirect, email privacy</li>
+<li>Header content: Title and Meta descriptions</li>
+<li>Body content: Header tags, keyword consistency</li>
+<li>Links: number of backlinks, broken links, friendly links</li>
+<li>Technology list used in the website</li>
+</ul>
+<div class="info-box">💡 <strong>Crawling</strong> – Process where search engine bots (spiders/crawlers) scan a website and collect details about each page: titles, images, keywords, linked pages, etc.</div>`}
+]},
+
+{id:2,title:"Advanced JavaScript",icon:"⚡",sections:[
+{h:"3.1 Features of JavaScript",body:`<p>JavaScript is a <strong>lightweight, interpreted, platform-independent, object-oriented scripting language</strong>. Programs in JavaScript are called <strong>scripts</strong>.</p>
+<h3>Key Features</h3>
+<ul>
+<li>Lightweight scripting language (doesn't support all OOP features)</li>
+<li>Interpreted – no compilation needed; executes directly</li>
+<li>Case-sensitive language</li>
+<li>Platform independent – runs on any JavaScript-enabled browser</li>
+<li>Supports event-based programming</li>
+<li>Can handle date and time effectively</li>
+<li>Can create new functions within scripts using the <code>function</code> keyword</li>
+</ul>
+<h3>Client-Side vs Server-Side Scripting</h3>
+<div class="table-wrap"><table><tr><th>Client-Side Scripting</th><th>Server-Side Scripting</th></tr>
+<tr><td>Script runs in the browser</td><td>Script runs on the web server</td></tr>
+<tr><td>Source code is visible</td><td>Source code is hidden</td></tr>
+<tr><td>Languages: HTML5, JavaScript</td><td>Languages: PHP, ASP.net, Python, Ruby</td></tr>
+<tr><td>Used for input validation</td><td>Used for dynamic content generation</td></tr>
+<tr><td>No special software needed to run</td><td>Requires web server software (Apache, NGINX)</td></tr>
+<tr><td>No server interaction needed</td><td>Communicates with server</td></tr>
+</table></div>`},
+
+{h:"3.2 Switch Case & Looping Structures",body:`<h3>Switch Case Statement</h3>
+<p>A multi-way decision statement. Tests the value of an expression against a list of case values. The <code>default</code> statement is not mandatory.</p>
+<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button>switch(day) {
+  case 1: alert("Monday"); break;
+  case 2: alert("Tuesday"); break;
+  case 3: alert("Wednesday"); break;
+  case 4: alert("Thursday"); break;
+  case 5: alert("Friday"); break;
+  case 6: alert("Saturday"); break;
+  case 7: alert("Sunday"); break;
+  default: alert("Invalid day");
+}</div>
+<h3>For Loop</h3>
+<p>Combines initialization, condition, and iteration in a single statement.</p>
+<div class="code-block">// Syntax: for(initialization; condition; iteration) { }
+for(i=1; i<=5; i++) {
+  document.writeln(i);   // Output: 1 2 3 4 5
+}
+
+for(i=5; i>=1; i--) {
+  document.writeln(i);   // Output: 5 4 3 2 1
+}</div>
+<h3>While Loop</h3>
+<div class="code-block">var i = 1;
+while(i <= 5) {
+  document.writeln(i);
+  i = i + 1;
+}</div>
+<h3>do...while Loop</h3>
+<p>Executes the loop body <strong>at least once</strong>, then checks the condition.</p>
+<div class="code-block">var i = 1;
+do {
+  document.writeln(i);
+  i++;
+} while(i <= 5);</div>
+<h3>break and continue</h3>
+<ul>
+<li><strong>break</strong> – Exits the loop immediately (early exit)</li>
+<li><strong>continue</strong> – Skips current iteration and goes to next</li>
+</ul>
+<div class="info-box">💡 Difference: while checks condition BEFORE loop body. do...while checks condition AFTER loop body — so it always runs at least once.</div>`},
+
+{h:"3.3 DOM & Window Object",body:`<p>The <strong>DOM (Document Object Model)</strong> is a programming interface for HTML and XML documents. When an HTML document is loaded in a browser, it becomes a document object. It defines the logical structure of a document and how it can be accessed and modified.</p>
+<div class="info-box">💡 According to W3C: "The DOM is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document."</div>
+<h3>DOM Object – Properties & Methods</h3>
+<div class="table-wrap"><table><tr><th>Property/Method</th><th>Description</th></tr>
+<tr><td>head</td><td>Returns the &lt;head&gt; element</td></tr>
+<tr><td>title</td><td>Sets or returns title of the document</td></tr>
+<tr><td>URL</td><td>Returns full URL of the HTML document</td></tr>
+<tr><td>write()</td><td>Writes HTML expressions to a document</td></tr>
+<tr><td>writeln()</td><td>Same as write() but adds a newline after each statement</td></tr>
+<tr><td>getElementById()</td><td>Finds an element by its id attribute</td></tr>
+</table></div>
+<h3>innerHTML Property</h3>
+<div class="code-block">// Get or change the HTML content of any element
+document.getElementById('para').innerHTML = "&lt;h2&gt;New Content&lt;/h2&gt;";</div>
+<h3>Window Object</h3>
+<p>The <strong>Window object</strong> is the parent object of all other objects. Represents an open window in a browser. Created automatically by the browser.</p>
+<div class="table-wrap"><table><tr><th>Method</th><th>Description</th></tr>
+<tr><td>alert()</td><td>Displays alert box with OK button</td></tr>
+<tr><td>confirm()</td><td>Displays confirm box with OK and Cancel</td></tr>
+<tr><td>prompt()</td><td>Displays dialog box to get input from user</td></tr>
+<tr><td>open()</td><td>Opens a new window</td></tr>
+<tr><td>close()</td><td>Closes the current window</td></tr>
+<tr><td>blur()</td><td>Removes focus from the current window</td></tr>
+<tr><td>focus()</td><td>Sets focus to the current window</td></tr>
+<tr><td>print()</td><td>Prints the content of current window</td></tr>
+<tr><td>setTimeout()</td><td>Calls a function after specified milliseconds</td></tr>
+</table></div>`},
+
+{h:"3.4 JavaScript Events",body:`<p>Events are actions done by the user or application on a webpage.</p>
+<div class="table-wrap"><table><tr><th>Event Handler</th><th>Description</th></tr>
+<tr><td>onclick</td><td>Mouse click on element</td></tr>
+<tr><td>onmouseover</td><td>Mouse pointer moves over element</td></tr>
+<tr><td>onmouseout</td><td>Mouse pointer moves away from element</td></tr>
+<tr><td>onmousemove</td><td>Mouse pointer moves</td></tr>
+<tr><td>onblur</td><td>Element loses focus</td></tr>
+<tr><td>onfocus</td><td>Element gets focus</td></tr>
+<tr><td>onchange</td><td>Value of element changes</td></tr>
+<tr><td>onselect</td><td>Text of element is selected</td></tr>
+<tr><td>onsubmit</td><td>Form is submitted</td></tr>
+<tr><td>onreset</td><td>Form reset button clicked</td></tr>
+<tr><td>onload</td><td>Page or image has loaded</td></tr>
+<tr><td>onunload</td><td>Document/page has been closed</td></tr>
+<tr><td>onkeypress</td><td>Key is pressed</td></tr>
+<tr><td>onkeydown</td><td>Key is being pressed down</td></tr>
+<tr><td>onkeyup</td><td>Key is released</td></tr>
+</table></div>`},
+
+{h:"3.5 Built-in Objects – String & Math",body:`<h3>String Object</h3>
+<p>Used to store and manipulate text. A string stores zero or more characters within quotes.</p>
+<div class="table-wrap"><table><tr><th>Property/Method</th><th>Description</th><th>Example</th></tr>
+<tr><td>length</td><td>Returns number of characters</td><td>str.length → 22</td></tr>
+<tr><td>charAt(n)</td><td>Returns character at position n</td><td>str.charAt(0) → 'H'</td></tr>
+<tr><td>indexOf(s)</td><td>First occurrence of s, or -1 if not found</td><td>str.indexOf('o') → 4</td></tr>
+<tr><td>lastIndexOf(s)</td><td>Last occurrence of s</td><td>str.lastIndexOf('o')</td></tr>
+<tr><td>substr(start,len)</td><td>Returns len characters from start position</td><td>str.substr(6,5)</td></tr>
+<tr><td>substring(a,b)</td><td>Returns characters between positions a and b</td><td>str.substring(0,5)</td></tr>
+<tr><td>trim()</td><td>Removes whitespace from both sides</td><td>str.trim()</td></tr>
+<tr><td>toLowerCase()</td><td>Converts to lower case</td><td>str.toLowerCase()</td></tr>
+<tr><td>toUpperCase()</td><td>Converts to upper case</td><td>str.toUpperCase()</td></tr>
+</table></div>
+<h3>Math Object</h3>
+<p>Includes mathematical constants and functions. No need to create a Math object.</p>
+<div class="table-wrap"><table><tr><th>Method</th><th>Description</th><th>Example</th></tr>
+<tr><td>abs(x)</td><td>Absolute value</td><td>Math.abs(-5) → 5</td></tr>
+<tr><td>ceil(x)</td><td>Round UP to nearest integer</td><td>Math.ceil(4.1) → 5</td></tr>
+<tr><td>floor(x)</td><td>Round DOWN to nearest integer</td><td>Math.floor(4.9) → 4</td></tr>
+<tr><td>sqrt(x)</td><td>Square root</td><td>Math.sqrt(16) → 4</td></tr>
+<tr><td>pow(x,y)</td><td>x to the power y</td><td>Math.pow(2,3) → 8</td></tr>
+<tr><td>random()</td><td>Random number between 0 and 1</td><td>Math.random()</td></tr>
+<tr><td>max(x,y,...)</td><td>Highest value in list</td><td>Math.max(1,5,3) → 5</td></tr>
+<tr><td>min(x,y,...)</td><td>Lowest value in list</td><td>Math.min(1,5,3) → 1</td></tr>
+<tr><td>cbrt(x)</td><td>Cube root</td><td>Math.cbrt(27) → 3</td></tr>
+</table></div>`},
+
+{h:"3.6 Built-in Objects – Date, Number & Array",body:`<h3>Date Object</h3>
+<p>Used to create date and time values. Created using <code>new Date()</code>.</p>
+<div class="table-wrap"><table><tr><th>Method</th><th>Description</th></tr>
+<tr><td>getDate()</td><td>Returns day of month (1-31)</td></tr>
+<tr><td>getDay()</td><td>Returns day of week (0-6, 0=Sunday)</td></tr>
+<tr><td>getFullYear()</td><td>Returns the year (four digits)</td></tr>
+<tr><td>getHours()</td><td>Returns the hour (0-23)</td></tr>
+<tr><td>getMinutes()</td><td>Returns the minutes (0-59)</td></tr>
+<tr><td>getMonth()</td><td>Returns the month (0-11)</td></tr>
+<tr><td>getSeconds()</td><td>Returns the seconds (0-59)</td></tr>
+<tr><td>getTime()</td><td>Returns milliseconds since Jan 1, 1970</td></tr>
+<tr><td>setDate(), setFullYear()</td><td>Sets day/year of a date object</td></tr>
+</table></div>
+<div class="code-block">var d = new Date();
+document.write(d.getFullYear()); // Current year
+document.write(d.getMonth());    // 0-11
+document.write(d.getDate());     // 1-31</div>
+<h3>Number Object</h3>
+<div class="table-wrap"><table><tr><th>Property/Method</th><th>Description</th></tr>
+<tr><td>MIN_VALUE</td><td>Returns the smallest possible value</td></tr>
+<tr><td>MAX_VALUE</td><td>Returns the largest possible value</td></tr>
+<tr><td>NaN</td><td>Represents 'Not a Number' value</td></tr>
+<tr><td>isInteger(n)</td><td>Determines whether value is an integer</td></tr>
+<tr><td>parseFloat(s)</td><td>Converts string into a floating point number</td></tr>
+<tr><td>parseInt(s)</td><td>Converts string into an integer number</td></tr>
+</table></div>
+<h3>Array Object</h3>
+<p>An array stores multiple values in a single variable.</p>
+<div class="code-block">var fruits = ["Mango","Apple","Orange","Grapes"];
+// OR
+var fruits = new Array("Mango","Apple","Orange");
+
+fruits[0] // "Mango" (zero-indexed)</div>
+<div class="table-wrap"><table><tr><th>Method</th><th>Description</th></tr>
+<tr><td>push()</td><td>Adds new elements to end of array</td></tr>
+<tr><td>pop()</td><td>Removes last element of array</td></tr>
+<tr><td>reverse()</td><td>Reverses order of elements</td></tr>
+<tr><td>sort()</td><td>Sorts elements of array</td></tr>
+<tr><td>indexOf()</td><td>Searches array for element, returns position</td></tr>
+<tr><td>concat()</td><td>Joins two or more arrays</td></tr>
+<tr><td>forEach()</td><td>Calls a function for each array element</td></tr>
+<tr><td>isArray()</td><td>Checks whether an object is an array</td></tr>
+<tr><td>find()</td><td>Returns first element that satisfies a test</td></tr>
+<tr><td>copyWithin()</td><td>Copies array elements within the array</td></tr>
+</table></div>`}
+]},
+
+{id:3,title:"Emerging Technologies",icon:"🚀",sections:[
+{h:"4.1 IoT – Internet of Things",body:`<p>The <strong>Internet of Things (IoT)</strong> is the network of physical devices, vehicles, home appliances, and other items embedded with electronics, software, sensors, actuators, and connectivity to exchange data.</p>
+<p>IoT involves extending Internet connectivity beyond standard devices (desktops, laptops, smartphones) to any range of traditionally non-internet-enabled physical devices and everyday objects.</p>
+<h3>Advantages of IoT</h3>
+<ul>
+<li><strong>Efficient resource utilization</strong> – Monitor and control resources</li>
+<li><strong>Minimize human effort</strong> – Devices interact and communicate automatically</li>
+<li><strong>Time saving</strong> – Automation saves time</li>
+<li><strong>Enhanced Data Collection</strong> – Collect data from environment (weather, sound, pollution)</li>
+<li><strong>Improved Security</strong> – IoT-based security systems</li>
+</ul>
+<h3>Disadvantages of IoT</h3>
+<ul>
+<li><strong>Privacy</strong> – Substantial personal data collected without active participation</li>
+<li><strong>Complexity</strong> – Designing, developing, and maintaining IoT systems is complicated</li>
+</ul>
+<h3>Applications of IoT</h3>
+<ul>
+<li>Smart lighting – Illumination controlled based on daylight</li>
+<li>Smart thermostats – Schedule and remotely control home temperatures</li>
+<li>Smart locks and garage-door openers – Password or facial recognition based</li>
+<li>Smart security cameras – Identify known/unknown persons, raise alarms</li>
+<li>Smart traffic signals – Adjust timing to accommodate traffic and reduce congestion</li>
+</ul>`},
+
+{h:"4.2 Cloud Computing",body:`<p><strong>Cloud Computing</strong> is a model for enabling convenient, on-demand network access to a shared pool of computing resources (servers, storage, applications, services) released with minimal service provider interaction.</p>
+<h3>Service Models</h3>
+<ul>
+<li><strong>IaaS (Infrastructure as a Service)</strong> – Gives users access to storage, networking, servers via the cloud. Users pay on demand. Examples: <strong>AWS EC2, Microsoft Azure VM, Google Compute Engine (GCE)</strong></li>
+<li><strong>PaaS (Platform as a Service)</strong> – Provides platform with tools to test, develop and host applications. Enables organizations to focus on development. Providers manage security, OS, backups.</li>
+<li><strong>SaaS (Software as a Service)</strong> – Service provider delivers software via internet. Users don't install applications locally. Examples: <strong>Google G Suite, GitHub, Slack, Dropbox</strong></li>
+</ul>
+<h3>Deployment Types</h3>
+<ul>
+<li><strong>Public Cloud</strong> – All services managed off-site over internet, shared across multiple users. Examples: AWS, Azure, Google Cloud Platform</li>
+<li><strong>Private Cloud</strong> – IT services through internet or private network to selected users only. Data protected behind firewall. More secure.</li>
+<li><strong>Hybrid Cloud</strong> – Combines both Public and Private cloud elements. Clouds communicate over encrypted connection. Allows portability of data and applications.</li>
+</ul>
+<h3>Benefits of Cloud Computing</h3>
+<ul>
+<li><strong>Cost Saving</strong> – Less expensive than actual infrastructure setup</li>
+<li><strong>Reliable</strong> – More reliable than in-house IT infrastructure</li>
+<li><strong>Mobility</strong> – Access data anytime, anywhere</li>
+</ul>`},
+
+{h:"4.3 Artificial Intelligence",body:`<p><strong>Artificial Intelligence (AI)</strong> is an area of computer science that emphasizes the creation of intelligent machines that work and react like humans.</p>
+<h3>Sub-fields of AI</h3>
+<ul>
+<li><strong>Machine Learning</strong> – Automates analytical model building to find hidden insights in data without being explicitly programmed</li>
+<li><strong>Neural Networks</strong> – Imitates brain's interconnected neurons, relays information to find connections and derive meaning from data</li>
+<li><strong>Deep Learning</strong> – Uses big neural networks and computing power to find complex patterns in data. Applications: image and speech recognition</li>
+<li><strong>Cognitive Computing</strong> – Creates natural, human-like interaction including interpreting and responding to speech</li>
+<li><strong>Computer Vision</strong> – Uses pattern recognition and deep learning to understand images and videos</li>
+<li><strong>NLP (Natural Language Processing)</strong> – Analyzes and understands human language and responds to it</li>
+</ul>
+<h3>Advantages of AI</h3>
+<ul>
+<li><strong>Reduction in human error</strong> – Computers with AI give 100% accuracy when properly programmed</li>
+<li><strong>Digital Assistance</strong> – Digital assistants (chatbots) save human resource needs</li>
+<li><strong>Faster Decisions</strong> – AI makes decisions faster than humans</li>
+<li><strong>Daily Applications</strong> – Apple's Siri, Windows Cortana, Google's OK Google</li>
+</ul>
+<h3>Disadvantages of AI</h3>
+<ul>
+<li>High costs of creation – complex machines are expensive</li>
+<li>Unemployment – AI replacing repetitive human tasks</li>
+</ul>`},
+
+{h:"4.4 5G Technology",body:`<p><strong>5G</strong> is the fifth generation of cellular network technology. It is expected to provide Internet connections multiple times faster than 4G LTE (Long Term Evolution).</p>
+<ul>
+<li>Uses variety of spectrum bands including <strong>millimeter wave (mmWave)</strong> radio spectrum</li>
+<li>mmWave can carry very large amounts of data at short distances</li>
+<li>5G networks are digital cellular networks where service area is divided into small geographical areas called <strong>cells</strong></li>
+<li>5G can support up to <strong>1 million devices per square kilometer</strong> (compared to 4G)</li>
+</ul>
+<h3>Features of 5G</h3>
+<ul>
+<li>Multiple times faster than 4G</li>
+<li>Reduced app and website load time</li>
+<li>Ultra HD videos</li>
+<li>High-speed data transfer</li>
+<li>IoT-based applications</li>
+</ul>
+<h3>Applications of 5G</h3>
+<ul>
+<li>Online 5G Games</li>
+<li>Automated Vehicles</li>
+<li>Virtual Classrooms</li>
+</ul>
+<div class="warn-box">⚠️ Drawback: Higher frequencies (mmWave) are more easily blocked by walls of buildings, trees, foliage, and changes in weather.</div>`}
+]},
+
+{id:4,title:"PHP",icon:"🐘",sections:[
+{h:"5.1 Introduction to PHP",body:`<p><strong>PHP (Hypertext Preprocessor)</strong> is a widely-used open source general-purpose scripting language especially suited for web development and can be embedded into HTML.</p>
+<ul>
+<li>PHP runs on various platforms (Linux, Unix, Mac OS X, Windows)</li>
+<li>PHP is compatible with almost all servers (XAMPP, Apache, NGINX)</li>
+<li>PHP is free — download from <strong>php.net</strong></li>
+<li>PHP files have extension <strong>.php</strong></li>
+<li>PHP code is enclosed in <strong>&lt;?php</strong> and <strong>?&gt;</strong></li>
+</ul>
+<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;?php
+echo "Hello World!";
+?&gt;</div>
+<h3>Features of PHP</h3>
+<ul>
+<li><strong>Simple</strong> – Easy to use compared to other scripting languages</li>
+<li><strong>Interpreted</strong> – No compilation needed</li>
+<li><strong>Faster</strong> – Faster than JSP and ASP</li>
+<li><strong>Open Source</strong> – Free to download and use</li>
+<li><strong>Platform Independent</strong> – Runs on any platform</li>
+<li><strong>Case Sensitive</strong> – Variables ARE case-sensitive ($age ≠ $AGE). Keywords are NOT case-sensitive.</li>
+<li><strong>Error Reporting</strong> – Predefined error reporting constants</li>
+<li><strong>Loosely Typed</strong> – No need to declare data type; determined at execution time</li>
+</ul>`},
+
+{h:"5.2 PHP Variables, Scopes & Data Types",body:`<h3>Rules for PHP Variables</h3>
+<ul>
+<li>A variable starts with the <strong>$</strong> sign, followed by the name</li>
+<li>Must start with a letter or underscore (_)</li>
+<li>Cannot start with a number</li>
+<li>Can contain alpha-numeric characters and underscores (A-z, 0-9, _)</li>
+<li>Case-sensitive: <strong>$age</strong> and <strong>$AGE</strong> are different variables</li>
+</ul>
+<h3>Variable Scopes</h3>
+<ul>
+<li><strong>local</strong> – Declared inside a function; accessible only within that function</li>
+<li><strong>global</strong> – Declared outside a function; use <code>global</code> keyword inside function to access it</li>
+<li><strong>static</strong> – Retains its value between function calls (use <code>static</code> keyword)</li>
+</ul>
+<div class="code-block">$a = 20;  // global scope
+
+function myFunction() {
+  $b = 10;    // local scope
+  global $a;  // access global variable
+  static $c = 0;  // static: retains value
+  $c++;
+  echo $a, $b, $c;
+}</div>
+<h3>PHP Data Types</h3>
+<div class="table-wrap"><table><tr><th>Data Type</th><th>Example</th></tr>
+<tr><td>String</td><td>$x = "Hello World!";</td></tr>
+<tr><td>Integer</td><td>$x = 1234;</td></tr>
+<tr><td>Float</td><td>$x = 3.14;</td></tr>
+<tr><td>Boolean</td><td>$x = true;</td></tr>
+<tr><td>Array</td><td>$x = array(1, 2, 3);</td></tr>
+<tr><td>NULL</td><td>$x = null;</td></tr>
+</table></div>
+<div class="info-box">💡 Use <code>var_dump($x)</code> to check the data type and value of a variable.</div>`},
+
+{h:"5.3 Control Structures in PHP",body:`<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button>// If-Else
+if($marks >= 60) {
+  echo "First Class";
+} else {
+  echo "Try again";
+}
+
+// For Loop
+for($i = 1; $i <= 5; $i++) {
+  echo "Number: " . $i . "&lt;br&gt;";
+}
+
+// While Loop
+$i = 1;
+while($i <= 5) {
+  echo $i;
+  $i++;
+}
+
+// Foreach (works ONLY on arrays)
+foreach($subjects as $value) {
+  echo $value . "&lt;br&gt;";
+}
+
+// Foreach with key=>value
+foreach($marks as $subject => $mark) {
+  echo $subject . ": " . $mark;
+}</div>
+<div class="info-box">💡 In PHP, <strong>.</strong> (dot) is used for string concatenation: <code>echo "Hello " . $name;</code></div>`},
+
+{h:"5.4 PHP String Functions",body:`<p>PHP has many built-in functions to manipulate strings.</p>
+<div class="table-wrap"><table><tr><th>Function</th><th>Description</th></tr>
+<tr><td>strlen($s)</td><td>Returns the length (total characters) of a string</td></tr>
+<tr><td>str_word_count($s)</td><td>Counts the number of words in a string</td></tr>
+<tr><td>strrev($s)</td><td>Reverses a string</td></tr>
+<tr><td>strpos($s,"text")</td><td>Searches for text and returns character position of first match</td></tr>
+<tr><td>str_replace("a","b",$s)</td><td>Replaces "a" with "b" in the string</td></tr>
+<tr><td>substr($s,start,len)</td><td>Returns part of a string from start position</td></tr>
+<tr><td>strtolower($s)</td><td>Converts string to lowercase</td></tr>
+<tr><td>ucwords($s)</td><td>Converts first character of each word to uppercase</td></tr>
+<tr><td>substr_count($s,$sub)</td><td>Counts number of times substring occurs</td></tr>
+<tr><td>trim($s)</td><td>Removes whitespace from both sides of string</td></tr>
+</table></div>`},
+
+{h:"5.5 PHP Arrays",body:`<p>An array stores multiple values in a single variable. Three types:</p>
+<h3>1. Indexed Arrays</h3>
+<div class="code-block">$subjects = array("English", "Hindi", "Marathi");
+echo $subjects[0]; // English
+echo $subjects[1]; // Hindi
+echo count($subjects); // 3</div>
+<h3>2. Associative Arrays</h3>
+<p>Uses named keys instead of numeric index. Use <code>=&gt;</code> to associate key and value.</p>
+<div class="code-block">$student_mark = array(
+  "English" => "75",
+  "Hindi"   => "64",
+  "Marathi" => "88"
+);
+echo $student_mark['English']; // 75</div>
+<h3>3. Multi-dimensional Arrays</h3>
+<p>An array containing one or more arrays.</p>
+<div class="code-block">$students = array(
+  array("Rahul", 75, 88),
+  array("Priya", 90, 95),
+  array("Amit",  60, 70)
+);
+echo $students[0][0]; // Rahul
+echo $students[1][1]; // 90</div>
+<div class="info-box">💡 <strong>foreach loop</strong> works ONLY on arrays. For each iteration, the value is assigned to $value and array pointer moves one step.</div>`},
+
+{h:"5.6 PHP User-Defined Functions & Form Handling",body:`<h3>User-Defined Functions</h3>
+<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button>// Basic function
+function writeMsg() {
+  echo "This is a user-defined function";
+}
+writeMsg(); // Call the function
+
+// Function with arguments
+function Student($rollno, $name) {
+  echo "Roll No: $rollno, Name: $name &lt;br&gt;";
+}
+Student(1, "Ashwini");
+Student(2, "Raj");
+
+// Function with return value
+function sum(int $x, int $y) {
+  $z = $x + $y;
+  return $z;
+}
+echo "5 + 10 = " . sum(5, 10);</div>
+<h3>GET vs POST</h3>
+<div class="table-wrap"><table><tr><th>GET</th><th>POST</th></tr>
+<tr><td>Data visible in URL</td><td>Data hidden in HTTP body</td></tr>
+<tr><td>Has size limits</td><td>No size limits</td></tr>
+<tr><td>Can bookmark the page</td><td>Cannot bookmark</td></tr>
+<tr><td>NOT for sensitive data</td><td>Safe for passwords</td></tr>
+<tr><td>$_GET superglobal</td><td>$_POST superglobal</td></tr>
+</table></div>`},
+
+{h:"5.7 PHP Database Connectivity, Cookies & Sessions",body:`<h3>Database Connectivity using PDO</h3>
+<p><strong>PDO (PHP Data Object)</strong> helps connect PHP code with almost any database server. It provides a uniform method of access to multiple databases.</p>
+<div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button">// Create connection
+$conn = new PDO("pgsql:host=localhost;dbname=college",
+                "postgres", "postgres");
+
+// Insert data
+$sql = "INSERT INTO student (name, gender)
+        VALUES ('" . $name . "', '" . $gender . "')";
+$conn->exec($sql);
+echo "Record inserted successfully";
+
+// Fetch data
+$sql = "SELECT * FROM student";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->fetchAll();
+foreach($result as $row) {
+  echo $row["name"] . " -- " . $row["gender"];
+}
+$conn = null; // Close connection</div>
+<h3>Cookies in PHP</h3>
+<p>A <strong>cookie</strong> is a small text file sent by the server to the user's computer. Used to identify users or track activities. Cookies are sent along with browser requests to the server.</p>
+<p>Example: Cookies store visited pages on browser to optimize search.</p>
+<h3>Sessions in PHP</h3>
+<p>A <strong>session</strong> is used to store user information on the server to track user activities across multiple pages. Helps web application maintain user info on all pages.</p>
+<p>Example: If you login to Gmail, session helps access YouTube with the same account.</p>
+<div class="success-box">✅ Difference: Cookies are stored on the CLIENT computer. Sessions are stored on the SERVER.</div>`}
+]},
+
+{id:5,title:"E-Commerce",icon:"🛒",sections:[
+{h:"6.1 Introduction to E-Commerce",body:`<p><strong>E-Commerce (Electronic Commerce)</strong> is the process of buying and selling goods or services using an electronic medium such as the Internet. It is also referred to as paperless exchange of business information using EDI, E-mail, Electronic Fund Transfer, etc.</p>
+<h3>Traditional Commerce vs E-Commerce</h3>
+<div class="table-wrap"><table><tr><th>Traditional Commerce</th><th>E-Commerce</th></tr>
+<tr><td>Manual, face-to-face interaction</td><td>Online, automatic via internet</td></tr>
+<tr><td>Limited to business hours (day)</td><td>24×7 availability</td></tr>
+<tr><td>Face-to-face interaction</td><td>Screen-to-face interaction</td></tr>
+<tr><td>Limited to geographical location</td><td>Global, no physical limitation</td></tr>
+<tr><td>Payment: cash, cheques, credit cards</td><td>Payment: bank transfer, e-wallet, mobile pay, UPI</td></tr>
+<tr><td>Delivery of goods is instant</td><td>Delivery takes some time</td></tr>
+<tr><td>Local scope</td><td>Global scope</td></tr>
+</table></div>`},
+
+{h:"6.2 Types of E-Commerce",body:`<ul>
+<li><strong>B2C (Business to Consumer)</strong> – Business sells directly to customer. Customer views products on website, orders, and receives delivery. Examples: <strong>Amazon, Flipkart</strong></li>
+<li><strong>B2B (Business to Business)</strong> – Business sells to intermediate buyer who then sells to final customer. Wholesaler to retailer model. Example: <strong>Tata Communications</strong></li>
+<li><strong>C2C (Consumer to Consumer)</strong> – Consumer sells assets (property, vehicles) to other consumers. Website may charge commission. Examples: <strong>OLX, Quikr, online auction</strong></li>
+<li><strong>C2B (Consumer to Business)</strong> – Consumers have products or services that businesses can use. Example: blog writing for businesses, <strong>eBay</strong></li>
+</ul>
+<h3>Advantages of E-Commerce</h3>
+<ul>
+<li><strong>Global scope</strong> – No geographic barriers for sellers and buyers</li>
+<li><strong>Electronic transactions</strong> – Reduces paperwork, lower transaction cost</li>
+<li><strong>Cost Saving</strong> – Compare prices easily; E-commerce helps rural areas access products</li>
+<li><strong>Anytime shopping</strong> – 24×7 availability</li>
+<li><strong>No intermediaries</strong> – Direct communication between customer and business</li>
+<li><strong>Public services</strong> – Government delivers healthcare, education at reduced cost</li>
+</ul>
+<h3>Disadvantages of E-Commerce</h3>
+<ul>
+<li>High setup cost for hardware, software, training</li>
+<li>Lack of personal touch (interior designing, jewellery)</li>
+<li>Security concerns – credit card theft, identity theft</li>
+<li>Problems with shipping and delivery</li>
+</ul>`},
+
+{h:"6.3 E-Commerce Trade Cycle",body:`<p>A <strong>trade cycle</strong> is the series of exchanges between a customer and supplier that take place when a commercial exchange is executed.</p>
+<h3>4 Phases of Trade Cycle</h3>
+<ol>
+<li><strong>Pre-Sales</strong>
+  <ul><li><em>Search</em> – Customer searches for required product on website</li>
+  <li><em>Negotiate</em> – Customer finds supplier offering good quality at cheaper price; agrees on terms</li></ul>
+</li>
+<li><strong>Execution</strong>
+  <ul><li><em>Order</em> – Customer sends order for selected product</li>
+  <li><em>Delivery</em> – After processing, customer receives delivery</li></ul>
+</li>
+<li><strong>Settlement</strong>
+  <ul><li><em>Invoice</em> – Customer receives bill for purchased product</li>
+  <li><em>Payment</em> – Customer pays after confirming receipt</li></ul>
+</li>
+<li><strong>After-Sales</strong>
+  <ul><li><em>Warranty</em> – Free maintenance during warranty period</li>
+  <li><em>After Sale Services</em> – Customer complaints and maintenance service</li></ul>
+</li>
+</ol>`},
+
+{h:"6.4 Payment Modes & Forms of E-Commerce",body:`<h3>Payment Modes</h3>
+<ul>
+<li><strong>Credit Cards</strong> – Most common online payment method. Uses payment gateway. Reaches international market.</li>
+<li><strong>Mobile Payments</strong> – Quick solution for customers. Examples: <strong>BHIM, UPI, Paytm, Google Pay, PayPal</strong>. Customer pays by scanning barcode on mobile app.</li>
+<li><strong>Bank Transfers</strong> – Money sent from one bank account to another. Authenticated by banking credentials. Examples: <strong>NEFT, IMPS</strong></li>
+<li><strong>E-Wallets</strong> – Pre-paid electronic account where user stores money for future online transactions. Protected with password. Examples: <strong>State Bank Buddy, Paytm Wallet</strong></li>
+</ul>
+<h3>M-Commerce (Mobile Commerce)</h3>
+<p>Buying and selling goods and services through <strong>wireless handheld devices</strong> (smartphones, tablets). Applications: mobile banking, ticket booking, e-bill payment, online auctions, stock market trading.</p>
+<h3>Social Commerce</h3>
+<p>E-commerce using social media (Facebook, Instagram, Twitter) as vehicles to promote and sell products. Success measured by retweets, likes, and shares.</p>
+<h3>EDI (Electronic Data Interchange)</h3>
+<p>Computer-to-computer exchange of business information using standardized formats. Business entities conducting business electronically are called <strong>trading partners</strong>. Common documents: purchase orders and invoices.</p>`}
+]},
+
+{id:6,title:"E-Governance",icon:"🏛️",sections:[
+{h:"6.5 What is E-Governance?",body:`<p><strong>E-Governance</strong> signifies the implementation of information technology in government processes and functions so as to cause simple, moral, accountable, and transparent governance.</p>
+<div class="info-box">💡 E-Governance delivers <strong>SMART Government</strong>:<br>
+<strong>S</strong> – Simple &nbsp; <strong>M</strong> – Moral &nbsp; <strong>A</strong> – Accessible &nbsp; <strong>R</strong> – Responsive &nbsp; <strong>T</strong> – Transparent</div>
+<h3>Advantages of E-Governance</h3>
+<ul>
+<li>Reduced corruption</li>
+<li>High transparency</li>
+<li>Increased convenience</li>
+<li>Direct participation of constituents (citizens)</li>
+<li>Reduction in overall cost</li>
+<li>Expanded reach of government</li>
+</ul>`},
+
+{h:"6.6 Types of E-Governance",body:`<ul>
+<li><strong>G2C (Government to Citizen)</strong> – Provides citizens access to a wide variety of public services. Reduces time and cost for citizens. Services available anytime from anywhere. Examples: license renewals, paying taxes.</li>
+<li><strong>G2B (Government to Business)</strong> – Exchange of services between government and business organizations. Provides access to relevant government forms. Eliminates paperwork, saves time and cost, establishes transparency.</li>
+<li><strong>G2G (Government to Government)</strong> – Interaction between different government departments, organizations and agencies. Government agencies can share the same database using online communication. Can be at local or international level.</li>
+<li><strong>G2E (Government to Employee)</strong> – Internal part of G2G sector. Brings employees together and improves knowledge sharing. Online facilities: applying for leave, reviewing salary records, checking holiday balance. Provides human resource training and development.</li>
+</ul>
+<h3>Examples of Successful E-Governance Projects</h3>
+<ul>
+<li><strong>e-Mitra</strong> – Rajasthan</li>
+<li><strong>e-Seva</strong> – Andhra Pradesh</li>
+<li><strong>CET</strong> – Common Entrance Test</li>
+</ul>
+<div class="success-box">✅ <strong>Digital India</strong> – Launched by PM Narendra Modi on <strong>1 July 2015</strong>. Objective: connect rural areas with high-speed internet and improve digital literacy. Facilities: Bharat Net, Digital Locker, e-Education, e-Health, e-Sign, e-Shopping, National Scholarship Portal.</div>`},
+
+{h:"6.7 UMANG App",body:`<p><strong>UMANG (Unified Mobile Application for New-age Governance)</strong> is the Government's all-in-one, single, unified, secure multi-platform, multilingual, multi-service freeware mobile app.</p>
+<ul>
+<li>Provides access to over <strong>1,200 central and state government services</strong></li>
+<li>Available on smart phones, feature phones, tablets and desktops</li>
+</ul>
+<h3>Services Available on UMANG</h3>
+<ul>
+<li>AADHAAR card, DigiLocker</li>
+<li>Bharat Bill Payment System</li>
+<li>PAN card services</li>
+<li>EPFO services, PMKVY services</li>
+<li>AICTE and CBSE services</li>
+<li>Bill payments, education, job search, tax</li>
+<li>Business, health, agriculture, travel</li>
+<li>Indian Railway ticket booking</li>
+<li>Birth certificates</li>
+<li>e-District, e-Panchayat, police clearance, passport services</li>
+</ul>`},
+
+{h:"6.8 Security – Encryption, Digital Signature & Certificate",body:`<h3>Encryption</h3>
+<p>Encryption is widely used on the internet to protect user information. Converts <strong>Plain Text (readable form) → Cipher Text (coded/unreadable form)</strong>. Decryption is the reverse process.</p>
+<ul>
+<li><strong>Symmetric (Private-Key Encryption)</strong> – Same key used for both encryption and decryption</li>
+<li><strong>Asymmetric (Public-Key Encryption)</strong> – Different keys used: public key to encrypt, private key to decrypt</li>
+</ul>
+<div class="code-block">Encryption:  Plain Text → Cipher Text (coded form)
+Decryption:  Cipher Text → Plain Text (readable form)</div>
+<h3>Digital Signature</h3>
+<p>A <strong>digital signature</strong> (also known as electronic signature) uses <strong>asymmetric cryptography</strong> to guarantee the authenticity of an electronic document or message. Provides proof of original and unmodified documentation.</p>
+<p>Used in: e-commerce, software distribution, financial transactions. This is direct transfer of information between two partners.</p>
+<h3>Digital Certificate</h3>
+<p>A <strong>digital certificate</strong> is an electronic "password" that allows persons or organizations to exchange data securely over the Internet using PKI (Public Key Infrastructure). Also known as <strong>public key certificate</strong> or <strong>identity certificate</strong>.</p>
+<p>Information is transferred between two authorized partners who have digital certificates issued by a supreme authority.</p>`}
+]}
+];
+
+// ===== QUIZ DATA (expanded) =====
+const QUIZ_DATA={
+"Web Designing":[
+  {q:"Which HTML5 input type is used for a color picker?",opts:["text","color","picker","range"],ans:1,exp:"input type='color' defines a color picker control."},
+  {q:"What does CSS stand for?",opts:["Cascading Style Sheets","Computer Style Syntax","Creative Style Sheets","Coded Style Sets"],ans:0,exp:"CSS = Cascading Style Sheets."},
+  {q:"Which CSS property is used to fix an element relative to the browser window?",opts:["relative","absolute","static","fixed"],ans:3,exp:"position: fixed keeps the element fixed even when scrolling."},
+  {q:"Which tag is used to embed audio in HTML5?",opts:["<sound>","<audio>","<media>","<embed>"],ans:1,exp:"The audio tag is used to embed audio files in HTML5."},
+  {q:"What attribute is used to create a client-side image map?",opts:["usemap","href","src","map"],ans:0,exp:"The usemap attribute of img links it to a map element."},
+  {q:"Which HTML element creates an inline frame?",opts:["<frame>","<embed>","<iframe>","<inline>"],ans:2,exp:"iframe creates an inline frame to embed another document."},
+  {q:"What is the default value of the CSS position property?",opts:["relative","fixed","absolute","static"],ans:3,exp:"position: static is the default — top/left/right/bottom have no effect."},
+  {q:"The meta tag is placed inside which HTML section?",opts:["<body>","<footer>","<head>","<main>"],ans:2,exp:"The meta tag is always placed inside the head section."},
+  {q:"Which CSS selector uses the # symbol?",opts:["Class selector","Universal selector","ID selector","Group selector"],ans:2,exp:"The ID selector uses # (hash) followed by the id name."},
+  {q:"Which list tag is used for definition lists?",opts:["<ul>","<ol>","<dl>","<list>"],ans:2,exp:"dl defines a definition list. dt is the term, dd is the definition."},
+  {q:"Which input type defines a range slider?",opts:["slider","range","number","scroll"],ans:1,exp:"input type='range' defines a range control (default 0–100)."},
+  {q:"Which attribute specifies an image shown while video is downloading?",opts:["src","controls","poster","preload"],ans:2,exp:"The poster attribute specifies an image to show while video is downloading."}
+],
+"SEO":[
+  {q:"What does SEO stand for?",opts:["Search Engine Optimization","Site Engine Operations","Search Entry Output","Site Entry Optimization"],ans:0,exp:"SEO = Search Engine Optimization."},
+  {q:"Which SEO technique is recommended by search engines?",opts:["Black Hat","Gray Hat","White Hat","Red Hat"],ans:2,exp:"White Hat SEO uses techniques approved by search engines."},
+  {q:"What is the recommended maximum length for a page title?",opts:["30 characters","60 characters","100 characters","160 characters"],ans:1,exp:"Title should be up to 60 characters (spaces included)."},
+  {q:"Which tool is a free SEO audit tool?",opts:["Photoshop","SEOptimer","GIMP","Notepad"],ans:1,exp:"SEOptimer (seoptimer.com) is a free SEO audit tool."},
+  {q:"Backlinks contribute to which type of SEO?",opts:["On-Page","Technical","Off-Page","Internal"],ans:2,exp:"Backlinks are an Off-Page SEO factor."},
+  {q:"Meta description should be between how many characters?",opts:["10-50","70-160","200-300","50-70"],ans:1,exp:"Meta description should be 70–160 characters."},
+  {q:"What does the robots.txt file do?",opts:["Stores cookies","Tells search engines which pages to exclude","Handles redirects","Describes page content"],ans:1,exp:"robots.txt tells search engines which pages to exclude from indexing."},
+  {q:"Keyword stuffing is a _____ SEO technique.",opts:["White Hat","Gray Hat","Black Hat","Green Hat"],ans:2,exp:"Keyword stuffing is a Black Hat SEO technique not approved by search engines."},
+  {q:"Which process describes search engine bots scanning a website?",opts:["Indexing","Crawling","Caching","Parsing"],ans:1,exp:"Crawling is the process where search engine bots scan a website."},
+  {q:"SMO stands for?",opts:["Search Media Optimization","Social Media Optimization","Site Media Operations","Search Marketing Operations"],ans:1,exp:"SMO = Social Media Optimization — enhancing website ranking via social media."}
+],
+"JavaScript":[
+  {q:"Which method displays a dialog box with OK and Cancel?",opts:["alert()","prompt()","confirm()","popup()"],ans:2,exp:"confirm() shows a dialog with OK and Cancel buttons."},
+  {q:"What does DOM stand for?",opts:["Document Object Model","Data Object Model","Document Order Model","Dynamic Object Map"],ans:0,exp:"DOM = Document Object Model."},
+  {q:"Which Math method rounds a number UP?",opts:["floor()","round()","ceil()","abs()"],ans:2,exp:"Math.ceil() rounds up to the nearest integer."},
+  {q:"What is the index of the first array element in JavaScript?",opts:["1","0","-1","none"],ans:1,exp:"Arrays are zero-indexed in JavaScript."},
+  {q:"Which event fires when an element loses focus?",opts:["onchange","onblur","onfocus","onselect"],ans:1,exp:"onblur fires when an element loses focus."},
+  {q:"Which property returns the number of characters in a string?",opts:["size","count","length","chars"],ans:2,exp:"str.length returns the number of characters."},
+  {q:"Window object is the _____ object in the JS hierarchy.",opts:["child","parent","sibling","root"],ans:1,exp:"Window object is the parent of all other objects."},
+  {q:"JavaScript is which type of language?",opts:["Compiled","Interpreted","Assembled","Machine-level"],ans:1,exp:"JavaScript is an interpreted language — no compilation needed."},
+  {q:"Which method removes whitespace from both sides of a string?",opts:["strip()","clean()","trim()","remove()"],ans:2,exp:"trim() removes whitespace from both sides of a string."},
+  {q:"Which Date object method returns the year as four digits?",opts:["getYear()","getFullYear()","getDate()","getTime()"],ans:1,exp:"getFullYear() returns the year as four digits (e.g., 2024)."},
+  {q:"Which loop is guaranteed to execute at least once?",opts:["for","while","do...while","forEach"],ans:2,exp:"do...while checks the condition AFTER the loop body, so it runs at least once."},
+  {q:"What does parseInt() do in JavaScript?",opts:["Converts to float","Converts string to integer","Converts to boolean","Returns string length"],ans:1,exp:"parseInt() converts a given string into an integer number."}
+],
+"Emerging Tech":[
+  {q:"What does IoT stand for?",opts:["Internet of Technology","Internet of Things","Interface of Things","Internet of Tools"],ans:1,exp:"IoT = Internet of Things."},
+  {q:"Which cloud model gives access to development environments?",opts:["IaaS","SaaS","PaaS","DaaS"],ans:2,exp:"PaaS provides development tools and environments."},
+  {q:"Which is an example of SaaS?",opts:["AWS EC2","Google G Suite","Azure VM","Google Compute Engine"],ans:1,exp:"Google G Suite is a SaaS example."},
+  {q:"What is the fifth generation of cellular network technology?",opts:["LTE","4G","5G","WiFi-6"],ans:2,exp:"5G is the fifth generation of cellular network technology."},
+  {q:"Which AI subfield mimics the brain's neurons?",opts:["Machine Learning","Neural Networks","Computer Vision","NLP"],ans:1,exp:"Neural networks imitate the brain's interconnected neurons."},
+  {q:"5G can support up to how many devices per square kilometer?",opts:["100,000","500,000","1,000,000","10,000"],ans:2,exp:"5G can support up to 1 million devices per square kilometer."},
+  {q:"Which cloud type combines public and private cloud?",opts:["Virtual Cloud","Hybrid Cloud","Community Cloud","Mixed Cloud"],ans:1,exp:"Hybrid Cloud combines public and private cloud elements."},
+  {q:"NLP in AI stands for?",opts:["Network Language Protocol","Natural Language Processing","Numeric Logic Programming","Node Linked Protocol"],ans:1,exp:"NLP = Natural Language Processing — analyzing and responding to human language."},
+  {q:"Which IoT application controls home temperature remotely?",opts:["Smart lock","Smart camera","Smart thermostat","Smart signal"],ans:2,exp:"Smart thermostats allow users to schedule, monitor and remotely control home temperatures."},
+  {q:"Which 5G spectrum is used for very high data speeds?",opts:["2G","LTE","mmWave","WiFi"],ans:2,exp:"5G uses millimeter wave (mmWave) radio spectrum for very high data transfer."}
+],
+"PHP":[
+  {q:"PHP stands for?",opts:["Personal Home Page","Preprocessed HTML Program","Hypertext Preprocessor","PHP Hypertext Protocol"],ans:2,exp:"PHP = Hypertext Preprocessor (recursive acronym)."},
+  {q:"What symbol starts a PHP variable?",opts:["@","#","$","&"],ans:2,exp:"PHP variables start with the $ sign."},
+  {q:"Which method is safer for sending passwords?",opts:["GET","POST","FETCH","SEND"],ans:1,exp:"POST is safer — data is hidden in the HTTP body."},
+  {q:"Which PHP function returns the length of a string?",opts:["len()","size()","strlen()","count()"],ans:2,exp:"strlen() returns the number of characters in a string."},
+  {q:"What does PDO stand for?",opts:["PHP Data Object","PHP Database Operator","PHP Direct Object","PHP Data Operator"],ans:0,exp:"PDO = PHP Data Object."},
+  {q:"Which array type uses named keys?",opts:["Indexed","Multi-dimensional","Associative","Numerical"],ans:2,exp:"Associative arrays use named keys instead of numeric indexes."},
+  {q:"Which loop in PHP works only on arrays?",opts:["for","while","foreach","do-while"],ans:2,exp:"foreach loop works ONLY on arrays."},
+  {q:"PHP files have which extension?",opts:[".html",".php",".js",".asp"],ans:1,exp:"PHP files have the .php extension."},
+  {q:"Which PHP scope retains value between function calls?",opts:["local","global","static","dynamic"],ans:2,exp:"A static variable retains its value between multiple function calls."},
+  {q:"What is used for string concatenation in PHP?",opts:["+","-",".","*"],ans:2,exp:"In PHP, the dot (.) operator is used for string concatenation."},
+  {q:"Cookies in PHP are stored on which computer?",opts:["Server","Database","Client's computer","Router"],ans:2,exp:"Cookies are small text files stored on the user's (client's) computer."},
+  {q:"Sessions in PHP store information on which side?",opts:["Client","Database","Server","Browser"],ans:2,exp:"Sessions store user information on the server to track activities across pages."}
+],
+"E-Commerce":[
+  {q:"OLX is an example of which e-commerce type?",opts:["B2B","B2C","C2C","G2C"],ans:2,exp:"OLX is C2C (Consumer to Consumer)."},
+  {q:"Which phase of the trade cycle includes Order and Delivery?",opts:["Pre-Sales","Execution","Settlement","After-Sales"],ans:1,exp:"Execution phase = Order + Delivery."},
+  {q:"BHIM and UPI are examples of which payment mode?",opts:["Credit Cards","Bank Transfer","Mobile Payments","E-Wallets"],ans:2,exp:"BHIM and UPI are mobile payment applications."},
+  {q:"EDI stands for?",opts:["Electronic Data Interface","Electronic Data Interchange","Electronic Document Index","Electronic Data Input"],ans:1,exp:"EDI = Electronic Data Interchange."},
+  {q:"M-Commerce uses which type of devices?",opts:["Desktop computers","Wireless handheld devices","Landline phones","Smart TVs"],ans:1,exp:"M-Commerce uses smartphones and tablets."},
+  {q:"Amazon and Flipkart are examples of which model?",opts:["C2C","B2B","B2C","C2B"],ans:2,exp:"Amazon and Flipkart are B2C (Business to Consumer)."},
+  {q:"Which phase includes Invoice and Payment?",opts:["Pre-Sales","Execution","Settlement","After-Sales"],ans:2,exp:"Settlement phase consists of Invoice and Payment."},
+  {q:"E-wallet is a type of _____ account.",opts:["Savings","Current","Pre-paid","Fixed"],ans:2,exp:"An e-wallet is a type of pre-paid account where user stores money."},
+  {q:"Warranty and after-sale services are part of which trade cycle phase?",opts:["Pre-Sales","Execution","Settlement","After-Sales"],ans:3,exp:"After-Sales phase consists of warranty and after-sale services."},
+  {q:"Which commerce measures success through likes and retweets?",opts:["M-Commerce","B2C","Social Commerce","B2B"],ans:2,exp:"Social Commerce success is measured by retweets, likes, and shares on social media."}
+],
+"E-Governance":[
+  {q:"What does G2C stand for?",opts:["Government to Corporation","Government to Citizen","Government to Country","General to Citizen"],ans:1,exp:"G2C = Government to Citizen."},
+  {q:"Digital India was launched in which year?",opts:["2013","2014","2015","2016"],ans:2,exp:"Digital India was launched on 1 July 2015 by PM Narendra Modi."},
+  {q:"UMANG app provides access to how many government services?",opts:["100+","500+","1200+","50+"],ans:2,exp:"UMANG provides access to over 1,200 central and state government services."},
+  {q:"Which encryption uses same key for both encryption and decryption?",opts:["Asymmetric","Hybrid","Symmetric","Public Key"],ans:2,exp:"Symmetric encryption uses the same private key for both processes."},
+  {q:"License renewal is an example of which e-governance type?",opts:["G2B","G2G","G2E","G2C"],ans:3,exp:"License renewal is a G2C (Government to Citizen) service."},
+  {q:"e-Mitra is an e-governance project of which state?",opts:["Maharashtra","Rajasthan","Andhra Pradesh","Gujarat"],ans:1,exp:"e-Mitra is an e-governance project of Rajasthan."},
+  {q:"SMART in e-governance stands for?",opts:["Simple,Mobile,Agile,Rapid,Tech","Simple,Moral,Accessible,Responsive,Transparent","Smart,Modern,Agile,Robust,Tech","Simple,Modern,Accessible,Real-time,Transparent"],ans:1,exp:"SMART = Simple, Moral, Accessible, Responsive, Transparent."},
+  {q:"Digital Signature uses which cryptography?",opts:["Symmetric","Asymmetric","Hybrid","None"],ans:1,exp:"Digital Signature uses asymmetric cryptography."},
+  {q:"G2E primarily serves which group?",opts:["Citizens","Businesses","Government employees","Foreign governments"],ans:2,exp:"G2E = Government to Employee — serves government employees."},
+  {q:"Digital Certificate is also called?",opts:["Digital signature","Public key certificate","Encryption key","Session key"],ans:1,exp:"Digital Certificate is also known as public key certificate or identity certificate."}
+]};
+
+// ===== FLASHCARDS (complete) =====
+const FLASHCARDS=[
+  {topic:"Web Designing",q:"What is HTML5?",a:"The latest version of HyperText Markup Language, supporting mobile technology, audio/video natively, and advanced forms with new input types."},
+  {topic:"Web Designing",q:"What is CSS?",a:"Cascading Style Sheets — controls how HTML elements are displayed on screen, paper, or other media. Saves work by controlling multiple pages at once."},
+  {topic:"Web Designing",q:"What are the 3 types of CSS?",a:"1. Inline CSS (style attribute)\n2. Internal/Embedded CSS (style tag in head)\n3. External CSS (separate .css file linked with link tag)"},
+  {topic:"Web Designing",q:"What is CSS position: fixed?",a:"The element stays fixed relative to the browser window even when the page is scrolled. Does not move on scrolling."},
+  {topic:"Web Designing",q:"What is CSS float property?",a:"Defines flow of content around elements. Values: float:left, float:right, float:none (default). Keeps element on left or right side of container."},
+  {topic:"Web Designing",q:"What is CSS display property?",a:"Defines how components are placed on the webpage. Values: inline, block, inline-block, none. block starts on a new line and takes full width."},
+  {topic:"Web Designing",q:"What is a Definition List?",a:"Uses dl tag. dt defines the term, dd defines the term's description/definition. Example: HTML - A markup language for web pages."},
+  {topic:"Web Designing",q:"What is an inline frame (iframe)?",a:"An iframe element embeds another HTML document inside the current page. Often used in online advertising."},
+  {topic:"Web Designing",q:"What is an Image Map?",a:"An image with multiple clickable regions (hotspots) that link to different URLs. Created using img with usemap attribute, map and area tags."},
+  {topic:"Web Designing",q:"What is Web Hosting?",a:"The service of providing storage space on internet-connected web servers to make websites available online. Types: Shared, Free, Dedicated."},
+  {topic:"SEO",q:"What is SEO?",a:"Search Engine Optimization — techniques to design and develop a website to rank high in search engine results, increasing number of visitors."},
+  {topic:"SEO",q:"What is White Hat SEO?",a:"SEO techniques approved by search engines: relevant content, well-labeled images, relevant links, proper HTML, unique page titles."},
+  {topic:"SEO",q:"What is Black Hat SEO?",a:"Techniques not approved by search engines: duplicate content, keyword stuffing, invisible text, cloaking, links from non-relevant sites."},
+  {topic:"SEO",q:"What are Backlinks?",a:"Links on other websites that point to your site. They represent a 'vote of confidence' that boosts your SEO value and search engine ranking."},
+  {topic:"SEO",q:"What is Social Bookmarking?",a:"A tool to save, organize and share website bookmarks. Creates high-quality backlinks quickly. Very useful for Off-Page SEO optimization."},
+  {topic:"SEO",q:"What does robots.txt do?",a:"Tells search engines which pages to exclude from indexing. Allows website owners to control what search engine bots can and cannot access."},
+  {topic:"SEO",q:"What is SMO?",a:"Social Media Optimization — enhancing website ranking using interactive communities like Facebook, Twitter, blogs, and forums."},
+  {topic:"SEO",q:"What is an SEO Audit?",a:"An analysis that finds what can be done to improve search engine ranking. Tools: SEOptimer and SEOmator. Shows ranking, keyword consistency, backlinks."},
+  {topic:"JavaScript",q:"What is the DOM?",a:"Document Object Model — a programming interface that allows scripts to dynamically access and update document content, structure, and style."},
+  {topic:"JavaScript",q:"What is the Window object?",a:"The parent object of all other objects in the browser. Represents an open window and is created automatically by the browser."},
+  {topic:"JavaScript",q:"What does Math.ceil() do?",a:"Returns the next integer GREATER THAN or EQUAL TO a given number (rounds UP). Example: Math.ceil(4.1) = 5"},
+  {topic:"JavaScript",q:"What does Math.floor() do?",a:"Returns the next integer LESS THAN or EQUAL TO a given number (rounds DOWN). Example: Math.floor(4.9) = 4"},
+  {topic:"JavaScript",q:"What is a do...while loop?",a:"A loop that executes the code block at least once, then checks the condition. Differs from while loop which checks condition first."},
+  {topic:"JavaScript",q:"What are JavaScript events?",a:"Actions done by the user on a webpage. Examples: onclick, onblur, onfocus, onchange, onsubmit, onload, onkeypress, onmouseover."},
+  {topic:"JavaScript",q:"What does getFullYear() return?",a:"Returns the current year as four digits. It is a method of the JavaScript Date object. Example: new Date().getFullYear() → 2024"},
+  {topic:"JavaScript",q:"What is innerHTML?",a:"A property used to get or change the HTML content of any element. Example: document.getElementById('id').innerHTML = 'new text'"},
+  {topic:"Emerging Tech",q:"What is IoT?",a:"Internet of Things — network of physical devices embedded with electronics, software, sensors, and connectivity to connect and exchange data."},
+  {topic:"Emerging Tech",q:"What is IaaS?",a:"Infrastructure as a Service — provides access to storage, networking, servers via the cloud. Users pay on demand. Examples: AWS EC2, Azure VM."},
+  {topic:"Emerging Tech",q:"What is SaaS?",a:"Software as a Service — provider delivers software via internet. Users don't install apps locally. Examples: Google G Suite, Dropbox, Slack."},
+  {topic:"Emerging Tech",q:"What is PaaS?",a:"Platform as a Service — provides platform with tools to test, develop and host applications. Provider manages security, OS, server software."},
+  {topic:"Emerging Tech",q:"What is 5G?",a:"Fifth generation cellular network technology — multiple times faster than 4G LTE. Supports 1 million devices per sq km. Uses mmWave spectrum."},
+  {topic:"Emerging Tech",q:"What is Machine Learning?",a:"A subfield of AI that automates analytical model building to find hidden insights in data without being explicitly programmed."},
+  {topic:"Emerging Tech",q:"What is Deep Learning?",a:"Uses very large neural networks and computing power to find complex patterns in data. Used for image and speech recognition."},
+  {topic:"Emerging Tech",q:"What is Hybrid Cloud?",a:"Combines both Public and Private cloud elements. Clouds communicate over encrypted connection. Allows portability of data and applications."},
+  {topic:"PHP",q:"What is PHP?",a:"Hypertext Preprocessor — open source server-side scripting language embedded in HTML for web development. Free, platform independent."},
+  {topic:"PHP",q:"What is PDO?",a:"PHP Data Object — provides a uniform method to connect PHP code to multiple types of databases uniformly."},
+  {topic:"PHP",q:"What is the difference between GET and POST?",a:"GET: data visible in URL, has size limits, can bookmark. POST: data hidden in body, no size limits, safe for passwords."},
+  {topic:"PHP",q:"What is an Associative Array in PHP?",a:"An array that uses named keys instead of numeric indexes. Created with: array('key' => 'value'). Access with: $arr['key']."},
+  {topic:"PHP",q:"What is a static variable in PHP?",a:"A local variable that retains its value between multiple function calls. Declared with 'static' keyword inside a function."},
+  {topic:"PHP",q:"What are PHP Cookies?",a:"Small text files sent by server to user's computer. Used to identify users or track activities. Sent along with browser requests to server."},
+  {topic:"PHP",q:"What are PHP Sessions?",a:"Used to store user information on the SERVER to track activities across multiple pages. Unlike cookies, not stored on client computer."},
+  {topic:"E-Commerce",q:"What is E-Commerce?",a:"Electronic Commerce — buying and selling of goods or services using an electronic medium such as the Internet."},
+  {topic:"E-Commerce",q:"What is B2B E-Commerce?",a:"Business-to-Business — a wholesaler sells to a retailer who then sells to final customers. Example: Tata Communications."},
+  {topic:"E-Commerce",q:"What is EDI?",a:"Electronic Data Interchange — computer-to-computer exchange of business information using standardized formats between trading partners."},
+  {topic:"E-Commerce",q:"What is M-Commerce?",a:"Mobile Commerce — buying and selling goods via wireless handheld devices (smartphones/tablets). Apps: mobile banking, ticket booking."},
+  {topic:"E-Commerce",q:"What are the 4 phases of Trade Cycle?",a:"1. Pre-Sales: Search + Negotiate\n2. Execution: Order + Delivery\n3. Settlement: Invoice + Payment\n4. After-Sales: Warranty + Service"},
+  {topic:"E-Governance",q:"What is E-Governance?",a:"Implementation of IT in government processes to make governance Simple, Moral, Accessible, Responsive, Transparent (SMART)."},
+  {topic:"E-Governance",q:"What is G2G?",a:"Government-to-Government — interaction between government departments. They can share the same database online. Can be local or international."},
+  {topic:"E-Governance",q:"What is Encryption?",a:"Converting Plain Text (readable) into Cipher Text (coded/unreadable) to protect data. Decryption is the reverse. Types: Symmetric, Asymmetric."},
+  {topic:"E-Governance",q:"What is a Digital Signature?",a:"An electronic signature using asymmetric cryptography to guarantee authenticity of digital documents. Used in e-commerce and financial transactions."},
+  {topic:"E-Governance",q:"What is UMANG?",a:"Unified Mobile Application for New-age Governance — India's all-in-one app for 1200+ government services on smartphones, tablets, desktops."},
+  {topic:"E-Governance",q:"What is a Digital Certificate?",a:"An electronic 'password' using PKI (Public Key Infrastructure) to allow secure data exchange. Also called public key certificate or identity certificate."}
+];
+
+// ===== MATCH DATA =====
+const MATCH_DATA={
+  "Web Designing":[["<ul>","Unordered list"],["usemap","Client-side image map"],["<iframe>","Inline frame"],["position:fixed","Fixed on scroll"],["<dl>","Definition list"]],
+  "JavaScript":[["Math.ceil()","Rounds UP"],["Math.floor()","Rounds DOWN"],["innerHTML","Change element content"],["confirm()","OK & Cancel dialog"],["do...while","Runs at least once"]],
+  "PHP":[["strlen()","String length"],["$_POST","Hidden form data"],["foreach","Loop through array"],["PDO","DB connection class"],["static","Retains value between calls"]],
+  "E-Commerce":[["B2C","Amazon, Flipkart"],["C2C","OLX, Quikr"],["EDI","Computer-to-computer exchange"],["Settlement","Invoice + Payment"],["M-Commerce","Mobile buying/selling"]],
+  "E-Governance":[["G2C","License renewal"],["G2B","Business-government exchange"],["G2G","Department-to-department"],["G2E","Employee leave management"],["Encryption","Plain text → Cipher text"]]
+};
+
+// ===== FILL BLANKS (expanded) =====
+const FILL_BLANKS=[
+  {q:"CSS stands for _____ Style Sheets.",a:"Cascading"},
+  {q:"The <___> tag creates an inline frame.",a:"iframe"},
+  {q:"SEO stands for Search Engine _____.",a:"Optimization"},
+  {q:"White Hat SEO uses search engine _____ techniques.",a:"approved"},
+  {q:"JavaScript is a _____ language (no compilation needed).",a:"interpreted"},
+  {q:"The _____ object is the parent of all JS objects.",a:"window"},
+  {q:"IoT stands for Internet of _____.",a:"Things"},
+  {q:"5G is the _____ generation of cellular network.",a:"fifth"},
+  {q:"PHP stands for Hypertext _____.",a:"Preprocessor"},
+  {q:"PHP variables start with the _____ sign.",a:"$"},
+  {q:"E-Commerce stands for Electronic _____.",a:"Commerce"},
+  {q:"EDI stands for Electronic Data _____.",a:"Interchange"},
+  {q:"E-Governance delivers _____ government.",a:"SMART"},
+  {q:"G2C stands for Government to _____.",a:"Citizen"},
+  {q:"Encryption converts plain text to _____ text.",a:"cipher"},
+  {q:"The _____ loop always executes at least once.",a:"do while"},
+  {q:"In PHP, dot (.) is used for string _____.",a:"concatenation"},
+  {q:"The _____ attribute of img tag links it to an image map.",a:"usemap"},
+  {q:"Meta description should be between 70 and _____ characters.",a:"160"},
+  {q:"PDO stands for PHP Data _____.",a:"Object"},
+  {q:"UMANG provides access to over _____ government services.",a:"1200"},
+  {q:"CSS position _____ keeps an element fixed relative to the browser window.",a:"fixed"},
+  {q:"A _____ cloud combines public and private cloud elements.",a:"hybrid"},
+  {q:"Digital India was launched on 1 July _____.",a:"2015"}
+];
+
+// ===== BADGES =====
+const BADGES_DEF=[
+  {id:"first_login",icon:"🌱",name:"Explorer",desc:"Welcome aboard!",earned:true},
+  {id:"first_quiz",icon:"🧠",name:"Quiz Starter",desc:"Complete first quiz"},
+  {id:"perfect_quiz",icon:"⭐",name:"Perfect Score",desc:"Score 100% in a quiz"},
+  {id:"web_master",icon:"🌐",name:"Web Master",desc:"Complete Web module"},
+  {id:"js_ninja",icon:"⚡",name:"JS Ninja",desc:"Complete JS module"},
+  {id:"php_builder",icon:"🐘",name:"PHP Builder",desc:"Complete PHP module"},
+  {id:"seo_guru",icon:"🔍",name:"SEO Guru",desc:"Complete SEO module"},
+  {id:"tech_explorer",icon:"🚀",name:"Tech Explorer",desc:"Complete Emerging Tech"},
+  {id:"commerce_pro",icon:"🛒",name:"Commerce Pro",desc:"Complete E-Commerce"},
+  {id:"gov_expert",icon:"🏛️",name:"Gov Expert",desc:"Complete E-Governance"},
+  {id:"coder",icon:"💻",name:"Coder",desc:"Use Code Lab"},
+  {id:"flashcard_fan",icon:"🃏",name:"Flash Learner",desc:"Review 10+ flash cards"},
+  {id:"note_taker",icon:"📝",name:"Note Taker",desc:"Save your notes"},
+  {id:"searcher",icon:"🔎",name:"Topic Hunter",desc:"Search for a topic"},
+  {id:"pdf_downloader",icon:"📥",name:"PDF Saver",desc:"Download PDF notes"},
+  {id:"completionist",icon:"🏆",name:"Completionist",desc:"Complete all 7 modules"},
+  {id:"quiz_master",icon:"🎯",name:"Quiz Master",desc:"Complete all 7 quiz topics"}
+];
+
+// ===== PLAYGROUND SAMPLES =====
+const PLAYGROUND_SAMPLES=[
+  {name:"Basic HTML",html:`<!DOCTYPE html>
+<html>
+<head><title>My Page</title></head>
+<body>
+  <h1 style="color:royalblue">Hello HTML5!</h1>
+  <p>Welcome to the IT Academy Code Lab.</p>
+  <button onclick="alert('You clicked me!')">Click Me</button>
+</body>
+</html>`,css:"",js:""},
+  {name:"CSS Styling",html:`<!DOCTYPE html>
+<html><head><style>
+  body{font-family:Arial;background:#1a1a2e;color:#e0e0e0;padding:20px}
+  .card{background:#16213e;border:1px solid #0f3460;border-radius:12px;padding:20px;max-width:300px}
+  h2{color:#e94560}
+  p{font-size:14px;line-height:1.6}
+</style></head>
+<body>
+  <div class="card">
+    <h2>CSS Card Example</h2>
+    <p>CSS controls the look and feel of HTML elements using selectors and properties.</p>
+  </div>
+</body></html>`,css:"",js:""},
+  {name:"JS Validation",html:`<!DOCTYPE html>
+<html><head><style>
+  body{font-family:Arial;padding:20px;background:#f5f5f5}
+  input{padding:8px;margin:6px 0;border:1px solid #ccc;border-radius:6px;width:220px;display:block}
+  button{background:#6c63ff;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;margin-top:8px}
+  #msg{margin-top:10px;font-weight:bold}
+</style></head>
+<body>
+  <h2>Form Validation with JavaScript</h2>
+  <input type="text" id="name" placeholder="Enter your name">
+  <input type="email" id="email" placeholder="Enter email">
+  <input type="number" id="age" placeholder="Enter age (18-60)" min="18" max="60">
+  <button onclick="validate()">Submit</button>
+  <div id="msg"></div>
+  <script>
+    function validate(){
+      var n=document.getElementById('name').value;
+      var e=document.getElementById('email').value;
+      var a=document.getElementById('age').value;
+      var msg=document.getElementById('msg');
+      if(!n||!e||!a){msg.style.color="red";msg.innerHTML="❌ All fields required!";}
+      else if(e.indexOf("@")==-1){msg.style.color="red";msg.innerHTML="❌ Invalid email!";}
+      else if(a<18||a>60){msg.style.color="red";msg.innerHTML="❌ Age must be 18-60!";}
+      else{msg.style.color="green";msg.innerHTML="✅ Valid! Welcome, "+n+" (Age:"+a+")!";}
+    }
+  <\/script>
+</body></html>`,css:"",js:""},
+  {name:"Marks Table",html:`<!DOCTYPE html>
+<html><head><style>
+  body{font-family:Arial;padding:20px}
+  table{width:100%;border-collapse:collapse}
+  th{background:#6c63ff;color:#fff;padding:10px}
+  td{padding:8px;border-bottom:1px solid #ddd}
+  tr:hover td{background:#f0f0ff}
+  .grade-A{color:green;font-weight:bold}
+  .grade-F{color:red}
+</style></head>
+<body>
+  <h2>Student Marks Table</h2>
+  <table id="tbl"></table>
+  <script>
+    var subjects=[["English",75],["Hindi",64],["Marathi",88],["Maths",92],["IT",95]];
+    var h="<tr><th>Subject</th><th>Marks</th><th>Grade</th><th>Status</th></tr>";
+    var total=0;
+    subjects.forEach(function(s){
+      total+=s[1];
+      var g=s[1]>=90?"A":s[1]>=80?"B":s[1]>=70?"C":s[1]>=60?"D":"F";
+      var st=s[1]>=35?"Pass":"Fail";
+      h+="<tr><td>"+s[0]+"</td><td>"+s[1]+"</td><td class='grade-"+g+"'>"+g+"</td><td>"+st+"</td></tr>";
+    });
+    h+="<tr><td><b>Total</b></td><td><b>"+total+"</b></td><td></td><td>Avg: "+(total/subjects.length).toFixed(1)+"</td></tr>";
+    document.getElementById('tbl').innerHTML=h;
+  <\/script>
+</body></html>`,css:"",js:""},
+  {name:"PHP-like Array",html:`<!DOCTYPE html>
+<html><head><style>
+  body{font-family:Arial;padding:20px;background:#0d1117;color:#e6edf3}
+  .output{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-top:12px;font-family:monospace}
+  button{background:#6c63ff;color:#fff;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;margin:4px}
+</style></head>
+<body>
+  <h2>JavaScript Array Methods</h2>
+  <button onclick="runArrayDemo()">Run Demo</button>
+  <div class="output" id="out">Click Run Demo to see output</div>
+  <script>
+    function runArrayDemo(){
+      var city=["Pune","Kolhapur","Mumbai","Nashik","Latur","Nagpur"];
+      var out="<b>Original Array:</b> "+city.join(", ")+"<br>";
+      city.push("Aurangabad");
+      out+="<b>After push('Aurangabad'):</b> "+city.join(", ")+"<br>";
+      city.pop();
+      out+="<b>After pop():</b> "+city.join(", ")+"<br>";
+      out+="<b>Reversed:</b> "+[...city].reverse().join(", ")+"<br>";
+      out+="<b>Sorted:</b> "+[...city].sort().join(", ")+"<br>";
+      out+="<b>Length:</b> "+city.length+"<br>";
+      out+="<b>indexOf('Pune'):</b> "+city.indexOf("Pune");
+      document.getElementById('out').innerHTML=out;
+    }
+  <\/script>
+</body></html>`,css:"",js:""}
+];
+
+// ===== MODULES =====
+const MODULES=[
+  {id:0,title:"Advanced Web Designing",icon:"🌐",color:"#6c63ff",topics:["HTML5 Forms","Meta Tags","CSS Selectors","CSS Positioning","Float & Display","Lists (ol,ul,dl)","Audio & Video","Image Maps","iFrames","Web Hosting"],desc:"HTML5, CSS3, forms, media, hosting"},
+  {id:1,title:"SEO",icon:"🔍",color:"#00d4ff",topics:["What is SEO","On-Page SEO","Off-Page SEO","White Hat / Black Hat","Keywords","Social Bookmarking","SMO","Backlinks","robots.txt","SEO Audit"],desc:"Search Engine Optimization techniques"},
+  {id:2,title:"Advanced JavaScript",icon:"⚡",color:"#ffd166",topics:["JS Features","Switch Case","For/While/do-while","DOM Objects","Window Object","Events","String Object","Math Object","Date Object","Number Object","Array Object"],desc:"DOM, events, objects, loops"},
+  {id:3,title:"Emerging Technologies",icon:"🚀",color:"#ff6b9d",topics:["IoT","Cloud Computing","IaaS PaaS SaaS","AI / Machine Learning","5G Technology"],desc:"IoT, Cloud, AI, 5G"},
+  {id:4,title:"Server-Side Scripting (PHP)",icon:"🐘",color:"#06d6a0",topics:["Intro to PHP","PHP Variables","Data Types","Control Structures","String Functions","PHP Arrays","Multi-dim Arrays","User-Defined Functions","Form Handling","GET vs POST","DB Connectivity","Cookies & Sessions"],desc:"PHP, server scripting, database"},
+  {id:5,title:"E-Commerce",icon:"🛒",color:"#ff9f43",topics:["What is E-Commerce","B2C B2B C2C C2B","Trade Cycle","Payment Modes","M-Commerce","Social Commerce","EDI"],desc:"Types, trade cycle, payments"},
+  {id:6,title:"E-Governance",icon:"🏛️",color:"#a29bfe",topics:["What is E-Governance","G2C","G2B","G2G","G2E","Digital India","UMANG","Encryption","Digital Signature","Digital Certificate"],desc:"Types, digital India, UMANG, security"}
+];
+
+// ===== STATE =====
+let ST=JSON.parse(localStorage.getItem('it12v2')||'{}');
+if(!ST.xp) ST={xp:0,badges:[],quizDone:0,fcViewed:0,streak:1,quizScores:{},moduleProgress:{}};
+function save(){localStorage.setItem('it12v2',JSON.stringify(ST));}
+
+let cQuiz={topic:'',qs:[],idx:0,score:0,answered:[]};
+let fcSt={topic:'All',idx:0,cards:[]};
+let matchSt={topic:'',sel:{left:null,right:null},matched:0};
+let curTab='html';
+let edCode={html:'',css:'',js:''};
+let timerInt;
+
+// ===== INIT =====
+function init(){
+  renderHomeMods();renderAllMods();renderQuizTopics();
+  renderFlashCards('All');renderBadges();renderMatchTopics();
+  renderFillBlanks();renderPlaySamples();updateStats();updateLevel();
+  document.getElementById('cert-date').textContent=new Date().toLocaleDateString('en-IN');
+  document.getElementById('cert-name').oninput=function(){
+    document.getElementById('cert-name-display').textContent=this.value||'Your Name';
+  };
+  edCode.html=PLAYGROUND_SAMPLES[0].html;
+  document.getElementById('html-editor').value=edCode.html;
+  runCode();
+  document.getElementById('hamburger').onclick=function(){document.getElementById('sidebar').classList.toggle('open');};
+  document.addEventListener('click',function(e){
+    if(!e.target.closest('#sidebar')&&!e.target.closest('#hamburger'))
+      document.getElementById('sidebar').classList.remove('open');
+  });
+  document.getElementById('fc-prev').onclick=function(){if(fcSt.idx>0){fcSt.idx--;showFC();}};
+  document.getElementById('fc-next').onclick=function(){if(fcSt.idx<fcSt.cards.length-1){fcSt.idx++;showFC();}};
+  ['html','css','js'].forEach(t=>{
+    document.getElementById(t+'-editor').oninput=function(){edCode[t]=this.value;};
+  });
+  // Load saved notes
+  const saved=localStorage.getItem('it12_notes');
+  if(saved) document.getElementById('notes-area').value=saved;
+}
+
+// ===== NAV =====
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(x=>{
+    if(x.getAttribute('onclick')&&x.getAttribute('onclick').includes("'"+p+"'"))x.classList.add('active');
+  });
+  // Close sidebar on mobile after navigation
+  document.getElementById('sidebar').classList.remove('open');
+  window.scrollTo(0,0);
+  if(p==='search') unlockBadge('searcher');
+}
+
+function showLesson(id){
+  const l=LESSONS[id];
+  document.getElementById('lesson-breadcrumb').textContent=l.title;
+  let html=`<div class="lesson-content fade-in"><h2>${l.icon} Chapter ${id+1}: ${l.title}</h2>`;
+  l.sections.forEach(s=>{html+=`<h3>${s.h}</h3>${s.body}`;});
+  html+=`</div>`;
+  document.getElementById('lesson-body').innerHTML=html;
+  let acts=`<button class="btn btn-primary" onclick="quizFromLesson(${id})">🧠 Chapter Quiz</button>
+    <button class="btn btn-green" onclick="downloadChapterPDF(${id})">📥 Download Chapter PDF</button>`;
+  if(id>0) acts+=`<button class="btn btn-outline" onclick="showLesson(${id-1})">← Previous</button>`;
+  if(id<LESSONS.length-1) acts+=`<button class="btn btn-primary" onclick="showLesson(${id+1})">Next Chapter →</button>`;
+  acts+=`<button class="btn btn-outline" onclick="showPage('home')">🏠 Dashboard</button>`;
+  document.getElementById('lesson-actions').innerHTML=acts;
+  markProg(id);showPage('lesson');awardXP(20,'📖 Lesson: '+l.title);
+}
+
+function quizFromLesson(id){
+  const map=['Web Designing','SEO','JavaScript','Emerging Tech','PHP','E-Commerce','E-Governance'];
+  startQuiz(map[id]||'Web Designing');showPage('quiz');
+}
+
+// ===== MODULES =====
+function renderHomeMods(){
+  document.getElementById('home-modules').innerHTML=MODULES.slice(0,6).map(m=>modCard(m)).join('');
+}
+function renderAllMods(){
+  document.getElementById('all-modules').innerHTML=MODULES.map(m=>modCard(m)).join('');
+}
+function modCard(m){
+  const p=ST.moduleProgress[m.id]||0;
+  return `<div class="mod-card" onclick="showLesson(${m.id})">
+    <div class="mod-header">
+      <div class="mod-icon" style="background:${m.color}22;color:${m.color}">${m.icon}</div>
+      <div><div class="mod-title">${m.title}</div><div class="mod-sub">${m.desc}</div></div>
+    </div>
+    <div style="padding:0 18px 4px;font-size:.75rem;color:var(--muted)">${m.topics.length} topics</div>
+    <div class="mod-footer">
+      <div class="mod-prog-wrap"><div class="mod-prog" style="width:${p}%"></div></div>
+      <div class="mod-pct">${p}%</div>
+    </div>
+  </div>`;
+}
+function markProg(id){
+  if(!ST.moduleProgress[id]||ST.moduleProgress[id]<100){
+    ST.moduleProgress[id]=100;save();updateStats();
+    renderHomeMods();renderAllMods();
+    const bMap={0:'web_master',1:'seo_guru',2:'js_ninja',3:'tech_explorer',4:'php_builder',5:'commerce_pro',6:'gov_expert'};
+    if(bMap[id]) unlockBadge(bMap[id]);
+    if(Object.keys(ST.moduleProgress).length===MODULES.length) unlockBadge('completionist');
+  }
+}
+
+// ===== QUIZ =====
+function renderQuizTopics(){
+  const icons={'Web Designing':'🌐','SEO':'🔍','JavaScript':'⚡','Emerging Tech':'🚀','PHP':'🐘','E-Commerce':'🛒','E-Governance':'🏛️'};
+  document.getElementById('quiz-topics').innerHTML=Object.keys(QUIZ_DATA).map(t=>`
+    <div class="card" style="cursor:pointer;text-align:center" onclick="startQuiz('${t}')">
+      <div class="card-icon">${icons[t]||'📚'}</div>
+      <h3>${t}</h3>
+      <p style="font-size:.75rem">${QUIZ_DATA[t].length} questions</p>
+      ${ST.quizScores[t]!==undefined?`<div style="margin-top:8px;color:var(--green);font-size:.8rem">Best: ${ST.quizScores[t]}%</div>`:'<div style="margin-top:8px;color:var(--muted);font-size:.75rem">Not attempted</div>'}
+    </div>`).join('');
+}
+
+function startQuiz(topic){
+  let qs=[...QUIZ_DATA[topic]].sort(()=>Math.random()-.5).slice(0,10).map(q=>{
+    const order=[0,1,2,3].sort(()=>Math.random()-.5);
+    return {...q,opts:order.map(i=>q.opts[i]),ans:order.indexOf(q.ans)};
+  });
+  cQuiz={topic,qs,idx:0,score:0,answered:Array(qs.length).fill(null)};
+  renderQuizQ();
+  document.getElementById('quiz-select').style.display='none';
+  document.getElementById('quiz-engine').style.display='block';
+  document.getElementById('quiz-result').style.display='none';
+}
+
+function renderQuizQ(){
+  const {qs,idx}=cQuiz,q=qs[idx];
+  const prog=((idx)/qs.length*100).toFixed(0);
+  document.getElementById('quiz-engine').innerHTML=`
+    <div class="quiz-header">
+      <h2>${cQuiz.topic} Quiz</h2>
+      <div class="timer-bar"><div class="timer-fill" id="tbar" style="width:100%"></div></div>
+      <div class="quiz-meta"><span>Q${idx+1} / ${qs.length}</span><span>Score: ${cQuiz.score}</span><span>${prog}%</span></div>
+      <div class="prog-wrap" style="margin-top:8px"><div class="prog-fill" style="width:${prog}%"></div></div>
+    </div>
+    <div class="q-card">
+      <div class="q-num">Question ${idx+1} of ${qs.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-opts">${q.opts.map((o,i)=>`<div class="q-opt" onclick="answerQ(${i})" id="opt-${i}"><span class="opt-letter">${['A','B','C','D'][i]}</span>${o}</div>`).join('')}</div>
+      <div class="explain-box" id="exp">💡 ${q.exp}</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+      <button class="btn btn-outline" onclick="showQuizSel()">✕ Exit</button>
+      <button class="btn btn-primary" id="nxt" style="display:none" onclick="nextQ()">Next →</button>
+    </div>`;
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInt);let t=25;
+  timerInt=setInterval(()=>{
+    t--;const b=document.getElementById('tbar');
+    if(b) b.style.width=(t/25*100)+'%';
+    if(t<=0){clearInterval(timerInt);markAnswer(cQuiz.qs[cQuiz.idx].ans,-1);}
+  },1000);
+}
+
+function answerQ(i){clearInterval(timerInt);markAnswer(cQuiz.qs[cQuiz.idx].ans,i);}
+
+function markAnswer(correct,chosen){
+  document.querySelectorAll('.q-opt').forEach((o,i)=>{
+    o.style.pointerEvents='none';
+    if(i===correct) o.classList.add('correct');
+    else if(i===chosen&&chosen!==correct) o.classList.add('wrong');
+  });
+  if(chosen===correct){cQuiz.score++;awardXP(10,'✅ Correct!');}
+  cQuiz.answered[cQuiz.idx]=(chosen===correct);
+  const e=document.getElementById('exp');if(e)e.style.display='block';
+  const n=document.getElementById('nxt');if(n)n.style.display='inline-flex';
+}
+
+function nextQ(){cQuiz.idx++;if(cQuiz.idx>=cQuiz.qs.length)showQuizResult();else renderQuizQ();}
+
+function showQuizResult(){
+  clearInterval(timerInt);
+  const {qs,score,topic}=cQuiz;const pct=Math.round(score/qs.length*100);
+  ST.quizDone++;if(!ST.quizScores[topic]||pct>ST.quizScores[topic])ST.quizScores[topic]=pct;
+  save();unlockBadge('first_quiz');if(pct===100)unlockBadge('perfect_quiz');
+  if(Object.keys(ST.quizScores).length===Object.keys(QUIZ_DATA).length)unlockBadge('quiz_master');
+  updateStats();
+  const badge=pct>=90?'🥇':pct>=70?'🥈':pct>=50?'🥉':'📖';
+  const grade=pct>=90?'🌟 Excellent!':pct>=70?'👍 Good Job!':pct>=50?'💪 Keep Going!':'📚 Study More!';
+  document.getElementById('quiz-engine').style.display='none';
+  document.getElementById('quiz-result').style.display='block';
+  document.getElementById('quiz-result').innerHTML=`
+    <div class="result-card fade-in">
+      <div class="result-score">${pct}%</div>
+      <div class="result-badge">${badge}</div>
+      <div class="result-title">${grade}</div>
+      <div class="result-sub">${score} out of ${qs.length} correct</div>
+      <div style="margin:12px 0;font-size:.85rem">${cQuiz.answered.map((a,i)=>`<span style="color:${a?'var(--green)':'var(--accent3)'}">Q${i+1}:${a?'✓':'✗'} </span>`).join('')}</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+        <button class="btn btn-primary" onclick="startQuiz('${topic}')">🔄 Retry</button>
+        <button class="btn btn-outline" onclick="showQuizSel()">📋 All Quizzes</button>
+      </div>
+    </div>`;
+  renderQuizTopics();
+}
+
+function showQuizSel(){
+  clearInterval(timerInt);
+  document.getElementById('quiz-select').style.display='block';
+  document.getElementById('quiz-engine').style.display='none';
+  document.getElementById('quiz-result').style.display='none';
+  renderQuizTopics();
+}
+
+// ===== FLASHCARDS =====
+function renderFCTopicBtns(){
+  const topics=['All',...new Set(FLASHCARDS.map(f=>f.topic))];
+  document.getElementById('fc-topic-btns').innerHTML=topics.map(t=>
+    `<div class="topic-tag" onclick="renderFlashCards('${t}')" style="${fcSt.topic===t?'background:var(--accent);color:#fff;border-color:var(--accent)':''}">${t}</div>`
+  ).join('');
+}
+function renderFlashCards(topic){
+  fcSt.topic=topic;
+  fcSt.cards=topic==='All'?FLASHCARDS:FLASHCARDS.filter(f=>f.topic===topic);
+  fcSt.idx=0;renderFCTopicBtns();showFC();
+}
+function showFC(){
+  const c=fcSt.cards[fcSt.idx];if(!c)return;
+  document.getElementById('fc-container').innerHTML=`
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="flashcard" onclick="flipFC()">
+        <div class="fc-front"><div><strong style="color:var(--accent4);font-size:.75rem;display:block;margin-bottom:8px">${c.topic}</strong>${c.q}</div></div>
+        <div class="fc-back"><div>${c.a.replace(/\n/g,'<br>')}</div></div>
+      </div>
+    </div>
+    <div class="fc-hint">👆 Click card to reveal answer</div>`;
+  document.getElementById('fc-counter').textContent=`${fcSt.idx+1} / ${fcSt.cards.length}`;
+  ST.fcViewed++;if(ST.fcViewed>=10)unlockBadge('flashcard_fan');save();
+}
+function flipFC(){const f=document.getElementById('flashcard');if(f){f.classList.toggle('flipped');awardXP(3,'🃏 Card Reviewed!');}}
+
+// ===== PLAYGROUND =====
+function renderPlaySamples(){
+  document.getElementById('playground-samples').innerHTML=PLAYGROUND_SAMPLES.map((s,i)=>
+    `<button class="btn btn-outline" style="font-size:.78rem" onclick="loadSample(${i})">${s.name}</button>`
+  ).join('');
+}
+function loadSample(i){
+  const s=PLAYGROUND_SAMPLES[i];
+  edCode={html:s.html,css:s.css||'',js:s.js||''};
+  document.getElementById('html-editor').value=edCode.html;
+  document.getElementById('css-editor').value=edCode.css;
+  document.getElementById('js-editor').value=edCode.js;
+  switchTab('html');runCode();unlockBadge('coder');
+}
+function switchTab(tab){
+  curTab=tab;
+  ['html','css','js'].forEach(t=>{document.getElementById(t+'-editor').style.display=t===tab?'block':'none';});
+  document.querySelectorAll('.ed-tab').forEach((el,i)=>{el.classList.toggle('active',['html','css','js'][i]===tab);});
+}
+function runCode(){
+  const f=document.getElementById('preview-frame');
+  f.srcdoc=`<html><head><style>${edCode.css}</style></head><body>${edCode.html}<script>${edCode.js}<\/script></body></html>`;
+  awardXP(5,'💻 Code Executed!');
+}
+function resetCode(){edCode={html:'',css:'',js:''};['html','css','js'].forEach(t=>document.getElementById(t+'-editor').value='');runCode();}
+function copyCode(btn){
+  const pre=btn.parentElement;
+  const txt=pre.textContent.replace('Copy','').replace('✓ Copied','').trim();
+  navigator.clipboard?.writeText(txt).then(()=>{btn.textContent='✓ Copied';setTimeout(()=>btn.textContent='Copy',1500);});
+}
+
+// ===== MATCH GAME =====
+function renderMatchTopics(){
+  document.getElementById('match-topic-btns').innerHTML=Object.keys(MATCH_DATA).map(t=>
+    `<button class="btn btn-outline" style="font-size:.8rem" onclick="startMatch('${t}')">${t}</button>`
+  ).join('');
+}
+function startMatch(topic){
+  matchSt={topic,sel:{left:null,right:null},matched:0};
+  const pairs=MATCH_DATA[topic];
+  const left=[...pairs].sort(()=>Math.random()-.5);
+  const right=[...pairs].map(p=>p[1]).sort(()=>Math.random()-.5);
+  document.getElementById('match-board').innerHTML=`
+    <div class="match-grid">
+      <div class="match-col"><strong style="color:var(--muted);font-size:.75rem;padding:4px 0;display:block">TERMS</strong>${left.map((p,i)=>`<div class="match-item" id="ml-${i}" onclick="selMatch('left',${i},'${esc(p[0])}','${esc(p[1])}')"><strong>${p[0]}</strong></div>`).join('')}</div>
+      <div class="match-col"><strong style="color:var(--muted);font-size:.75rem;padding:4px 0;display:block">DEFINITIONS</strong>${right.map((r,i)=>`<div class="match-item" id="mr-${i}" onclick="selMatch('right',${i},'${esc(r)}')">${r}</div>`).join('')}</div>
+    </div>`;
+  document.getElementById('match-score').textContent=`Select a term, then its matching definition! 0 / ${pairs.length} matched`;
+}
+function esc(s){return(s||'').replace(/'/g,"\\'");}
+function selMatch(side,idx,val,pair){
+  if(side==='left'){
+    document.querySelectorAll('.match-item').forEach(x=>{if(!x.classList.contains('matched'))x.classList.remove('selected');});
+    matchSt.sel.left={idx,val,pair};
+    document.getElementById('ml-'+idx).classList.add('selected');
+  } else {
+    matchSt.sel.right={idx,val};
+    const l=matchSt.sel.left;if(!l)return;
+    if(l.pair===val){
+      document.getElementById('ml-'+l.idx).classList.add('matched');
+      document.getElementById('mr-'+idx).classList.add('matched');
+      matchSt.matched++;awardXP(15,'🎮 Match Found!');
+      const tot=MATCH_DATA[matchSt.topic].length;
+      document.getElementById('match-score').textContent=`✅ ${matchSt.matched} / ${tot} matched`;
+      if(matchSt.matched===tot){toast('🎉 All Matched! Perfect!');awardXP(25,'🏆 Match Complete!');}
+    } else {
+      document.getElementById('ml-'+l.idx).classList.add('wrong-sel');
+      document.getElementById('mr-'+idx).classList.add('wrong-sel');
+      setTimeout(()=>{
+        document.getElementById('ml-'+l.idx).classList.remove('wrong-sel','selected');
+        document.getElementById('mr-'+idx).classList.remove('wrong-sel');
+      },500);
+    }
+    matchSt.sel={left:null,right:null};
+  }
+}
+
+// ===== FILL BLANKS =====
+function renderFillBlanks(){
+  document.getElementById('fillblank-board').innerHTML=FILL_BLANKS.map((f,i)=>`
+    <div class="card" style="margin-bottom:12px">
+      <div class="fill-q">${f.q.replace('_____',`<input class="fill-input" id="fb-${i}" placeholder="answer" onkeydown="if(event.key==='Enter')checkFill(${i},'${f.a.replace(/'/g,"\\'")}')" >`)}</div>
+      <div style="margin-top:10px;display:flex;gap:10px;align-items:center">
+        <button class="btn btn-primary" style="padding:6px 16px;font-size:.8rem" onclick="checkFill(${i},'${f.a.replace(/'/g,"\\'")}')">Check</button>
+        <span id="fbr-${i}" style="font-size:.85rem"></span>
+      </div>
+    </div>`).join('');
+}
+function checkFill(i,ans){
+  const val=document.getElementById('fb-'+i).value.trim().toLowerCase();
+  const res=document.getElementById('fbr-'+i);
+  if(val===ans.toLowerCase()||val.includes(ans.toLowerCase())||ans.toLowerCase().includes(val)){
+    res.style.color='var(--green)';res.textContent='✅ Correct!';awardXP(8,'✏️ Correct Answer!');
+    document.getElementById('fb-'+i).style.borderColor='var(--green)';
+  } else {
+    res.style.color='var(--accent3)';res.textContent='❌ Answer: '+ans;
+    document.getElementById('fb-'+i).style.borderColor='var(--accent3)';
+  }
+}
+
+// ===== SEARCH =====
+function doSearch(q){
+  const out=document.getElementById('search-results');
+  if(!q||q.length<2){out.innerHTML='<p style="color:var(--muted)">Type at least 2 characters to search...</p>';return;}
+  const results=[];
+  LESSONS.forEach(l=>{
+    l.sections.forEach(s=>{
+      const combined=(s.h+' '+s.body).toLowerCase();
+      if(combined.includes(q.toLowerCase())){
+        results.push({chapter:l.title,icon:l.icon,lessonId:l.id,title:s.h,snippet:s.body.replace(/<[^>]*>/g,' ').substring(0,120)+'...'});
+      }
+    });
+  });
+  if(!results.length){out.innerHTML='<p style="color:var(--muted)">No results found for "'+q+'"</p>';return;}
+  out.innerHTML=results.map(r=>`
+    <div class="search-result" onclick="showLesson(${r.lessonId})">
+      <h4>${r.icon} ${r.chapter} › ${r.title}</h4>
+      <p>${r.snippet}</p>
+    </div>`).join('');
+}
+
+// ===== NOTES =====
+function saveNotes(){
+  const notes=document.getElementById('notes-area').value;
+  localStorage.setItem('it12_notes',notes);
+  document.getElementById('notes-saved').textContent='✅ Notes saved at '+new Date().toLocaleTimeString();
+  unlockBadge('note_taker');awardXP(5,'📝 Notes Saved!');
+  setTimeout(()=>document.getElementById('notes-saved').textContent='',3000);
+}
+function clearNotes(){
+  if(confirm('Clear all notes?')){
+    document.getElementById('notes-area').value='';
+    localStorage.removeItem('it12_notes');
+    document.getElementById('notes-saved').textContent='Notes cleared.';
+  }
+}
+function downloadNotesPDF(){
+  const notes=document.getElementById('notes-area').value;
+  if(!notes.trim()){toast('⚠️ No notes to download!');return;}
+  // Escape HTML entities for safe rendering
+  const escaped=notes.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const content=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>My IT Notes</title><style>
+    body{font-family:Arial,sans-serif;padding:40px;color:#000;line-height:1.7;max-width:900px;margin:0 auto}
+    h1{color:#6c63ff;border-bottom:2px solid #6c63ff;padding-bottom:10px;font-size:22px;margin-bottom:8px}
+    .meta{font-size:12px;color:#888;margin-bottom:20px;border-bottom:1px solid #eee;padding-bottom:10px}
+    pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:14px;line-height:1.8;color:#222}
+    @page{margin:15mm}@media print{body{padding:0}}
+  </style></head><body>
+    <h1>📝 My IT Study Notes – Standard XII</h1>
+    <div class="meta">Generated: ${new Date().toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'})} | IT Academy XII</div>
+    <pre>${escaped}</pre>
+  </body></html>`;
+  triggerPDFDownload(content,'IT_My_Notes_Std12');
+  unlockBadge('pdf_downloader');awardXP(10,'📥 Notes Downloaded!');
+}
+
+// ===== BADGES =====
+function renderBadges(){
+  const earned=ST.badges||[];
+  document.getElementById('badges-grid').innerHTML=BADGES_DEF.map(b=>`
+    <div class="badge-card ${earned.includes(b.id)||b.earned?'earned':'locked-b'}">
+      <div class="badge-icon">${b.icon}</div>
+      <div class="badge-name">${b.name}</div>
+      <div class="badge-desc">${b.desc}</div>
+      <div style="font-size:.65rem;margin-top:4px;color:${earned.includes(b.id)||b.earned?'var(--green)':'var(--muted)'}">${earned.includes(b.id)||b.earned?'✅ Earned':'🔒 Locked'}</div>
+    </div>`).join('');
+}
+function unlockBadge(id){
+  if(!ST.badges)ST.badges=[];
+  if(!ST.badges.includes(id)){
+    ST.badges.push(id);save();renderBadges();updateStats();
+    const b=BADGES_DEF.find(x=>x.id===id);
+    if(b)toast('🎖️ Badge Unlocked: '+b.name+' '+b.icon);
+  }
+}
+
+// ===== XP & STATS =====
+function awardXP(pts,msg){
+  ST.xp=(ST.xp||0)+pts;save();updateStats();
+  const p=document.getElementById('xp-popup');
+  p.textContent='+'+pts+' XP';p.classList.add('show');
+  setTimeout(()=>p.classList.remove('show'),1500);
+  updateLevel();
+}
+function updateStats(){
+  const xp=ST.xp||0;
+  const comp=Object.keys(ST.moduleProgress||{}).length;
+  const pct=Math.round(comp/MODULES.length*100);
+  document.getElementById('xp-display').textContent=xp;
+  document.getElementById('stat-xp').textContent=xp;
+  document.getElementById('stat-comp').textContent=pct+'%';
+  document.getElementById('stat-quiz').textContent=ST.quizDone||0;
+  const bc=(ST.badges?.length||0)+1;
+  document.getElementById('stat-bdg').textContent=bc;
+  document.getElementById('badges-display').textContent=bc;
+  document.getElementById('cert-xp-display').textContent=xp;
+  document.getElementById('cert-mods').textContent=comp+'/7';
+  const scores=Object.values(ST.quizScores||{});
+  const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+  document.getElementById('cert-score').textContent=avg?avg+'%':'–';
+}
+function updateLevel(){
+  const xp=ST.xp||0;
+  let lvl='🌱 Beginner Explorer';
+  if(xp>=300) lvl='📖 Learner';
+  if(xp>=600) lvl='🌟 CSS Warrior';
+  if(xp>=1000) lvl='⚡ JS Ninja';
+  if(xp>=1800) lvl='🐘 PHP Builder';
+  if(xp>=2800) lvl='🚀 Future Tech Explorer';
+  if(xp>=4000) lvl='🏆 IT Master';
+  const el=document.getElementById('level-badge');if(el)el.textContent=lvl;
+  document.getElementById('streak-display').textContent=ST.streak||1;
+}
+
+// ===== TOAST =====
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ===== CERTIFICATE =====
+function generateCert(){
+  const name=document.getElementById('cert-name').value.trim();
+  if(!name){toast('⚠️ Please enter your full name!');document.getElementById('cert-name').focus();return;}
+  document.getElementById('cert-name-display').textContent=name;
+  toast('🎉 Certificate generated! Click "Download PDF" to save it.');
+  awardXP(50,'📜 Certificate Generated!');
+  unlockBadge('pdf_downloader');
+}
+function downloadCertPDF(){
+  const name=document.getElementById('cert-name').value.trim();
+  if(!name){toast('⚠️ Please enter your name first!');document.getElementById('cert-name').focus();return;}
+  const scores=Object.values(ST.quizScores||{});
+  const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+  const comp=Object.keys(ST.moduleProgress||{}).length;
+  const content=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Certificate – ${name}</title><style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Georgia,serif;background:#f8f8ff;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+    .cert{border:10px double #6c63ff;padding:50px 60px;text-align:center;max-width:750px;width:100%;margin:0 auto;position:relative;background:#fff;box-shadow:0 0 40px rgba(0,0,0,.1)}
+    .cert::before{content:'';position:absolute;inset:6px;border:2px solid #ffd166;pointer-events:none}
+    .watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);font-size:70px;opacity:.04;font-weight:900;color:#6c63ff;pointer-events:none;white-space:nowrap;letter-spacing:4px}
+    .top-bar{display:flex;justify-content:center;gap:20px;font-size:11px;color:#aaa;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
+    h1{color:#6c63ff;font-size:24px;letter-spacing:4px;text-transform:uppercase;margin-bottom:4px}
+    .divider{border:none;border-top:2px solid #ffd166;width:80px;margin:10px auto}
+    .emoji{font-size:64px;margin:14px 0}
+    .certify-text{font-size:13px;color:#777;font-style:italic;margin-bottom:6px}
+    .name{font-size:36px;color:#0055bb;margin:8px 0 12px;font-style:italic;font-weight:700}
+    .course-label{font-size:13px;color:#777;font-style:italic;margin-bottom:6px}
+    .course-name{font-size:20px;font-weight:700;color:#222;margin:6px 0 4px}
+    .board{font-size:12px;color:#999;margin-bottom:16px;letter-spacing:1px}
+    .stats{display:flex;justify-content:center;gap:36px;padding:16px 0;border-top:1px solid #eee;border-bottom:1px solid #eee;margin:16px 0}
+    .stat-val{font-size:28px;font-weight:900;color:#6c63ff}
+    .stat-lbl{font-size:11px;color:#999;margin-top:2px}
+    .footer{display:flex;justify-content:space-between;align-items:flex-end;margin-top:16px;padding-top:12px;font-size:11px;color:#aaa}
+    .sig-line{border-top:1px solid #ccc;padding-top:6px;text-align:center;min-width:130px}
+    @page{size:A4 landscape;margin:8mm}
+    @media print{body{background:#fff;display:block;padding:0}.cert{box-shadow:none;margin:0 auto}}
+  </style></head>
+  <body><div class="cert">
+    <div class="watermark">IT ACADEMY XII</div>
+    <div class="top-bar"><span>Maharashtra State Board</span><span>◆</span><span>Standard XII</span><span>◆</span><span>Science Stream</span></div>
+    <h1>Certificate of Completion</h1>
+    <hr class="divider">
+    <div class="emoji">🎓</div>
+    <div class="certify-text">This is to proudly certify that</div>
+    <div class="name">${name}</div>
+    <div class="course-label">has successfully completed the course</div>
+    <div class="course-name">Information Technology – Standard XII</div>
+    <div class="board">Maharashtra State Board · Science Stream · Complete Syllabus Coverage</div>
+    <div class="stats">
+      <div><div class="stat-val">${avg?avg+'%':'–'}</div><div class="stat-lbl">Quiz Average</div></div>
+      <div><div class="stat-val">${ST.xp||0}</div><div class="stat-lbl">XP Earned</div></div>
+      <div><div class="stat-val">${comp}/7</div><div class="stat-lbl">Modules Done</div></div>
+    </div>
+    <div class="footer">
+      <div class="sig-line">${new Date().toLocaleDateString('en-IN')}<br><span style="font-size:10px;color:#bbb">Date of Issue</span></div>
+      <div style="font-size:10px;color:#ccc;align-self:center">IT Academy XII · itacademyxii.edu</div>
+      <div class="sig-line">IT Academy XII<br><span style="font-size:10px;color:#bbb">Issuing Authority</span></div>
+    </div>
+  </div></body></html>`;
+  triggerPDFDownload(content,'IT_Certificate_'+name.replace(/\s+/g,'_'));
+  unlockBadge('pdf_downloader');awardXP(10,'📥 Certificate Downloaded!');
+}
+
+// ===== PDF DOWNLOAD =====
+function triggerPDFDownload(htmlContent, filename){
+  const win=window.open('','_blank','width=900,height=700');
+  if(!win){toast('⚠️ Please allow popups to download PDF');return;}
+  win.document.write(htmlContent);
+  win.document.close();
+  win.focus();
+  // Give content time to render, then print
+  setTimeout(()=>{
+    win.print();
+    // Close after print dialog (user chooses Save as PDF)
+    win.onafterprint=()=>win.close();
+  },600);
+  toast('📥 In the print dialog → choose "Save as PDF"');
+}
+
+function downloadChapterPDF(id){
+  const l=LESSONS[id];
+  let body=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Chapter ${id+1}: ${l.title}</title><style>
+    body{font-family:Arial,sans-serif;padding:40px;color:#000;line-height:1.7;max-width:900px;margin:0 auto}
+    h1{color:#6c63ff;border-bottom:3px solid #6c63ff;padding-bottom:12px;font-size:24px}
+    h2{color:#0066cc;margin-top:28px;font-size:18px;border-left:4px solid #0066cc;padding-left:10px}
+    h3{color:#cc6600;margin-top:20px;font-size:15px}
+    p,li{font-size:14px;line-height:1.7}
+    ul,ol{padding-left:22px;margin-bottom:10px}
+    table{width:100%;border-collapse:collapse;margin:12px 0}
+    th{background:#6c63ff;color:#fff;padding:8px;text-align:left;font-size:13px}
+    td{padding:7px 8px;border:1px solid #ccc;font-size:13px}
+    tr:nth-child(even) td{background:#f5f5ff}
+    .code-block{background:#f5f5f5;padding:14px;margin:10px 0;white-space:pre-wrap;border:1px solid #ddd;border-radius:6px;font-family:'Courier New',monospace;font-size:12px;line-height:1.6}
+    .info-box{background:#e3f2fd;border-left:4px solid #2196f3;padding:12px;border-radius:6px;margin:10px 0;font-size:13px}
+    .warn-box{background:#fce4ec;border-left:4px solid #e91e63;padding:12px;border-radius:6px;margin:10px 0;font-size:13px}
+    .success-box{background:#e8f5e9;border-left:4px solid #4caf50;padding:12px;border-radius:6px;margin:10px 0;font-size:13px}
+    .header{text-align:center;margin-bottom:30px;border-bottom:2px solid #6c63ff;padding-bottom:20px}
+    button{display:none!important}
+    @page{margin:18mm}@media print{body{padding:0}button{display:none!important}}
+  </style></head><body>
+  <div class="header">
+    <div style="font-size:40px">${l.icon}</div>
+    <h1>Chapter ${id+1}: ${l.title}</h1>
+    <p style="color:#666;font-size:13px">Maharashtra State Board · Information Technology · Standard XII</p>
+    <p style="color:#999;font-size:11px">Generated: ${new Date().toLocaleDateString('en-IN',{year:'numeric',month:'long',day:'numeric'})} · IT Academy XII</p>
+  </div>`;
+  l.sections.forEach(s=>{
+    body+=`<h2>${s.h}</h2>`;
+    // Strip all button variants from content
+    body+=s.body.replace(/<button[^>]*>[^<]*<\/button>/g,'');
+  });
+  body+=`</body></html>`;
+  triggerPDFDownload(body,`Chapter_${id+1}_${l.title.replace(/\s+/g,'_')}`);
+  unlockBadge('pdf_downloader');awardXP(10,'📥 Chapter Downloaded!');
+}
+
+function downloadPDF(){
+  let body=`<html><head><style>
+    body{font-family:Arial,sans-serif;padding:30px;color:#000;line-height:1.7;max-width:900px;margin:0 auto}
+    h1{color:#6c63ff;font-size:22px;border-bottom:3px solid #6c63ff;padding-bottom:10px;margin-top:40px}
+    h2{color:#0066cc;font-size:17px;margin-top:24px;border-left:4px solid #0066cc;padding-left:8px}
+    h3{color:#cc6600;font-size:14px;margin-top:16px}
+    p,li{font-size:13px;line-height:1.7}
+    table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+    th{background:#6c63ff;color:#fff;padding:7px;text-align:left}
+    td{padding:6px;border:1px solid #ccc}
+    tr:nth-child(even){background:#f5f5ff}
+    .code-block{background:#f0f0f0;padding:12px;margin:8px 0;font-family:monospace;font-size:12px;white-space:pre-wrap;border:1px solid #ddd;border-radius:4px}
+    .info-box{background:#e3f2fd;border-left:4px solid #2196f3;padding:10px;margin:8px 0;font-size:13px}
+    .warn-box{background:#fce4ec;border-left:4px solid #e91e63;padding:10px;margin:8px 0;font-size:13px}
+    .cover{text-align:center;padding:60px 0;border-bottom:3px solid #6c63ff;margin-bottom:40px}
+    .toc{background:#f5f5ff;padding:20px;border-radius:8px;margin:20px 0}
+    .toc h2{color:#333;border:none}
+    .toc li{font-size:14px;margin:6px 0}
+    @page{margin:15mm}
+  </style></head><body>
+  <div class="cover">
+    <div style="font-size:50px">🎓</div>
+    <h1 style="font-size:28px;border:none;color:#6c63ff">Information Technology</h1>
+    <h2 style="border:none;color:#333;font-size:20px">Standard XII – Complete Notes</h2>
+    <p style="color:#666;font-size:14px">Maharashtra State Board · Science Stream</p>
+    <p style="color:#999;font-size:12px">Generated by IT Academy XII · ${new Date().toLocaleDateString('en-IN')}</p>
+  </div>
+  <div class="toc">
+    <h2>📋 Table of Contents</h2>
+    <ol>${LESSONS.map((l,i)=>`<li>${l.icon} Chapter ${i+1}: ${l.title}</li>`).join('')}</ol>
+  </div>`;
+
+  LESSONS.forEach((l,idx)=>{
+    body+=`<h1>${l.icon} Chapter ${idx+1}: ${l.title}</h1>`;
+    l.sections.forEach(s=>{
+      body+=`<h2>${s.h}</h2>`;
+      body+=s.body
+        .replace(/<button[^>]*>Copy<\/button>/g,'')
+        .replace(/<button[^>]*>✓ Copied<\/button>/g,'')
+        .replace(/class="copy-btn"[^>]*>[^<]*<\/button>/g,'');
+    });
+    body+=`<div style="page-break-after:always"></div>`;
+  });
+
+  // Add all flashcards as revision section
+  body+=`<h1>🃏 Flash Cards – Quick Revision</h1>`;
+  const topics=[...new Set(FLASHCARDS.map(f=>f.topic))];
+  topics.forEach(t=>{
+    body+=`<h2>${t}</h2><table><tr><th>Question</th><th>Answer</th></tr>`;
+    FLASHCARDS.filter(f=>f.topic===t).forEach(f=>{
+      body+=`<tr><td>${f.q}</td><td>${f.a.replace(/\n/g,'<br>')}</td></tr>`;
+    });
+    body+=`</table>`;
+  });
+
+  body+=`</body></html>`;
+  triggerPDFDownload(body,'IT_Complete_Notes_Std12');
+  unlockBadge('pdf_downloader');awardXP(20,'📥 Full PDF Downloaded!');
+}
+
+window.onload=init;
+</script>
+</body>
+</html>

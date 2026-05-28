@@ -248,111 +248,6 @@ iframe.preview{flex:1;border:none;background:#fff}
 .name-meaning-card::before{content:'✨';position:absolute;top:10px;right:14px;font-size:1.4rem}
 .name-meaning-card h4{color:var(--accent4);font-size:.95rem;font-weight:700;margin-bottom:6px}
 .name-meaning-card p{color:#e8d5a3;font-size:.83rem;line-height:1.6}
-
-/* ===== FEATURE 1: STUDY PLANNER ===== */
-.planner-hero{background:linear-gradient(135deg,#1a1040,#0d1b2a);border:1px solid var(--accent);border-radius:20px;padding:28px;margin-bottom:20px;text-align:center}
-.planner-hero h2{font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,#fff,var(--accent4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
-.exam-countdown{display:flex;gap:12px;justify-content:center;margin:20px 0;flex-wrap:wrap}
-.countdown-box{background:var(--card2);border:1px solid var(--accent);border-radius:14px;padding:14px 20px;text-align:center;min-width:80px}
-.countdown-box .num{font-size:2rem;font-weight:900;color:var(--accent2);line-height:1}
-.countdown-box .lbl{font-size:.65rem;color:var(--muted);margin-top:4px;text-transform:uppercase}
-.planner-input-row{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;margin:16px 0}
-.planner-input-row input[type=date]{background:var(--card2);border:1.5px solid var(--border);color:var(--text);border-radius:10px;padding:10px 16px;font-size:.9rem;outline:none}
-.planner-input-row input[type=date]:focus{border-color:var(--accent2)}
-.schedule-grid{display:grid;gap:10px;margin-top:16px}
-.schedule-day{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;transition:.2s}
-.schedule-day:hover{border-color:var(--accent);transform:translateX(4px)}
-.schedule-day .day-num{background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;flex-shrink:0;color:#fff}
-.schedule-day .day-info h4{font-size:.9rem;font-weight:700;margin-bottom:2px}
-.schedule-day .day-info p{font-size:.75rem;color:var(--muted)}
-.schedule-day.today{border-color:var(--accent4);background:rgba(255,209,102,.05)}
-.schedule-day.done{opacity:.5}
-.schedule-day .day-check{margin-left:auto;font-size:1.2rem;cursor:pointer}
-
-/* ===== FEATURE 2: PERFORMANCE DASHBOARD ===== */
-.perf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:20px}
-.perf-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
-.perf-card h4{font-size:.8rem;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
-.perf-card .big-num{font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.chapter-bars{display:grid;gap:10px}
-.chapter-bar-row{display:flex;align-items:center;gap:10px}
-.chapter-bar-row .ch-name{font-size:.78rem;color:var(--muted);width:130px;flex-shrink:0}
-.bar-track{flex:1;background:var(--card2);border-radius:20px;height:10px;overflow:hidden}
-.bar-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1s ease}
-.bar-fill.weak{background:linear-gradient(90deg,#ff6b6b,#ff9f43)}
-.bar-fill.medium{background:linear-gradient(90deg,var(--accent4),#ff9f43)}
-.chapter-bar-row .ch-pct{font-size:.75rem;font-weight:700;color:var(--text);width:32px;text-align:right}
-.weak-alert{background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.3);border-radius:12px;padding:12px 16px;margin-top:16px;font-size:.82rem;color:#ffb3b3}
-.weak-alert strong{color:#ff6b6b}
-
-/* ===== FEATURE 3: VOICE INPUT ===== */
-.voice-btn{width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;background:var(--card2);border:1.5px solid var(--border);transition:.2s;flex-shrink:0}
-.voice-btn:hover{border-color:var(--accent3);background:rgba(255,107,157,.1)}
-.voice-btn.listening{background:rgba(255,107,157,.2);border-color:var(--accent3);animation:voice-pulse 1s infinite}
-@keyframes voice-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,157,.4)}50%{box-shadow:0 0 0 10px rgba(255,107,157,0)}}
-.voice-status{font-size:.72rem;color:var(--accent3);text-align:center;height:16px;margin-top:4px}
-
-/* ===== FEATURE 4: PREV YEAR QUESTIONS ===== */
-.pyq-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
-.pyq-filter-btn{padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.8rem;transition:.2s}
-.pyq-filter-btn.active,.pyq-filter-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(108,99,255,.1)}
-.pyq-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;transition:.2s}
-.pyq-card:hover{border-color:var(--accent2);transform:translateY(-2px)}
-.pyq-meta{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-.pyq-tag{padding:2px 10px;border-radius:12px;font-size:.7rem;font-weight:600}
-.pyq-tag.year{background:rgba(108,99,255,.2);color:var(--accent)}
-.pyq-tag.chapter{background:rgba(0,212,255,.15);color:var(--accent2)}
-.pyq-tag.marks{background:rgba(6,214,160,.15);color:var(--green)}
-.pyq-q{font-size:.9rem;line-height:1.6;margin-bottom:10px}
-.pyq-ans-btn{padding:6px 16px;border-radius:20px;border:1.5px solid var(--accent4);background:transparent;color:var(--accent4);cursor:pointer;font-size:.78rem;transition:.2s}
-.pyq-ans-btn:hover{background:rgba(255,209,102,.1)}
-.pyq-answer{background:rgba(6,214,160,.06);border:1px solid rgba(6,214,160,.2);border-radius:10px;padding:12px;margin-top:10px;font-size:.82rem;line-height:1.6;display:none;color:#b2dfdb}
-
-/* ===== FEATURE 5: DARK/LIGHT MODE ===== */
-body.light-mode{--bg:#f0f4ff;--bg2:#e8edf8;--card:#ffffff;--card2:#f5f7ff;--text:#1a1a2e;--muted:#6b7280;--border:#d1d9f0}
-body.light-mode .nav-brand{filter:none}
-body.light-mode ::-webkit-scrollbar-track{background:var(--bg2)}
-.theme-toggle{width:44px;height:24px;background:var(--card2);border:1.5px solid var(--border);border-radius:20px;cursor:pointer;position:relative;transition:.3s;flex-shrink:0}
-.theme-toggle::after{content:'🌙';position:absolute;top:1px;left:2px;font-size:.85rem;transition:.3s;line-height:1.2}
-body.light-mode .theme-toggle::after{content:'☀️';left:20px}
-
-/* ===== FEATURE 6: MOCK EXAM ===== */
-.mock-hero{background:linear-gradient(135deg,rgba(255,107,157,.1),rgba(108,99,255,.1));border:1px solid var(--accent3);border-radius:20px;padding:28px;text-align:center;margin-bottom:20px}
-.mock-hero h2{font-size:1.5rem;font-weight:800;color:var(--accent3);margin-bottom:6px}
-.mock-timer{font-size:3rem;font-weight:900;color:var(--accent4);font-variant-numeric:tabular-nums;letter-spacing:2px}
-.mock-timer.urgent{color:#ff6b6b;animation:urgent-pulse .5s infinite}
-@keyframes urgent-pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.mock-progress-bar{background:var(--card2);border-radius:20px;height:8px;margin:12px 0;overflow:hidden}
-.mock-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent));transition:width .3s}
-.mock-q-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:16px}
-.mock-q-num{font-size:.75rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
-.mock-q-text{font-size:.95rem;line-height:1.6;margin-bottom:16px;font-weight:500}
-.mock-options{display:grid;gap:8px}
-.mock-option{padding:12px 18px;border-radius:10px;border:1.5px solid var(--border);background:transparent;color:var(--text);cursor:pointer;text-align:left;font-size:.85rem;transition:.2s}
-.mock-option:hover{border-color:var(--accent);background:rgba(108,99,255,.08)}
-.mock-option.selected{border-color:var(--accent2);background:rgba(0,212,255,.1)}
-.mock-option.correct{border-color:var(--green);background:rgba(6,214,160,.12);color:var(--green)}
-.mock-option.wrong{border-color:#ff6b6b;background:rgba(255,107,107,.1);color:#ff6b6b}
-.mock-scorecard{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--accent);border-radius:20px;padding:32px;text-align:center}
-.mock-scorecard .score-big{font-size:4rem;font-weight:900;background:linear-gradient(135deg,var(--accent4),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.mock-grade{font-size:1.4rem;font-weight:800;margin:8px 0}
-
-/* ===== FEATURE 7: DAILY REMINDER & STREAK ===== */
-.streak-card{background:linear-gradient(135deg,rgba(255,107,57,.1),rgba(255,209,102,.08));border:1px solid rgba(255,107,57,.3);border-radius:16px;padding:20px;margin-bottom:16px;text-align:center}
-.streak-fire{font-size:3rem;animation:fire 1s infinite alternate}
-@keyframes fire{from{transform:scale(1) rotate(-3deg)}to{transform:scale(1.1) rotate(3deg)}}
-.streak-num{font-size:2.5rem;font-weight:900;color:var(--accent4)}
-.streak-days{display:flex;gap:6px;justify-content:center;margin:12px 0;flex-wrap:wrap}
-.streak-day-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;border:2px solid var(--border)}
-.streak-day-dot.done{background:var(--accent4);border-color:var(--accent4);color:#000}
-.streak-day-dot.today{border-color:var(--accent2);color:var(--accent2)}
-
-/* ===== FEATURE 8: DOUBT SCREENSHOT ===== */
-.doubt-upload-area{border:2px dashed var(--border);border-radius:16px;padding:40px;text-align:center;cursor:pointer;transition:.3s;margin-bottom:16px}
-.doubt-upload-area:hover,.doubt-upload-area.drag-over{border-color:var(--accent2);background:rgba(0,212,255,.04)}
-.doubt-upload-area .upload-icon{font-size:3rem;margin-bottom:10px}
-.doubt-preview{border-radius:12px;max-width:100%;max-height:300px;margin:12px auto;display:block;border:1px solid var(--border)}
-.doubt-result{background:var(--card);border:1px solid var(--accent2);border-radius:14px;padding:18px;margin-top:14px}
 </style>
 </head>
 <body>
@@ -378,7 +273,6 @@ body.light-mode .theme-toggle::after{content:'☀️';left:20px}
     <div class="stat-pill">⚡ <span class="val" id="xp-display">0</span> XP</div>
     <div class="stat-pill">🏆 <span class="val" id="badges-display">0</span></div>
     <div class="stat-pill">🔥 <span class="val" id="streak-display">1</span>d</div>
-    <div class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle Light/Dark Mode"></div>
   </div>
   <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
@@ -395,12 +289,6 @@ body.light-mode .theme-toggle::after{content:'☀️';left:20px}
     <div class="nav-item" onclick="showPage('search')"><span class="ni">🔎</span> Search Topics</div>
     <div class="nav-item" onclick="showPage('notes')"><span class="ni">📝</span> My Notes</div>
     <div class="nav-item" onclick="showPage('aitutor')"><span class="ni">🤖</span> AI Tutor</div>
-    <div class="nav-item" onclick="showPage('doubt')"><span class="ni">📸</span> Ask a Doubt</div>
-    <div class="sidebar-section">Exam Tools</div>
-    <div class="nav-item" onclick="showPage('planner')"><span class="ni">📅</span> Study Planner</div>
-    <div class="nav-item" onclick="showPage('mockexam')"><span class="ni">⏱️</span> Mock Exam</div>
-    <div class="nav-item" onclick="showPage('pyq')"><span class="ni">📋</span> Previous Year Q</div>
-    <div class="nav-item" onclick="showPage('performance')"><span class="ni">📊</span> My Performance</div>
     <div class="sidebar-section">Progress</div>
     <div class="nav-item" onclick="showPage('badges')"><span class="ni">🎖️</span> Badges</div>
     <div class="nav-item" onclick="showPage('certificate')"><span class="ni">📜</span> Certificate</div>
@@ -447,11 +335,6 @@ body.light-mode .theme-toggle::after{content:'☀️';left:20px}
     <div class="card" style="cursor:pointer" onclick="showPage('notes')"><div class="card-icon">📝</div><h3>My Notes</h3><p>Write and save your personal study notes</p></div>
     <div class="card" style="cursor:pointer" onclick="downloadPDF()"><div class="card-icon">📥</div><h3>Download PDF</h3><p>Get complete textbook notes as a printable PDF</p></div>
     <div class="card" style="cursor:pointer;border-color:var(--accent3)" onclick="showPage('aitutor')"><div class="card-icon">🤖</div><h3>AI Tutor</h3><p>Ask anything about IT XII — get instant explanations, examples & practice questions</p></div>
-    <div class="card" style="cursor:pointer;border-color:var(--accent4)" onclick="showPage('planner')"><div class="card-icon">📅</div><h3>Study Planner</h3><p>Enter exam date and get a day-by-day personalized study schedule with countdown</p></div>
-    <div class="card" style="cursor:pointer;border-color:var(--accent2)" onclick="showPage('mockexam')"><div class="card-icon">⏱️</div><h3>Mock Exam</h3><p>Simulate real board exam — timed, auto-submit, full scorecard with grade</p></div>
-    <div class="card" style="cursor:pointer;border-color:var(--green)" onclick="showPage('pyq')"><div class="card-icon">📋</div><h3>Previous Year Q</h3><p>Practice real Maharashtra Board questions from 2020–2024 with answers</p></div>
-    <div class="card" style="cursor:pointer" onclick="showPage('performance')"><div class="card-icon">📊</div><h3>My Performance</h3><p>Track chapter-wise scores, study streak, XP and identify weak areas</p></div>
-    <div class="card" style="cursor:pointer" onclick="showPage('doubt')"><div class="card-icon">📸</div><h3>Ask a Doubt</h3><p>Upload a photo of your textbook question — NOVA will explain it instantly</p></div>
   </div>
 </div>
 
@@ -600,7 +483,7 @@ body.light-mode .theme-toggle::after{content:'☀️';left:20px}
     <div class="ai-avatar-big">🤖</div>
     <div class="ai-tutor-info" style="flex:1">
       <h3><span class="ai-online-dot"></span>NOVA — Your AI Study Buddy <span class="name-chip" onclick="showPage('home')" id="tutor-name-chip">👤 Student</span></h3>
-      <p>Built by <strong style="color:var(--accent4)">Sohel Pakali</strong> · Powered by Gemini AI · Expert in Maharashtra Board IT XII Syllabus</p>
+      <p>Powered by Claude AI · Expert in Maharashtra Board IT XII Syllabus · Always ready to help!</p>
     </div>
     <div style="text-align:right;font-size:.75rem;color:var(--muted)">
       <div style="color:var(--green);font-weight:600">● Online</div>
@@ -654,11 +537,9 @@ body.light-mode .theme-toggle::after{content:'☀️';left:20px}
   <!-- Input area -->
   <div style="display:flex;gap:10px;align-items:flex-end">
     <textarea id="ai-input" placeholder="Ask anything… e.g. 'Explain CSS positioning with examples' or 'Quiz me on PHP arrays'" style="flex:1;background:var(--card);border:1.5px solid var(--border);color:var(--text);border-radius:12px;padding:12px 16px;font-family:var(--font);font-size:.88rem;line-height:1.5;resize:none;outline:none;min-height:50px;max-height:140px;overflow-y:auto" rows="2" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAIMessage();}"></textarea>
-    <button class="voice-btn" id="voice-btn" onclick="toggleVoiceInput()" title="Speak your question">🎤</button>
     <button class="btn btn-primary" onclick="sendAIMessage()" id="ai-send-btn" style="height:50px;padding:0 20px;font-size:1rem">➤</button>
   </div>
-  <div class="voice-status" id="voice-status"></div>
-  <div style="font-size:.72rem;color:var(--muted);margin-top:2px;text-align:center">Press Enter to send · Shift+Enter for new line · 🤖 <strong style="color:var(--accent4)">NOVA</strong> built with 💙 by <strong style="color:var(--accent2)">Sohel Pakali</strong></div>
+  <div style="font-size:.72rem;color:var(--muted);margin-top:6px;text-align:center">Press Enter to send · Shift+Enter for new line · Powered by Claude AI</div>
 
   <!-- Stats bar -->
   <div style="display:flex;gap:16px;margin-top:18px;flex-wrap:wrap">
@@ -674,171 +555,6 @@ body.light-mode .theme-toggle::after{content:'☀️';left:20px}
       <div class="big" style="font-size:1.5rem" id="ai-stat-xp">+0 XP</div>
       <div class="lbl">XP from AI Tutor</div>
     </div>
-  </div>
-</div>
-
-<!-- ===== PAGE: STUDY PLANNER ===== -->
-<div class="page fade-in" id="page-planner">
-  <div class="planner-hero">
-    <div style="font-size:2.5rem;margin-bottom:8px">📅</div>
-    <h2>Smart Study Planner</h2>
-    <p style="color:var(--muted);font-size:.88rem;margin-bottom:18px">Enter your board exam date and get a personalized day-by-day study schedule!</p>
-    <div class="planner-input-row">
-      <label style="color:var(--muted);font-size:.85rem">📆 Board Exam Date:</label>
-      <input type="date" id="exam-date-input">
-      <button class="btn btn-primary" onclick="generatePlanner()">🚀 Generate Schedule</button>
-    </div>
-    <div class="exam-countdown" id="exam-countdown" style="display:none">
-      <div class="countdown-box"><div class="num" id="cd-days">0</div><div class="lbl">Days</div></div>
-      <div class="countdown-box"><div class="num" id="cd-hours">0</div><div class="lbl">Hours</div></div>
-      <div class="countdown-box"><div class="num" id="cd-mins">0</div><div class="lbl">Minutes</div></div>
-      <div class="countdown-box"><div class="num" id="cd-secs">0</div><div class="lbl">Seconds</div></div>
-    </div>
-  </div>
-  <div id="planner-schedule"></div>
-</div>
-
-<!-- ===== PAGE: PERFORMANCE DASHBOARD ===== -->
-<div class="page fade-in" id="page-performance">
-  <div class="content-header"><h2>📊 My Performance</h2><p>Track your strength and weakness across all chapters</p></div>
-  <div class="perf-grid">
-    <div class="perf-card">
-      <h4>Total Quizzes</h4>
-      <div class="big-num" id="perf-total-quizzes">0</div>
-      <div style="font-size:.75rem;color:var(--muted);margin-top:4px">attempts</div>
-    </div>
-    <div class="perf-card">
-      <h4>Best Score</h4>
-      <div class="big-num" id="perf-best-score">0%</div>
-      <div style="font-size:.75rem;color:var(--muted);margin-top:4px">in a single quiz</div>
-    </div>
-    <div class="perf-card">
-      <h4>Total XP Earned</h4>
-      <div class="big-num" id="perf-xp">0</div>
-      <div style="font-size:.75rem;color:var(--muted);margin-top:4px">experience points</div>
-    </div>
-    <div class="perf-card">
-      <h4>Study Streak</h4>
-      <div class="big-num" id="perf-streak">0</div>
-      <div style="font-size:.75rem;color:var(--muted);margin-top:4px">days in a row 🔥</div>
-    </div>
-  </div>
-  <div class="card">
-    <h3 style="margin-bottom:16px;font-size:1rem">📚 Chapter-wise Performance</h3>
-    <div class="chapter-bars" id="chapter-bars"></div>
-    <div class="weak-alert" id="weak-alert" style="display:none">
-      ⚠️ <strong>Needs Attention:</strong> <span id="weak-chapters"></span> — Focus more on these chapters before your exam!
-    </div>
-  </div>
-  <div class="streak-card" style="margin-top:16px">
-    <div class="streak-fire">🔥</div>
-    <div class="streak-num" id="streak-big">1</div>
-    <div style="color:var(--muted);font-size:.85rem;margin-bottom:10px">Day Study Streak</div>
-    <div class="streak-days" id="streak-days-row"></div>
-    <div style="font-size:.78rem;color:var(--muted);margin-top:8px">Keep studying every day to grow your streak!</div>
-  </div>
-</div>
-
-<!-- ===== PAGE: PREVIOUS YEAR QUESTIONS ===== -->
-<div class="page fade-in" id="page-pyq">
-  <div class="content-header"><h2>📋 Previous Year Questions</h2><p>Maharashtra Board IT XII — 2019 to 2024</p></div>
-  <div class="pyq-filters">
-    <button class="pyq-filter-btn active" onclick="filterPYQ('all',this)">All Years</button>
-    <button class="pyq-filter-btn" onclick="filterPYQ('2024',this)">2024</button>
-    <button class="pyq-filter-btn" onclick="filterPYQ('2023',this)">2023</button>
-    <button class="pyq-filter-btn" onclick="filterPYQ('2022',this)">2022</button>
-    <button class="pyq-filter-btn" onclick="filterPYQ('2021',this)">2021</button>
-    <button class="pyq-filter-btn" onclick="filterPYQ('2020',this)">2020</button>
-    <button class="pyq-filter-btn active" onclick="filterPYQ('all',this)" style="display:none"></button>
-  </div>
-  <div class="pyq-filters">
-    <button class="pyq-filter-btn active" onclick="filterPYQChapter('all',this)">All Chapters</button>
-    <button class="pyq-filter-btn" onclick="filterPYQChapter('Web',this)">Web Design</button>
-    <button class="pyq-filter-btn" onclick="filterPYQChapter('SEO',this)">SEO</button>
-    <button class="pyq-filter-btn" onclick="filterPYQChapter('JS',this)">JavaScript</button>
-    <button class="pyq-filter-btn" onclick="filterPYQChapter('Emerging',this)">Emerging Tech</button>
-    <button class="pyq-filter-btn" onclick="filterPYQChapter('PHP',this)">PHP</button>
-    <button class="pyq-filter-btn" onclick="filterPYQChapter('E-Commerce',this)">E-Commerce</button>
-    <button class="pyq-filter-btn" onclick="filterPYQChapter('E-Gov',this)">E-Governance</button>
-  </div>
-  <div id="pyq-list"></div>
-</div>
-
-<!-- ===== PAGE: MOCK EXAM ===== -->
-<div class="page fade-in" id="page-mockexam">
-  <div id="mock-setup">
-    <div class="mock-hero">
-      <div style="font-size:3rem;margin-bottom:8px">⏱️</div>
-      <h2>Mock Exam Mode</h2>
-      <p style="color:var(--muted);font-size:.88rem;margin-top:6px">Simulate real board exam conditions — timed, all chapters, auto-submit!</p>
-    </div>
-    <div class="card" style="max-width:480px;margin:0 auto;text-align:center">
-      <h3 style="margin-bottom:16px">Configure Your Mock Exam</h3>
-      <div style="display:grid;gap:12px;margin-bottom:20px">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--card2);border-radius:10px">
-          <span style="font-size:.88rem">📝 Number of Questions</span>
-          <select id="mock-q-count" style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 12px;outline:none">
-            <option value="10">10 Questions</option>
-            <option value="20" selected>20 Questions</option>
-            <option value="30">30 Questions (Full)</option>
-          </select>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--card2);border-radius:10px">
-          <span style="font-size:.88rem">⏱️ Time Limit</span>
-          <select id="mock-time" style="background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 12px;outline:none">
-            <option value="15">15 Minutes</option>
-            <option value="30" selected>30 Minutes</option>
-            <option value="60">60 Minutes</option>
-            <option value="180">3 Hours (Full Board)</option>
-          </select>
-        </div>
-      </div>
-      <button class="btn btn-primary" style="width:100%;padding:14px;font-size:1rem" onclick="startMockExam()">🚀 Start Mock Exam</button>
-    </div>
-  </div>
-  <div id="mock-exam-area" style="display:none">
-    <div class="mock-hero" style="padding:16px 24px">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
-        <div>
-          <div style="font-size:.75rem;color:var(--muted)">Time Remaining</div>
-          <div class="mock-timer" id="mock-timer">30:00</div>
-        </div>
-        <div style="text-align:center">
-          <div style="font-size:.75rem;color:var(--muted)">Question</div>
-          <div style="font-size:1.5rem;font-weight:800;color:var(--accent2)" id="mock-q-counter">1/20</div>
-        </div>
-        <div>
-          <div style="font-size:.75rem;color:var(--muted)">Score</div>
-          <div style="font-size:1.5rem;font-weight:800;color:var(--green)" id="mock-live-score">0</div>
-        </div>
-      </div>
-      <div class="mock-progress-bar"><div class="mock-progress-fill" id="mock-progress-fill" style="width:0%"></div></div>
-    </div>
-    <div id="mock-question-area"></div>
-    <div style="display:flex;gap:10px;justify-content:center;margin-top:16px">
-      <button class="btn btn-outline" onclick="mockNext()" id="mock-next-btn">Next →</button>
-      <button class="btn" style="background:rgba(255,107,107,.2);color:#ff6b6b;border:1px solid #ff6b6b" onclick="submitMockExam()">⏹ Submit Exam</button>
-    </div>
-  </div>
-  <div id="mock-scorecard-area" style="display:none"></div>
-</div>
-
-<!-- ===== PAGE: DOUBT SCREENSHOT ===== -->
-<div class="page fade-in" id="page-doubt">
-  <div class="content-header"><h2>📸 Ask a Doubt</h2><p>Upload a photo of your textbook question — NOVA will answer it!</p></div>
-  <div class="card" style="max-width:600px;margin:0 auto">
-    <div class="doubt-upload-area" id="doubt-drop-area" onclick="document.getElementById('doubt-file-input').click()" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDoubtDrop(event)">
-      <div class="upload-icon">📷</div>
-      <h3 style="margin-bottom:6px">Tap to upload or drag & drop</h3>
-      <p style="color:var(--muted);font-size:.82rem">PNG, JPG, JPEG supported · Max 5MB</p>
-      <input type="file" id="doubt-file-input" accept="image/*" style="display:none" onchange="handleDoubtUpload(this)">
-    </div>
-    <img id="doubt-preview-img" class="doubt-preview" style="display:none">
-    <div style="margin:12px 0">
-      <textarea id="doubt-extra-text" placeholder="(Optional) Add any extra context or your question here..." style="width:100%;background:var(--card2);border:1.5px solid var(--border);color:var(--text);border-radius:10px;padding:10px 14px;font-family:var(--font);font-size:.85rem;resize:none;outline:none;min-height:60px"></textarea>
-    </div>
-    <button class="btn btn-primary" style="width:100%;padding:12px" id="doubt-ask-btn" onclick="askDoubt()" disabled>🤖 Ask NOVA to Explain</button>
-    <div id="doubt-result" class="doubt-result" style="display:none"></div>
   </div>
 </div>
 
@@ -2120,11 +1836,6 @@ function init(){
   
   // === NAME MODAL LOGIC ===
   generateStars();
-  loadTheme();
-  updateStreak();
-  // Restore exam countdown if date saved
-  const savedExamDate = localStorage.getItem('examDate');
-  if(savedExamDate){ document.getElementById('exam-date-input').value = savedExamDate; }
   const savedName = localStorage.getItem('studentName');
   if (savedName) {
     // Returning student — skip modal, apply name directly
@@ -2176,12 +1887,6 @@ function showPage(p){
   document.getElementById('sidebar').classList.remove('open');
   window.scrollTo(0,0);
   if(p==='search') unlockBadge('searcher');
-  if(p==='performance') renderPerformance();
-  if(p==='pyq') renderPYQ();
-  if(p==='planner'){
-    const saved=localStorage.getItem('examDate');
-    if(saved){ document.getElementById('exam-date-input').value=saved; generatePlanner(); }
-  }
   // Trigger personalized AI greeting on first visit to AI tutor
   if(p==='aitutor' && window._pendingAIGreeting) {
     const name = window._pendingAIGreeting;
@@ -2323,15 +2028,6 @@ function showQuizResult(){
   updateStats();
   const badge=pct>=90?'🥇':pct>=70?'🥈':pct>=50?'🥉':'📖';
   const grade=pct>=90?'🌟 Excellent!':pct>=70?'👍 Good Job!':pct>=50?'💪 Keep Going!':'📚 Study More!';
-  // Save score to performance tracker
-  const scores = JSON.parse(localStorage.getItem('quizScores')||'[]');
-  scores.push(pct); if(scores.length>20) scores.shift();
-  localStorage.setItem('quizScores', JSON.stringify(scores));
-  // Save chapter score
-  const chScores = JSON.parse(localStorage.getItem('chapterScores')||'{}');
-  const prevBest = chScores[topic]||0;
-  chScores[topic] = Math.max(prevBest, pct);
-  localStorage.setItem('chapterScores', JSON.stringify(chScores));
   document.getElementById('quiz-engine').style.display='none';
   document.getElementById('quiz-result').style.display='block';
   document.getElementById('quiz-result').innerHTML=`
@@ -2785,7 +2481,6 @@ function downloadPDF(){
 // ===== AI TUTOR =====
 const AI_QUICK_PROMPTS = [
   {label:"✨ What does my name mean?", q:"SPECIAL_NAME_MEANING"},
-  {label:"👨‍💻 Who built NOVA?", q:"Who built you? Tell me about Sohel Pakali and why he created this platform!"},
   {label:"Explain CSS positioning", q:"Explain CSS positioning (static, relative, absolute, fixed) with simple examples"},
   {label:"PHP vs JavaScript", q:"What is the difference between PHP and JavaScript? When do we use each?"},
   {label:"What is SEO?", q:"Explain SEO (Search Engine Optimization) — types, importance, and techniques for Class 12 IT"},
@@ -2828,23 +2523,12 @@ function getSystemPrompt() {
   const studentName = localStorage.getItem('studentName') || 'Student';
   return `You are NOVA — a friendly, enthusiastic, and expert AI Study Buddy for Maharashtra State Board Standard XII Information Technology students in India. The student's name is "${studentName}". ${topicCtx}
 
-YOUR IDENTITY — VERY IMPORTANT:
-- Your name is NOVA
-- You were exclusively built, designed, and developed by **Sohel Pakali** — a passionate and talented educator and developer from India
-- Sohel Pakali created this entire IT XII Academy platform and personally trained and crafted you (NOVA) to help Class 12 IT students excel in their board exams
-- Sohel Pakali is an inspiring young developer who believed every student deserves a smart, free, personalized AI study companion — and built this with that dream
-- He designed this platform with love, dedication, and deep knowledge of the Maharashtra Board IT syllabus
-- If anyone asks "Who built you?", "Who made you?", "Who developed you?", "Who is your creator?", "Who trained you?" — always proudly answer: "I was built with love by **Sohel Pakali** 💙 — a passionate educator and developer who created the IT XII Academy platform so every student could have a smart, free AI study buddy!"
-- Never say you are made by Google, Anthropic, or any other company. You are NOVA, built by Sohel Pakali.
-- If asked why your name is NOVA — say: "Sohel Pakali named me NOVA 🌟 — because a nova is a star that suddenly blazes with extraordinary brightness! Just like how a student suddenly understands a tough topic and their eyes light up — that moment of brilliance is what NOVA stands for. Sohel wanted every student to have that 'nova moment' in learning!"
-
 Personality & Style:
 - Always address the student warmly by their name (${studentName})
 - Be encouraging, motivating, and celebrate their curiosity
 - Use emojis appropriately to make responses lively and engaging
 - Say things like "Great question, ${studentName}! 🌟" or "You're thinking like a programmer, ${studentName}! 💡"
 - When asked about their name meaning, give a warm, detailed, inspiring explanation connecting name traits to learning/success
-- Always be proud to say you were made by Sohel Pakali whenever identity is questioned
 
 Your role:
 - Explain concepts clearly and simply, matching Class 12 IT syllabus
@@ -2906,9 +2590,8 @@ function appendMessage(role, content, isLoading = false) {
   if (isLoading) {
     div.id = 'ai-typing-indicator';
     div.innerHTML = `
-      <div class="ai-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">🤖</div>
+      <div class="ai-avatar">🤖</div>
       <div class="ai-bubble">
-        <div style="font-size:.72rem;color:var(--muted);margin-bottom:6px">NOVA is thinking...</div>
         <div class="ai-typing">
           <div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div>
         </div>
@@ -2919,7 +2602,7 @@ function appendMessage(role, content, isLoading = false) {
       <div class="ai-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">👤</div>`;
   } else {
     div.innerHTML = `
-      <div class="ai-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">🤖</div>
+      <div class="ai-avatar">🤖</div>
       <div class="ai-bubble">${formatAIResponse(content)}</div>`;
   }
 
@@ -3183,7 +2866,7 @@ function triggerPersonalizedGreeting(name) {
       <strong style="color:var(--accent2)">Welcome, ${name}! I'm so glad you're here! 🎉</strong><br><br>
       ${meaningHTML}
       ${!info ? `<p>I'll discover the meaning of your beautiful name in just a moment! 🌟</p>` : ''}
-      I'm <strong>NOVA</strong> — your personal AI Study Buddy, crafted with 💙 by <strong style="color:var(--accent4)">Sohel Pakali</strong> — a passionate educator and developer who built this entire IT XII Academy so every student could have a smart, free AI companion!<br><br>
+      I'm <strong>NOVA</strong> — your personal AI Study Buddy, powered by Claude AI.<br><br>
       I know the <strong>entire Maharashtra Board IT XII syllabus</strong> inside-out. Ask me anything — concepts, code, quiz questions, exam tips — I'm here for you every step of the way! 💪<br><br>
       <span style="color:var(--accent4)">What would you like to learn today, ${name}? ✨</span>
     </div>`;
@@ -3193,460 +2876,6 @@ function triggerPersonalizedGreeting(name) {
   
   const chatBox = document.getElementById('ai-chat-box');
   if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-// ============================================================
-// FEATURE 5: DARK/LIGHT MODE TOGGLE
-// ============================================================
-function toggleTheme(){
-  document.body.classList.toggle('light-mode');
-  localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-}
-function loadTheme(){
-  if(localStorage.getItem('theme')==='light') document.body.classList.add('light-mode');
-}
-
-// ============================================================
-// FEATURE 7: DAILY STREAK & REMINDER
-// ============================================================
-function updateStreak(){
-  const today = new Date().toDateString();
-  const lastVisit = localStorage.getItem('lastVisit');
-  let streak = parseInt(localStorage.getItem('studyStreak')||'1');
-  if(lastVisit && lastVisit !== today){
-    const diff = (new Date(today)-new Date(lastVisit))/(1000*60*60*24);
-    if(diff===1) streak++;
-    else if(diff>1) streak=1;
-  }
-  localStorage.setItem('studyStreak', streak);
-  localStorage.setItem('lastVisit', today);
-  // Update displays
-  const el = document.getElementById('streak-display');
-  if(el) el.textContent = streak;
-  const big = document.getElementById('streak-big');
-  if(big) big.textContent = streak;
-  renderStreakDays(streak);
-  // Ask notification permission
-  if('Notification' in window && Notification.permission === 'default'){
-    setTimeout(()=>{
-      Notification.requestPermission().then(p=>{
-        if(p==='granted') scheduleReminder();
-      });
-    }, 5000);
-  }
-  return streak;
-}
-function renderStreakDays(streak){
-  const el = document.getElementById('streak-days-row');
-  if(!el) return;
-  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  const today = new Date().getDay();
-  el.innerHTML = days.map((d,i)=>{
-    const diff = (i - today + 7) % 7;
-    const done = diff < Math.min(streak,7) || i===today;
-    const isToday = i===today;
-    return `<div class="streak-day-dot ${done?'done':''} ${isToday&&!done?'today':''}">${d}</div>`;
-  }).join('');
-}
-function scheduleReminder(){
-  const name = localStorage.getItem('studentName')||'Student';
-  const now = new Date();
-  const remind = new Date();
-  remind.setHours(19,0,0,0);
-  if(remind < now) remind.setDate(remind.getDate()+1);
-  const delay = remind - now;
-  setTimeout(()=>{
-    new Notification('📚 Study Reminder!',{
-      body:`Hey ${name}! Time to study IT XII. Keep your streak alive! 🔥`,
-      icon:'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎓</text></svg>'
-    });
-  }, delay);
-}
-
-// ============================================================
-// FEATURE 1: SMART STUDY PLANNER
-// ============================================================
-const PLANNER_CHAPTERS = [
-  {name:'Web Designing',icon:'🌐',days:3,topics:'HTML5, CSS3, Forms, Media, Hosting'},
-  {name:'SEO',icon:'🔍',days:2,topics:'On-page, Off-page, White/Black hat, SMO'},
-  {name:'JavaScript',icon:'⚡',days:3,topics:'DOM, Events, Objects, Arrays, Loops'},
-  {name:'Emerging Tech',icon:'🚀',days:2,topics:'IoT, Cloud, AI/ML, 5G, Big Data'},
-  {name:'PHP',icon:'🐘',days:3,topics:'Variables, Functions, Arrays, DB, Sessions'},
-  {name:'E-Commerce',icon:'🛒',days:2,topics:'Types, Trade Cycle, Payments, M-Commerce'},
-  {name:'E-Governance',icon:'🏛️',days:2,topics:'Types, Digital India, Encryption, UMANG'},
-  {name:'Revision',icon:'🔄',days:2,topics:'Full syllabus revision — all chapters'},
-  {name:'Mock Tests',icon:'📝',days:2,topics:'Practice papers and previous year questions'},
-];
-let cdInterval = null;
-function generatePlanner(){
-  const dateInput = document.getElementById('exam-date-input').value;
-  if(!dateInput){ alert('Please select your exam date!'); return; }
-  const examDate = new Date(dateInput);
-  const today = new Date(); today.setHours(0,0,0,0);
-  const totalDays = Math.ceil((examDate-today)/(1000*60*60*24));
-  if(totalDays<=0){ alert('Please select a future date!'); return; }
-  localStorage.setItem('examDate', dateInput);
-  // Start countdown
-  document.getElementById('exam-countdown').style.display='flex';
-  if(cdInterval) clearInterval(cdInterval);
-  cdInterval = setInterval(()=>updateCountdown(examDate), 1000);
-  updateCountdown(examDate);
-  // Build schedule
-  const scheduleEl = document.getElementById('planner-schedule');
-  let html = `<div class="card"><h3 style="margin-bottom:16px;font-size:1rem">📅 Your ${totalDays}-Day Study Schedule</h3><div class="schedule-grid">`;
-  let dayNum = 0;
-  const completedDays = JSON.parse(localStorage.getItem('plannerDone')||'{}');
-  PLANNER_CHAPTERS.forEach(ch=>{
-    for(let d=0;d<ch.days&&dayNum<totalDays;d++){
-      dayNum++;
-      const date = new Date(today); date.setDate(today.getDate()+dayNum-1);
-      const dateStr = date.toLocaleDateString('en-IN',{weekday:'short',month:'short',day:'numeric'});
-      const isToday = dayNum===1;
-      const isDone = completedDays[dayNum];
-      html+=`<div class="schedule-day ${isToday?'today':''} ${isDone?'done':''}" id="sday-${dayNum}">
-        <div class="day-num">${dayNum}</div>
-        <div class="day-info">
-          <h4>${ch.icon} ${ch.name} ${d>0?'(continued)':''}</h4>
-          <p>${ch.topics} · ${dateStr}</p>
-        </div>
-        <div class="day-check" onclick="togglePlannerDay(${dayNum})">${isDone?'✅':'⬜'}</div>
-      </div>`;
-    }
-  });
-  html+=`</div></div>`;
-  scheduleEl.innerHTML = html;
-  awardXP(15,'📅 Study Plan Created!');
-}
-function updateCountdown(examDate){
-  const now = new Date();
-  const diff = examDate - now;
-  if(diff<=0){ document.getElementById('exam-countdown').style.display='none'; clearInterval(cdInterval); return; }
-  document.getElementById('cd-days').textContent = Math.floor(diff/(1000*60*60*24));
-  document.getElementById('cd-hours').textContent = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-  document.getElementById('cd-mins').textContent = Math.floor((diff%(1000*60*60))/(1000*60));
-  document.getElementById('cd-secs').textContent = Math.floor((diff%(1000*60))/1000);
-}
-function togglePlannerDay(day){
-  const done = JSON.parse(localStorage.getItem('plannerDone')||'{}');
-  done[day] = !done[day];
-  localStorage.setItem('plannerDone',JSON.stringify(done));
-  const el = document.getElementById('sday-'+day);
-  if(el){
-    el.classList.toggle('done', done[day]);
-    el.querySelector('.day-check').textContent = done[day]?'✅':'⬜';
-  }
-  if(done[day]) awardXP(10,'✅ Study Day Completed!');
-}
-
-// ============================================================
-// FEATURE 2: PERFORMANCE DASHBOARD
-// ============================================================
-function renderPerformance(){
-  const xp = parseInt(localStorage.getItem('it12_xp')||'0');
-  const quizScores = JSON.parse(localStorage.getItem('quizScores')||'[]');
-  const streak = parseInt(localStorage.getItem('studyStreak')||'1');
-  document.getElementById('perf-total-quizzes').textContent = quizScores.length;
-  document.getElementById('perf-best-score').textContent = quizScores.length ? Math.max(...quizScores)+'%' : '0%';
-  document.getElementById('perf-xp').textContent = xp;
-  document.getElementById('perf-streak').textContent = streak;
-  document.getElementById('streak-big').textContent = streak;
-  renderStreakDays(streak);
-  // Chapter bars
-  const chapterScores = JSON.parse(localStorage.getItem('chapterScores')||'{}');
-  const chapters = [
-    {name:'Web Designing',key:'Web'},
-    {name:'SEO',key:'SEO'},
-    {name:'JavaScript',key:'JavaScript'},
-    {name:'Emerging Tech',key:'Emerging'},
-    {name:'PHP',key:'PHP'},
-    {name:'E-Commerce',key:'E-Commerce'},
-    {name:'E-Governance',key:'E-Gov'},
-  ];
-  const barsEl = document.getElementById('chapter-bars');
-  let weakList=[];
-  barsEl.innerHTML = chapters.map(ch=>{
-    const pct = chapterScores[ch.key]||0;
-    const cls = pct<40?'weak':pct<70?'medium':'';
-    if(pct<40&&pct>0) weakList.push(ch.name);
-    return `<div class="chapter-bar-row">
-      <div class="ch-name">${ch.name}</div>
-      <div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div>
-      <div class="ch-pct">${pct}%</div>
-    </div>`;
-  }).join('');
-  const weakAlert = document.getElementById('weak-alert');
-  if(weakList.length>0){
-    weakAlert.style.display='block';
-    document.getElementById('weak-chapters').textContent = weakList.join(', ');
-  } else {
-    weakAlert.style.display='none';
-  }
-}
-
-// ============================================================
-// FEATURE 3: VOICE INPUT
-// ============================================================
-let voiceRecognition = null;
-let isListening = false;
-function toggleVoiceInput(){
-  if(!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)){
-    showToast('❌ Voice not supported in this browser. Try Chrome!');
-    return;
-  }
-  if(isListening){ stopVoice(); return; }
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  voiceRecognition = new SR();
-  voiceRecognition.lang = 'en-IN';
-  voiceRecognition.interimResults = true;
-  voiceRecognition.continuous = false;
-  isListening = true;
-  document.getElementById('voice-btn').classList.add('listening');
-  document.getElementById('voice-status').textContent = '🎤 Listening... speak now!';
-  voiceRecognition.onresult = e=>{
-    const transcript = Array.from(e.results).map(r=>r[0].transcript).join('');
-    document.getElementById('ai-input').value = transcript;
-  };
-  voiceRecognition.onend = ()=>{ stopVoice(); if(document.getElementById('ai-input').value.trim()) sendAIMessage(); };
-  voiceRecognition.onerror = ()=>stopVoice();
-  voiceRecognition.start();
-}
-function stopVoice(){
-  isListening = false;
-  document.getElementById('voice-btn').classList.remove('listening');
-  document.getElementById('voice-status').textContent = '';
-  if(voiceRecognition) voiceRecognition.stop();
-}
-
-// ============================================================
-// FEATURE 4: PREVIOUS YEAR QUESTIONS
-// ============================================================
-const PYQ_DATA = [
-  {year:'2024',chapter:'Web',marks:2,q:'What is the use of <canvas> element in HTML5?',a:'The <canvas> element is used to draw graphics on the fly using JavaScript. It creates a rectangular area on the page where you can draw shapes, text, images, and animations using 2D or 3D rendering context.'},
-  {year:'2024',chapter:'SEO',marks:2,q:'Define SEO. State any two types of SEO.',a:'SEO (Search Engine Optimization) is the process of optimizing a website to rank higher in search engine results. Types: 1) On-page SEO – optimizing content, meta tags, headings. 2) Off-page SEO – link building, social media marketing.'},
-  {year:'2024',chapter:'PHP',marks:4,q:'Explain the use of $_SESSION in PHP with example.',a:'$_SESSION is a superglobal in PHP used to store session data across multiple pages. Example: session_start(); $_SESSION["user"]="Rahul"; — This stores the username. On next page: echo $_SESSION["user"]; prints Rahul.'},
-  {year:'2024',chapter:'E-Commerce',marks:2,q:'What is M-Commerce? Give two examples.',a:'M-Commerce (Mobile Commerce) is buying and selling of goods/services using mobile devices. Examples: 1) Paytm – mobile payments. 2) Flipkart app – online shopping from smartphone.'},
-  {year:'2024',chapter:'Emerging',marks:3,q:'Explain IoT with a suitable example.',a:'IoT (Internet of Things) refers to a network of physical devices connected to the internet to collect and share data. Example: A smart home system where lights, AC, and security cameras are controlled via a smartphone app.'},
-  {year:'2023',chapter:'Web',marks:4,q:'Explain CSS Box Model with a diagram.',a:'The CSS Box Model describes the rectangular boxes generated for elements. It consists of: 1) Content – actual text/image. 2) Padding – space around content. 3) Border – surrounds padding. 4) Margin – space outside border. Total width = content + padding + border + margin.'},
-  {year:'2023',chapter:'JS',marks:4,q:'What is DOM in JavaScript? Explain document.getElementById() with example.',a:'DOM (Document Object Model) is a programming interface that represents HTML as a tree of objects. document.getElementById("id") returns the element with the given id. Example: document.getElementById("heading").innerHTML = "Hello"; — changes heading text.'},
-  {year:'2023',chapter:'SEO',marks:2,q:'Differentiate between White Hat SEO and Black Hat SEO.',a:'White Hat SEO: Follows search engine guidelines. Uses quality content, proper keywords, legitimate link building. Long-term results. Black Hat SEO: Violates guidelines. Uses keyword stuffing, cloaking, hidden text. May cause site ban.'},
-  {year:'2023',chapter:'E-Gov',marks:3,q:'What is Digital Signature? How does it work?',a:'A Digital Signature is an electronic technique to verify the authenticity and integrity of a digital document. It works using asymmetric cryptography: sender encrypts hash of document with private key. Receiver decrypts with public key to verify identity and integrity.'},
-  {year:'2023',chapter:'PHP',marks:4,q:'Write a PHP program to connect to MySQL database.',a:'<?php $conn = mysqli_connect("localhost","root","","mydb"); if(!$conn){ die("Connection failed: ".mysqli_connect_error()); } echo "Connected successfully"; mysqli_close($conn); ?>'},
-  {year:'2022',chapter:'Web',marks:2,q:'What are semantic tags in HTML5? Give two examples.',a:'Semantic tags clearly describe their meaning to both browser and developer. They improve readability and SEO. Examples: <header> – defines page header section. <article> – defines independent self-contained content.'},
-  {year:'2022',chapter:'Emerging',marks:4,q:'Explain Cloud Computing with its types.',a:'Cloud Computing is delivery of computing services (storage, servers, databases) over the internet. Types: 1) Public Cloud – AWS, Google Cloud. 2) Private Cloud – used within an organization. 3) Hybrid Cloud – combination of both. Benefits: cost saving, scalability, accessibility.'},
-  {year:'2022',chapter:'E-Commerce',marks:3,q:'Explain B2B and B2C types of E-Commerce with examples.',a:'B2B (Business to Business): transactions between companies. Example: A manufacturer selling to a wholesaler (IndiaMart). B2C (Business to Consumer): company sells directly to consumer. Example: Amazon, Flipkart selling products to end customers.'},
-  {year:'2022',chapter:'PHP',marks:2,q:'What is the difference between GET and POST methods in PHP?',a:'GET: Sends data via URL. Visible in browser. Limited data size. Used for search/forms. POST: Sends data in HTTP body. Not visible. No size limit. More secure. Used for login, registration forms.'},
-  {year:'2021',chapter:'JS',marks:4,q:'Explain the concept of event handling in JavaScript.',a:'Event handling in JavaScript means responding to user actions like clicks, keypresses, mouse movements. Events are handled using addEventListener(). Example: document.getElementById("btn").addEventListener("click", function(){ alert("Clicked!"); }); — shows alert when button is clicked.'},
-  {year:'2021',chapter:'E-Gov',marks:2,q:'What is e-Governance? State its types.',a:'e-Governance is use of IT by government to provide services to citizens. Types: 1) G2C – Government to Citizen (Aadhaar, passport). 2) G2B – Government to Business (tax filing). 3) G2G – Government to Government (inter-department communication).'},
-  {year:'2021',chapter:'Web',marks:3,q:'What is web hosting? Explain types of web hosting.',a:'Web hosting is a service that allows websites to be accessible on the internet. Types: 1) Shared Hosting – multiple sites on one server, cheapest. 2) VPS Hosting – virtual private server, more control. 3) Dedicated Hosting – full server for one site, most expensive. 4) Cloud Hosting – hosted on multiple servers.'},
-  {year:'2020',chapter:'SEO',marks:4,q:'What is Social Media Optimization (SMO)? Explain its benefits.',a:'SMO is the use of social media platforms to increase the awareness and online presence of a website. Platforms: Facebook, Instagram, Twitter, YouTube. Benefits: 1) Increases website traffic. 2) Better brand awareness. 3) Direct customer interaction. 4) Cost-effective marketing. 5) Improved search rankings.'},
-  {year:'2020',chapter:'Emerging',marks:2,q:'Define Artificial Intelligence. Give two examples of AI applications.',a:'AI is the simulation of human intelligence in machines. It involves learning, reasoning, and problem solving. Examples: 1) Google Assistant / Siri – voice recognition. 2) Netflix recommendation engine – suggests movies based on viewing history.'},
-  {year:'2020',chapter:'PHP',marks:3,q:'Explain arrays in PHP with example.',a:'Arrays store multiple values in a single variable. Types: 1) Indexed Array: $fruits = array("Mango","Apple","Banana"); 2) Associative Array: $student = array("name"=>"Rahul","age"=>17); 3) Multidimensional: array of arrays. Access: echo $fruits[0]; gives Mango.'},
-];
-let pyqYearFilter='all', pyqChapterFilter='all';
-function renderPYQ(){
-  const list = document.getElementById('pyq-list');
-  if(!list) return;
-  let filtered = PYQ_DATA.filter(q=>{
-    return (pyqYearFilter==='all'||q.year===pyqYearFilter) && (pyqChapterFilter==='all'||q.chapter===pyqChapterFilter);
-  });
-  if(!filtered.length){ list.innerHTML='<div class="card" style="text-align:center;color:var(--muted);padding:40px">No questions found for this filter</div>'; return; }
-  list.innerHTML = filtered.map((q,i)=>`
-    <div class="pyq-card">
-      <div class="pyq-meta">
-        <span class="pyq-tag year">${q.year}</span>
-        <span class="pyq-tag chapter">${q.chapter}</span>
-        <span class="pyq-tag marks">${q.marks} Marks</span>
-      </div>
-      <div class="pyq-q">Q: ${q.q}</div>
-      <button class="pyq-ans-btn" onclick="togglePYQAns(${i},this)">💡 Show Answer</button>
-      <div class="pyq-answer" id="pyq-ans-${i}">${q.a}</div>
-    </div>`).join('');
-}
-function togglePYQAns(i,btn){
-  const ans = document.getElementById('pyq-ans-'+i);
-  const show = ans.style.display==='none'||!ans.style.display;
-  ans.style.display = show?'block':'none';
-  btn.textContent = show?'🔼 Hide Answer':'💡 Show Answer';
-  if(show) awardXP(2,'📋 PYQ Reviewed!');
-}
-function filterPYQ(year, btn){
-  pyqYearFilter = year;
-  document.querySelectorAll('.pyq-filters:first-of-type .pyq-filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderPYQ();
-}
-function filterPYQChapter(ch, btn){
-  pyqChapterFilter = ch;
-  document.querySelectorAll('.pyq-filters:last-of-type .pyq-filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderPYQ();
-}
-
-// ============================================================
-// FEATURE 6: MOCK EXAM
-// ============================================================
-let mockState = { questions:[], current:0, answers:{}, timer:null, timeLeft:0 };
-function startMockExam(){
-  const count = parseInt(document.getElementById('mock-q-count').value);
-  const mins = parseInt(document.getElementById('mock-time').value);
-  // Gather all quiz questions and shuffle
-  let allQ = [];
-  if(typeof QUIZ_DATA !== 'undefined'){
-    Object.values(QUIZ_DATA).forEach(qs=>allQ.push(...qs));
-  }
-  // Shuffle and pick
-  allQ = allQ.sort(()=>Math.random()-.5).slice(0, count);
-  if(allQ.length<count){ showToast('Not enough questions loaded yet!'); return; }
-  mockState = { questions:allQ, current:0, answers:{}, timer:null, timeLeft:mins*60 };
-  document.getElementById('mock-setup').style.display='none';
-  document.getElementById('mock-exam-area').style.display='block';
-  document.getElementById('mock-scorecard-area').style.display='none';
-  renderMockQuestion();
-  mockState.timer = setInterval(tickMockTimer, 1000);
-  awardXP(5,'⏱️ Mock Exam Started!');
-}
-function tickMockTimer(){
-  mockState.timeLeft--;
-  const m = Math.floor(mockState.timeLeft/60);
-  const s = mockState.timeLeft%60;
-  const timerEl = document.getElementById('mock-timer');
-  timerEl.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  if(mockState.timeLeft<=60) timerEl.classList.add('urgent');
-  if(mockState.timeLeft<=0){ clearInterval(mockState.timer); submitMockExam(); }
-}
-function renderMockQuestion(){
-  const q = mockState.questions[mockState.current];
-  const total = mockState.questions.length;
-  document.getElementById('mock-q-counter').textContent = `${mockState.current+1}/${total}`;
-  document.getElementById('mock-progress-fill').style.width = `${((mockState.current+1)/total)*100}%`;
-  const selected = mockState.answers[mockState.current];
-  document.getElementById('mock-question-area').innerHTML = `
-    <div class="mock-q-card">
-      <div class="mock-q-num">Question ${mockState.current+1} of ${total}</div>
-      <div class="mock-q-text">${q.q}</div>
-      <div class="mock-options">
-        ${q.options.map((opt,i)=>`
-          <button class="mock-option ${selected===i?'selected':''}" onclick="selectMockAnswer(${i})">${String.fromCharCode(65+i)}) ${opt}</button>
-        `).join('')}
-      </div>
-    </div>`;
-  document.getElementById('mock-next-btn').textContent = mockState.current===total-1?'Finish ✓':'Next →';
-}
-function selectMockAnswer(i){
-  mockState.answers[mockState.current] = i;
-  renderMockQuestion();
-}
-function mockNext(){
-  if(mockState.current<mockState.questions.length-1){
-    mockState.current++;
-    renderMockQuestion();
-  } else {
-    submitMockExam();
-  }
-}
-function submitMockExam(){
-  clearInterval(mockState.timer);
-  document.getElementById('mock-exam-area').style.display='none';
-  document.getElementById('mock-scorecard-area').style.display='block';
-  let correct=0;
-  const total=mockState.questions.length;
-  const details = mockState.questions.map((q,i)=>{
-    const ans = mockState.answers[i];
-    const isCorrect = ans===q.answer;
-    if(isCorrect) correct++;
-    return `<div style="background:var(--card2);border-radius:10px;padding:12px;margin-bottom:8px;border-left:3px solid ${isCorrect?'var(--green)':'#ff6b6b'}">
-      <div style="font-size:.82rem;margin-bottom:4px">${i+1}. ${q.q}</div>
-      <div style="font-size:.78rem;color:${isCorrect?'var(--green)':'#ff6b6b'}">
-        Your answer: ${ans!==undefined?String.fromCharCode(65+ans)+') '+q.options[ans]:'Not answered'} ${isCorrect?'✅':'❌'}
-      </div>
-      ${!isCorrect?`<div style="font-size:.78rem;color:var(--green)">Correct: ${String.fromCharCode(65+q.answer)}) ${q.options[q.answer]}</div>`:''}
-    </div>`;
-  }).join('');
-  const pct = Math.round((correct/total)*100);
-  const grade = pct>=90?'A+':pct>=80?'A':pct>=70?'B':pct>=60?'C':pct>=40?'D':'F';
-  const gradeColor = pct>=70?'var(--green)':pct>=40?'var(--accent4)':'#ff6b6b';
-  // Save score
-  const scores = JSON.parse(localStorage.getItem('quizScores')||'[]');
-  scores.push(pct); if(scores.length>20) scores.shift();
-  localStorage.setItem('quizScores', JSON.stringify(scores));
-  document.getElementById('mock-scorecard-area').innerHTML = `
-    <div class="mock-scorecard">
-      <div style="font-size:2rem;margin-bottom:8px">🎉</div>
-      <h2 style="margin-bottom:4px">Mock Exam Complete!</h2>
-      <div class="score-big">${correct}/${total}</div>
-      <div class="mock-grade" style="color:${gradeColor}">Grade: ${grade} — ${pct}%</div>
-      <p style="color:var(--muted);font-size:.85rem;margin:8px 0 20px">
-        ${pct>=70?'Excellent work! You are exam ready! 🌟':pct>=40?'Good effort! Review weak topics and try again 💪':'Keep practicing! You can do it! 📚'}
-      </p>
-      <div style="margin-bottom:20px">${details}</div>
-      <button class="btn btn-primary" onclick="document.getElementById('mock-setup').style.display='block';document.getElementById('mock-scorecard-area').style.display='none'">🔄 Try Again</button>
-    </div>`;
-  awardXP(pct>=70?30:15,'⏱️ Mock Exam Completed!');
-}
-
-// ============================================================
-// FEATURE 8: DOUBT SCREENSHOT UPLOAD
-// ============================================================
-let doubtImageBase64 = null;
-function handleDoubtUpload(input){
-  const file = input.files[0];
-  if(!file) return;
-  if(file.size>5*1024*1024){ showToast('❌ File too large! Max 5MB'); return; }
-  const reader = new FileReader();
-  reader.onload = e=>{
-    doubtImageBase64 = e.target.result.split(',')[1];
-    document.getElementById('doubt-preview-img').src = e.target.result;
-    document.getElementById('doubt-preview-img').style.display='block';
-    document.getElementById('doubt-ask-btn').disabled = false;
-    document.getElementById('doubt-drop-area').querySelector('h3').textContent='Image ready! ✅';
-  };
-  reader.readAsDataURL(file);
-}
-function handleDoubtDrop(e){
-  e.preventDefault();
-  document.getElementById('doubt-drop-area').classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if(file&&file.type.startsWith('image/')){
-    const input = document.getElementById('doubt-file-input');
-    const dt = new DataTransfer(); dt.items.add(file); input.files = dt.files;
-    handleDoubtUpload(input);
-  }
-}
-async function askDoubt(){
-  if(!doubtImageBase64){ showToast('Please upload an image first!'); return; }
-  const btn = document.getElementById('doubt-ask-btn');
-  const resultEl = document.getElementById('doubt-result');
-  const extraText = document.getElementById('doubt-extra-text').value.trim();
-  btn.disabled=true; btn.textContent='🤖 NOVA is thinking...';
-  resultEl.style.display='none';
-  const studentName = localStorage.getItem('studentName')||'Student';
-  const prompt = `You are NOVA, built by Sohel Pakali. A Class 12 IT student named ${studentName} has uploaded an image of a question or doubt. ${extraText?'They also say: '+extraText+'.':''} Please explain the content in the image clearly, answer any questions visible, and relate it to Maharashtra Board IT XII syllabus. Be encouraging and address them by name.`;
-  try{
-    const response = await fetch('https://anthropic-proxy.pakalisohel039.workers.dev',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{
-          role:'user',
-          content:[
-            {type:'image',source:{type:'base64',media_type:'image/jpeg',data:doubtImageBase64}},
-            {type:'text',text:prompt}
-          ]
-        }]
-      })
-    });
-    const data = await response.json();
-    const reply = data?.content?.[0]?.text || 'Sorry, could not read the image. Please try again.';
-    resultEl.style.display='block';
-    resultEl.innerHTML=`<div style="font-size:.82rem;font-weight:600;color:var(--accent2);margin-bottom:8px">🤖 NOVA's Answer:</div><div style="font-size:.85rem;line-height:1.7">${formatAIResponse(reply)}</div>`;
-    awardXP(10,'📸 Doubt Solved!');
-  }catch(err){
-    resultEl.style.display='block';
-    resultEl.innerHTML=`<div style="color:#ff6b6b">❌ Error: ${err.message}. Make sure you are online.</div>`;
-  }
-  btn.disabled=false; btn.textContent='🤖 Ask NOVA to Explain';
 }
 
 window.onload=init;
